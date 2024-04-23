@@ -1,0 +1,2316 @@
+args = Namespace(save_root='./results/base/new-base-c100-resnet20-gs', img_root='./datasets', print_freq=50, epochs=200, batch_size=128, lr=0.1, momentum=0.9, weight_decay=0.0005, num_class=100, cuda=1, seed=2, note='new-base-c100-resnet20-gs', data_name='cifar100', net_name='resnet20')
+unparsed_args = []
+----------- Network Initialization --------------
+DataParallel(
+  (module): resnet20(
+    (conv1): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (relu): ReLU()
+    (res1): Sequential(
+      (0): resblock(
+        (conv1): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (1): resblock(
+        (conv1): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (2): resblock(
+        (conv1): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (CoordAtt1): CoordAtt(
+      (pool_h): AdaptiveAvgPool2d(output_size=(None, 1))
+      (pool_w): AdaptiveAvgPool2d(output_size=(1, None))
+      (conv1): Conv2d(16, 8, kernel_size=(1, 1), stride=(1, 1))
+      (bn1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (act): h_swish(
+        (sigmoid): h_sigmoid(
+          (relu): ReLU6(inplace=True)
+        )
+      )
+      (conv_h): Conv2d(8, 16, kernel_size=(1, 1), stride=(1, 1))
+      (conv_w): Conv2d(8, 16, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (res2): Sequential(
+      (0): resblock(
+        (conv1): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (ds): Sequential(
+          (0): Conv2d(16, 32, kernel_size=(1, 1), stride=(2, 2), bias=False)
+          (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (1): resblock(
+        (conv1): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (2): resblock(
+        (conv1): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (CoordAtt2): CoordAtt(
+      (pool_h): AdaptiveAvgPool2d(output_size=(None, 1))
+      (pool_w): AdaptiveAvgPool2d(output_size=(1, None))
+      (conv1): Conv2d(32, 8, kernel_size=(1, 1), stride=(1, 1))
+      (bn1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (act): h_swish(
+        (sigmoid): h_sigmoid(
+          (relu): ReLU6(inplace=True)
+        )
+      )
+      (conv_h): Conv2d(8, 32, kernel_size=(1, 1), stride=(1, 1))
+      (conv_w): Conv2d(8, 32, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (res3): Sequential(
+      (0): resblock(
+        (conv1): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (ds): Sequential(
+          (0): Conv2d(32, 64, kernel_size=(1, 1), stride=(2, 2), bias=False)
+          (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (1): resblock(
+        (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (2): resblock(
+        (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (CoordAtt3): CoordAtt(
+      (pool_h): AdaptiveAvgPool2d(output_size=(None, 1))
+      (pool_w): AdaptiveAvgPool2d(output_size=(1, None))
+      (conv1): Conv2d(64, 8, kernel_size=(1, 1), stride=(1, 1))
+      (bn1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (act): h_swish(
+        (sigmoid): h_sigmoid(
+          (relu): ReLU6(inplace=True)
+        )
+      )
+      (conv_h): Conv2d(8, 64, kernel_size=(1, 1), stride=(1, 1))
+      (conv_w): Conv2d(8, 64, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (avgpool): AvgPool2d(kernel_size=8, stride=8, padding=0)
+    (fc): Linear(in_features=64, out_features=100, bias=True)
+  )
+)
+param size = 0.281308MB
+-----------------------------------------------
+Saving initial parameters......
+Epoch: 1  lr: 0.100
+Epoch[1]:[050/391] Time:0.1649 Data:0.1459  loss:4.3314(4.4740)  prec@1:4.69(2.81)  prec@5:17.19(11.41)
+Epoch[1]:[100/391] Time:0.1343 Data:0.1158  loss:4.3564(4.3295)  prec@1:5.47(3.92)  prec@5:17.19(15.45)
+Epoch[1]:[150/391] Time:0.1303 Data:0.1133  loss:3.9762(4.2322)  prec@1:7.81(4.93)  prec@5:24.22(18.38)
+Epoch[1]:[200/391] Time:0.1349 Data:0.1162  loss:3.8542(4.1495)  prec@1:7.81(5.68)  prec@5:28.12(20.82)
+Epoch[1]:[250/391] Time:0.1548 Data:0.1350  loss:3.8612(4.0824)  prec@1:8.59(6.65)  prec@5:34.38(22.86)
+Epoch[1]:[300/391] Time:0.1574 Data:0.1364  loss:3.7801(4.0210)  prec@1:10.16(7.52)  prec@5:34.38(24.92)
+Epoch[1]:[350/391] Time:0.1634 Data:0.1370  loss:3.8531(3.9695)  prec@1:7.81(8.23)  prec@5:28.91(26.63)
+Testing the models......
+Loss: 3.6029, Prec@1: 13.66, Prec@5: 38.00
+Epoch time: 69s
+Saving models......
+Epoch: 2  lr: 0.100
+Epoch[2]:[050/391] Time:0.1953 Data:0.1667  loss:3.4337(3.5299)  prec@1:12.50(15.12)  prec@5:44.53(40.09)
+Epoch[2]:[100/391] Time:0.1674 Data:0.1445  loss:3.6537(3.5056)  prec@1:7.03(15.30)  prec@5:41.41(41.12)
+Epoch[2]:[150/391] Time:0.1550 Data:0.1330  loss:3.2310(3.4748)  prec@1:18.75(15.69)  prec@5:50.78(42.02)
+Epoch[2]:[200/391] Time:0.1494 Data:0.1291  loss:3.2023(3.4422)  prec@1:20.31(16.13)  prec@5:50.00(42.89)
+Epoch[2]:[250/391] Time:0.1678 Data:0.1422  loss:3.0888(3.3988)  prec@1:22.66(16.90)  prec@5:46.88(44.25)
+Epoch[2]:[300/391] Time:0.1748 Data:0.1489  loss:2.9997(3.3619)  prec@1:24.22(17.60)  prec@5:57.03(45.28)
+Epoch[2]:[350/391] Time:0.1646 Data:0.1430  loss:2.9376(3.3252)  prec@1:22.66(18.31)  prec@5:56.25(46.30)
+Testing the models......
+Loss: 3.2211, Prec@1: 20.22, Prec@5: 49.91
+Epoch time: 67s
+Saving models......
+Epoch: 3  lr: 0.100
+Epoch[3]:[050/391] Time:0.1513 Data:0.1314  loss:3.3333(3.0152)  prec@1:17.19(23.78)  prec@5:47.66(55.41)
+Epoch[3]:[100/391] Time:0.1502 Data:0.1302  loss:3.0914(3.0123)  prec@1:26.56(23.91)  prec@5:52.34(55.10)
+Epoch[3]:[150/391] Time:0.1493 Data:0.1266  loss:3.1492(2.9932)  prec@1:16.41(24.28)  prec@5:44.53(55.46)
+Epoch[3]:[200/391] Time:0.1560 Data:0.1357  loss:2.7882(2.9774)  prec@1:23.44(24.46)  prec@5:60.16(55.93)
+Epoch[3]:[250/391] Time:0.1560 Data:0.1351  loss:2.9309(2.9548)  prec@1:26.56(24.83)  prec@5:59.38(56.55)
+Epoch[3]:[300/391] Time:0.1573 Data:0.1348  loss:2.8276(2.9295)  prec@1:25.78(25.39)  prec@5:55.47(57.13)
+Epoch[3]:[350/391] Time:0.1604 Data:0.1405  loss:2.7989(2.9160)  prec@1:32.81(25.75)  prec@5:60.94(57.54)
+Testing the models......
+Loss: 2.8894, Prec@1: 27.01, Prec@5: 57.84
+Epoch time: 63s
+Saving models......
+Epoch: 4  lr: 0.100
+Epoch[4]:[050/391] Time:0.1632 Data:0.1383  loss:2.5348(2.6725)  prec@1:39.06(31.00)  prec@5:67.97(63.09)
+Epoch[4]:[100/391] Time:0.1627 Data:0.1410  loss:2.6092(2.6949)  prec@1:30.47(30.67)  prec@5:60.94(62.62)
+Epoch[4]:[150/391] Time:0.1501 Data:0.1302  loss:2.7059(2.6912)  prec@1:26.56(30.40)  prec@5:64.06(62.70)
+Epoch[4]:[200/391] Time:0.1604 Data:0.1385  loss:2.5103(2.6845)  prec@1:31.25(30.57)  prec@5:62.50(62.88)
+Epoch[4]:[250/391] Time:0.1643 Data:0.1423  loss:2.4767(2.6686)  prec@1:35.16(30.75)  prec@5:68.75(63.28)
+Epoch[4]:[300/391] Time:0.1811 Data:0.1584  loss:2.4040(2.6592)  prec@1:38.28(30.93)  prec@5:67.97(63.41)
+Epoch[4]:[350/391] Time:0.1589 Data:0.1390  loss:2.3648(2.6480)  prec@1:39.06(31.18)  prec@5:75.00(63.74)
+Testing the models......
+Loss: 2.6910, Prec@1: 30.64, Prec@5: 63.30
+Epoch time: 65s
+Saving models......
+Epoch: 5  lr: 0.100
+Epoch[5]:[050/391] Time:0.1576 Data:0.1357  loss:2.5080(2.5215)  prec@1:35.16(33.52)  prec@5:70.31(65.64)
+Epoch[5]:[100/391] Time:0.1626 Data:0.1419  loss:2.0568(2.4964)  prec@1:46.88(33.97)  prec@5:78.91(66.93)
+Epoch[5]:[150/391] Time:0.1534 Data:0.1336  loss:2.5135(2.4917)  prec@1:29.69(34.16)  prec@5:68.75(67.33)
+Epoch[5]:[200/391] Time:0.1618 Data:0.1391  loss:2.2586(2.4970)  prec@1:33.59(33.90)  prec@5:78.12(67.38)
+Epoch[5]:[250/391] Time:0.1604 Data:0.1385  loss:2.4792(2.4904)  prec@1:35.16(34.22)  prec@5:69.53(67.50)
+Epoch[5]:[300/391] Time:0.1806 Data:0.1531  loss:2.3072(2.4887)  prec@1:37.50(34.37)  prec@5:75.00(67.58)
+Epoch[5]:[350/391] Time:0.1706 Data:0.1467  loss:2.4753(2.4822)  prec@1:36.72(34.58)  prec@5:62.50(67.72)
+Testing the models......
+Loss: 2.8605, Prec@1: 28.82, Prec@5: 60.92
+Epoch time: 66s
+Saving models......
+Epoch: 6  lr: 0.100
+Epoch[6]:[050/391] Time:0.1632 Data:0.1421  loss:2.4042(2.4079)  prec@1:35.16(36.48)  prec@5:67.19(69.19)
+Epoch[6]:[100/391] Time:0.1761 Data:0.1498  loss:2.2267(2.3632)  prec@1:43.75(37.45)  prec@5:71.88(70.50)
+Epoch[6]:[150/391] Time:0.1580 Data:0.1341  loss:2.5402(2.3513)  prec@1:35.16(37.57)  prec@5:67.19(70.76)
+Epoch[6]:[200/391] Time:0.1508 Data:0.1309  loss:2.3220(2.3506)  prec@1:39.06(37.55)  prec@5:73.44(70.82)
+Epoch[6]:[250/391] Time:0.1560 Data:0.1350  loss:2.2479(2.3499)  prec@1:39.06(37.54)  prec@5:68.75(70.86)
+Epoch[6]:[300/391] Time:0.1561 Data:0.1352  loss:2.5323(2.3485)  prec@1:31.25(37.55)  prec@5:61.72(70.78)
+Epoch[6]:[350/391] Time:0.1639 Data:0.1417  loss:2.2594(2.3412)  prec@1:33.59(37.69)  prec@5:72.66(70.89)
+Testing the models......
+Loss: 2.5873, Prec@1: 33.03, Prec@5: 66.53
+Epoch time: 65s
+Saving models......
+Epoch: 7  lr: 0.100
+Epoch[7]:[050/391] Time:0.1468 Data:0.1276  loss:2.2613(2.2485)  prec@1:37.50(38.97)  prec@5:73.44(72.45)
+Epoch[7]:[100/391] Time:0.1677 Data:0.1435  loss:1.9260(2.2425)  prec@1:50.78(39.76)  prec@5:82.03(72.91)
+Epoch[7]:[150/391] Time:0.1769 Data:0.1523  loss:2.3429(2.2515)  prec@1:40.62(39.51)  prec@5:69.53(72.77)
+Epoch[7]:[200/391] Time:0.1567 Data:0.1361  loss:2.1989(2.2543)  prec@1:38.28(39.63)  prec@5:72.66(72.62)
+Epoch[7]:[250/391] Time:0.1627 Data:0.1408  loss:2.2622(2.2517)  prec@1:44.53(39.78)  prec@5:71.88(72.53)
+Epoch[7]:[300/391] Time:0.1551 Data:0.1351  loss:2.1983(2.2517)  prec@1:43.75(39.87)  prec@5:72.66(72.52)
+Epoch[7]:[350/391] Time:0.1541 Data:0.1312  loss:2.2500(2.2481)  prec@1:41.41(39.96)  prec@5:74.22(72.69)
+Testing the models......
+Loss: 2.3612, Prec@1: 37.86, Prec@5: 69.97
+Epoch time: 64s
+Saving models......
+Epoch: 8  lr: 0.100
+Epoch[8]:[050/391] Time:0.1513 Data:0.1303  loss:2.0906(2.1460)  prec@1:42.19(42.50)  prec@5:80.47(74.47)
+Epoch[8]:[100/391] Time:0.1515 Data:0.1305  loss:2.1642(2.1619)  prec@1:40.62(42.15)  prec@5:72.66(74.65)
+Epoch[8]:[150/391] Time:0.1563 Data:0.1343  loss:2.2581(2.1673)  prec@1:36.72(42.00)  prec@5:68.75(74.56)
+Epoch[8]:[200/391] Time:0.1526 Data:0.1325  loss:2.0504(2.1694)  prec@1:46.88(41.98)  prec@5:78.91(74.48)
+Epoch[8]:[250/391] Time:0.1522 Data:0.1333  loss:2.3079(2.1718)  prec@1:35.94(42.00)  prec@5:73.44(74.35)
+Epoch[8]:[300/391] Time:0.1515 Data:0.1306  loss:2.0283(2.1652)  prec@1:42.97(41.97)  prec@5:72.66(74.47)
+Epoch[8]:[350/391] Time:0.1542 Data:0.1336  loss:2.3985(2.1672)  prec@1:33.59(41.89)  prec@5:73.44(74.45)
+Testing the models......
+Loss: 2.3454, Prec@1: 37.76, Prec@5: 71.79
+Epoch time: 61s
+Saving models......
+Epoch: 9  lr: 0.100
+Epoch[9]:[050/391] Time:0.1542 Data:0.1342  loss:2.2630(2.0926)  prec@1:42.19(43.28)  prec@5:71.88(75.50)
+Epoch[9]:[100/391] Time:0.1680 Data:0.1440  loss:1.9953(2.0959)  prec@1:46.09(43.18)  prec@5:75.00(75.65)
+Epoch[9]:[150/391] Time:0.1711 Data:0.1474  loss:2.0934(2.0963)  prec@1:47.66(43.18)  prec@5:75.78(75.77)
+Epoch[9]:[200/391] Time:0.1711 Data:0.1472  loss:2.0751(2.1038)  prec@1:39.84(42.95)  prec@5:73.44(75.79)
+Epoch[9]:[250/391] Time:0.1779 Data:0.1544  loss:2.1648(2.0966)  prec@1:42.97(43.20)  prec@5:72.66(75.86)
+Epoch[9]:[300/391] Time:0.1662 Data:0.1423  loss:2.1627(2.0965)  prec@1:39.84(43.27)  prec@5:76.56(75.86)
+Epoch[9]:[350/391] Time:0.1598 Data:0.1378  loss:2.0712(2.0999)  prec@1:48.44(43.26)  prec@5:72.66(75.81)
+Testing the models......
+Loss: 2.2639, Prec@1: 39.87, Prec@5: 72.79
+Epoch time: 66s
+Saving models......
+Epoch: 10  lr: 0.100
+Epoch[10]:[050/391] Time:0.1608 Data:0.1409  loss:1.8145(2.0282)  prec@1:50.78(44.59)  prec@5:82.03(77.22)
+Epoch[10]:[100/391] Time:0.1589 Data:0.1380  loss:2.0511(2.0278)  prec@1:42.19(44.09)  prec@5:74.22(77.34)
+Epoch[10]:[150/391] Time:0.1592 Data:0.1380  loss:2.1746(2.0340)  prec@1:42.97(44.32)  prec@5:73.44(77.28)
+Epoch[10]:[200/391] Time:0.1650 Data:0.1442  loss:2.0416(2.0436)  prec@1:44.53(44.31)  prec@5:72.66(77.04)
+Epoch[10]:[250/391] Time:0.1626 Data:0.1421  loss:2.1539(2.0385)  prec@1:41.41(44.45)  prec@5:76.56(77.02)
+Epoch[10]:[300/391] Time:0.1552 Data:0.1343  loss:2.0670(2.0472)  prec@1:43.75(44.36)  prec@5:78.12(76.85)
+Epoch[10]:[350/391] Time:0.1588 Data:0.1369  loss:1.9817(2.0503)  prec@1:42.97(44.27)  prec@5:76.56(76.73)
+Testing the models......
+Loss: 2.1014, Prec@1: 44.03, Prec@5: 74.86
+Epoch time: 64s
+Saving models......
+Epoch: 11  lr: 0.100
+Epoch[11]:[050/391] Time:0.1526 Data:0.1308  loss:1.8545(1.9397)  prec@1:49.22(46.33)  prec@5:83.59(79.25)
+Epoch[11]:[100/391] Time:0.1655 Data:0.1428  loss:2.1284(1.9611)  prec@1:39.06(45.77)  prec@5:74.22(78.90)
+Epoch[11]:[150/391] Time:0.1515 Data:0.1305  loss:1.9667(1.9793)  prec@1:41.41(45.48)  prec@5:77.34(78.45)
+Epoch[11]:[200/391] Time:0.1564 Data:0.1374  loss:2.0394(1.9997)  prec@1:48.44(45.31)  prec@5:71.88(78.02)
+Epoch[11]:[250/391] Time:0.1532 Data:0.1322  loss:2.1456(2.0073)  prec@1:38.28(45.32)  prec@5:76.56(77.83)
+Epoch[11]:[300/391] Time:0.1576 Data:0.1376  loss:2.1561(2.0114)  prec@1:41.41(45.21)  prec@5:74.22(77.70)
+Epoch[11]:[350/391] Time:0.1880 Data:0.1585  loss:2.2156(2.0115)  prec@1:36.72(45.27)  prec@5:73.44(77.62)
+Testing the models......
+Loss: 2.3189, Prec@1: 41.19, Prec@5: 73.49
+Epoch time: 66s
+Saving models......
+Epoch: 12  lr: 0.100
+Epoch[12]:[050/391] Time:0.2018 Data:0.1703  loss:2.1289(1.9689)  prec@1:42.19(45.95)  prec@5:78.91(77.94)
+Epoch[12]:[100/391] Time:0.3211 Data:0.2882  loss:1.9843(1.9776)  prec@1:44.53(45.51)  prec@5:78.91(78.20)
+Epoch[12]:[150/391] Time:0.1490 Data:0.1285  loss:1.7620(1.9672)  prec@1:55.47(46.15)  prec@5:78.12(78.20)
+Epoch[12]:[200/391] Time:0.1505 Data:0.1310  loss:2.1656(1.9741)  prec@1:45.31(46.06)  prec@5:75.00(78.04)
+Epoch[12]:[250/391] Time:0.1574 Data:0.1360  loss:2.0392(1.9802)  prec@1:46.88(45.95)  prec@5:72.66(77.97)
+Epoch[12]:[300/391] Time:0.1599 Data:0.1382  loss:1.7714(1.9761)  prec@1:53.12(46.00)  prec@5:82.03(78.04)
+Epoch[12]:[350/391] Time:0.1637 Data:0.1408  loss:1.9678(1.9793)  prec@1:46.88(46.04)  prec@5:82.81(77.94)
+Testing the models......
+Loss: 2.1171, Prec@1: 42.67, Prec@5: 75.88
+Epoch time: 68s
+Saving models......
+Epoch: 13  lr: 0.100
+Epoch[13]:[050/391] Time:0.1614 Data:0.1395  loss:1.8521(1.9105)  prec@1:50.78(47.70)  prec@5:78.91(78.95)
+Epoch[13]:[100/391] Time:0.1618 Data:0.1394  loss:1.8368(1.8848)  prec@1:46.88(48.08)  prec@5:80.47(79.78)
+Epoch[13]:[150/391] Time:0.1988 Data:0.1669  loss:2.0239(1.9045)  prec@1:46.09(47.66)  prec@5:78.91(79.51)
+Epoch[13]:[200/391] Time:0.1657 Data:0.1438  loss:1.8897(1.9299)  prec@1:44.53(47.11)  prec@5:80.47(79.01)
+Epoch[13]:[250/391] Time:0.1650 Data:0.1411  loss:1.9517(1.9325)  prec@1:42.97(47.16)  prec@5:78.12(78.92)
+Epoch[13]:[300/391] Time:0.1719 Data:0.1470  loss:2.0215(1.9368)  prec@1:46.09(46.98)  prec@5:78.12(78.84)
+Epoch[13]:[350/391] Time:0.1648 Data:0.1419  loss:2.2674(1.9431)  prec@1:40.62(46.77)  prec@5:72.66(78.72)
+Testing the models......
+Loss: 2.1929, Prec@1: 41.82, Prec@5: 74.79
+Epoch time: 68s
+Saving models......
+Epoch: 14  lr: 0.100
+Epoch[14]:[050/391] Time:0.1669 Data:0.1449  loss:1.9813(1.8904)  prec@1:46.09(48.42)  prec@5:75.00(79.69)
+Epoch[14]:[100/391] Time:0.1565 Data:0.1331  loss:1.8449(1.9126)  prec@1:53.12(47.53)  prec@5:81.25(79.42)
+Epoch[14]:[150/391] Time:0.1681 Data:0.1436  loss:1.8454(1.9294)  prec@1:52.34(47.37)  prec@5:82.81(79.04)
+Epoch[14]:[200/391] Time:0.1637 Data:0.1428  loss:2.0754(1.9257)  prec@1:48.44(47.49)  prec@5:78.91(79.13)
+Epoch[14]:[250/391] Time:0.1576 Data:0.1360  loss:1.6089(1.9246)  prec@1:55.47(47.60)  prec@5:87.50(79.26)
+Epoch[14]:[300/391] Time:0.1492 Data:0.1291  loss:2.3426(1.9249)  prec@1:39.84(47.49)  prec@5:69.53(79.18)
+Epoch[14]:[350/391] Time:0.1521 Data:0.1321  loss:1.9977(1.9242)  prec@1:50.78(47.39)  prec@5:75.78(79.21)
+Testing the models......
+Loss: 2.2400, Prec@1: 41.31, Prec@5: 73.60
+Epoch time: 63s
+Saving models......
+Epoch: 15  lr: 0.100
+Epoch[15]:[050/391] Time:0.1505 Data:0.1300  loss:1.7709(1.8856)  prec@1:50.00(48.38)  prec@5:83.59(79.67)
+Epoch[15]:[100/391] Time:0.1538 Data:0.1323  loss:1.7816(1.8799)  prec@1:53.12(48.46)  prec@5:78.12(79.80)
+Epoch[15]:[150/391] Time:0.1509 Data:0.1289  loss:1.9297(1.8997)  prec@1:46.09(47.82)  prec@5:82.81(79.61)
+Epoch[15]:[200/391] Time:0.1678 Data:0.1468  loss:1.6859(1.9037)  prec@1:53.12(47.66)  prec@5:83.59(79.57)
+Epoch[15]:[250/391] Time:0.1489 Data:0.1289  loss:1.8604(1.9045)  prec@1:53.91(47.73)  prec@5:78.91(79.55)
+Epoch[15]:[300/391] Time:0.1583 Data:0.1376  loss:1.9783(1.9064)  prec@1:49.22(47.80)  prec@5:78.91(79.51)
+Epoch[15]:[350/391] Time:0.1545 Data:0.1315  loss:1.6460(1.9048)  prec@1:49.22(47.74)  prec@5:84.38(79.48)
+Testing the models......
+Loss: 1.9825, Prec@1: 45.73, Prec@5: 77.93
+Epoch time: 62s
+Saving models......
+Epoch: 16  lr: 0.100
+Epoch[16]:[050/391] Time:0.1561 Data:0.1352  loss:1.6379(1.8535)  prec@1:53.91(49.55)  prec@5:86.72(80.03)
+Epoch[16]:[100/391] Time:0.1514 Data:0.1315  loss:1.8162(1.8593)  prec@1:53.12(49.32)  prec@5:77.34(80.12)
+Epoch[16]:[150/391] Time:0.1582 Data:0.1382  loss:1.8905(1.8569)  prec@1:47.66(49.24)  prec@5:82.81(80.27)
+Epoch[16]:[200/391] Time:0.1613 Data:0.1403  loss:1.9289(1.8646)  prec@1:46.88(48.96)  prec@5:77.34(80.14)
+Epoch[16]:[250/391] Time:0.1763 Data:0.1522  loss:1.9355(1.8736)  prec@1:46.88(48.75)  prec@5:78.91(79.93)
+Epoch[16]:[300/391] Time:0.1587 Data:0.1391  loss:1.8880(1.8793)  prec@1:50.78(48.64)  prec@5:77.34(79.81)
+Epoch[16]:[350/391] Time:0.1656 Data:0.1436  loss:1.8219(1.8823)  prec@1:46.88(48.66)  prec@5:85.94(79.78)
+Testing the models......
+Loss: 2.0208, Prec@1: 45.64, Prec@5: 77.06
+Epoch time: 64s
+Saving models......
+Epoch: 17  lr: 0.100
+Epoch[17]:[050/391] Time:0.1665 Data:0.1431  loss:1.7329(1.8441)  prec@1:53.91(49.06)  prec@5:81.25(80.61)
+Epoch[17]:[100/391] Time:0.1659 Data:0.1418  loss:1.8991(1.8492)  prec@1:50.78(49.30)  prec@5:79.69(80.50)
+Epoch[17]:[150/391] Time:0.1642 Data:0.1416  loss:1.9449(1.8576)  prec@1:44.53(48.99)  prec@5:75.00(80.35)
+Epoch[17]:[200/391] Time:0.1591 Data:0.1382  loss:2.0014(1.8567)  prec@1:48.44(49.16)  prec@5:72.66(80.28)
+Epoch[17]:[250/391] Time:0.1568 Data:0.1365  loss:1.8574(1.8612)  prec@1:54.69(49.15)  prec@5:79.69(80.30)
+Epoch[17]:[300/391] Time:0.1582 Data:0.1383  loss:1.7494(1.8571)  prec@1:50.78(49.20)  prec@5:85.16(80.39)
+Epoch[17]:[350/391] Time:0.1544 Data:0.1337  loss:1.8606(1.8638)  prec@1:50.00(49.09)  prec@5:80.47(80.28)
+Testing the models......
+Loss: 2.1444, Prec@1: 42.04, Prec@5: 75.26
+Epoch time: 66s
+Saving models......
+Epoch: 18  lr: 0.100
+Epoch[18]:[050/391] Time:0.1680 Data:0.1480  loss:1.9543(1.8474)  prec@1:42.97(49.52)  prec@5:77.34(80.45)
+Epoch[18]:[100/391] Time:0.1613 Data:0.1403  loss:2.0916(1.8546)  prec@1:39.06(49.02)  prec@5:78.91(80.41)
+Epoch[18]:[150/391] Time:0.1538 Data:0.1347  loss:2.0691(1.8382)  prec@1:42.97(49.43)  prec@5:75.00(80.94)
+Epoch[18]:[200/391] Time:0.1890 Data:0.1642  loss:2.1048(1.8511)  prec@1:46.88(49.29)  prec@5:73.44(80.66)
+Epoch[18]:[250/391] Time:0.1681 Data:0.1431  loss:1.8143(1.8515)  prec@1:53.12(49.14)  prec@5:82.03(80.63)
+Epoch[18]:[300/391] Time:0.1672 Data:0.1453  loss:1.9975(1.8500)  prec@1:45.31(49.22)  prec@5:78.91(80.62)
+Epoch[18]:[350/391] Time:0.1710 Data:0.1479  loss:1.7340(1.8464)  prec@1:46.88(49.22)  prec@5:82.03(80.71)
+Testing the models......
+Loss: 2.2738, Prec@1: 42.45, Prec@5: 73.38
+Epoch time: 69s
+Saving models......
+Epoch: 19  lr: 0.100
+Epoch[19]:[050/391] Time:0.2257 Data:0.1978  loss:1.9343(1.7631)  prec@1:47.66(51.56)  prec@5:81.25(81.78)
+Epoch[19]:[100/391] Time:0.1517 Data:0.1317  loss:1.8308(1.7866)  prec@1:46.09(50.88)  prec@5:82.81(81.30)
+Epoch[19]:[150/391] Time:0.1563 Data:0.1347  loss:2.3044(1.7986)  prec@1:43.75(50.74)  prec@5:70.31(81.29)
+Epoch[19]:[200/391] Time:0.1611 Data:0.1388  loss:2.0234(1.8143)  prec@1:47.66(50.41)  prec@5:78.12(81.01)
+Epoch[19]:[250/391] Time:0.1588 Data:0.1373  loss:1.9229(1.8177)  prec@1:46.09(50.27)  prec@5:78.12(80.97)
+Epoch[19]:[300/391] Time:0.1801 Data:0.1596  loss:1.9039(1.8234)  prec@1:44.53(50.03)  prec@5:79.69(80.97)
+Epoch[19]:[350/391] Time:0.1954 Data:0.1715  loss:1.8223(1.8347)  prec@1:56.25(49.70)  prec@5:82.81(80.84)
+Testing the models......
+Loss: 2.2350, Prec@1: 42.10, Prec@5: 74.62
+Epoch time: 68s
+Saving models......
+Epoch: 20  lr: 0.100
+Epoch[20]:[050/391] Time:0.1904 Data:0.1674  loss:1.7557(1.8114)  prec@1:50.00(49.67)  prec@5:79.69(81.83)
+Epoch[20]:[100/391] Time:0.1786 Data:0.1521  loss:1.7671(1.7958)  prec@1:53.91(50.13)  prec@5:81.25(81.84)
+Epoch[20]:[150/391] Time:0.1835 Data:0.1580  loss:1.8327(1.7932)  prec@1:53.12(50.59)  prec@5:81.25(81.71)
+Epoch[20]:[200/391] Time:0.1658 Data:0.1448  loss:1.9577(1.7957)  prec@1:46.88(50.60)  prec@5:78.12(81.57)
+Epoch[20]:[250/391] Time:0.1611 Data:0.1407  loss:1.6407(1.8000)  prec@1:52.34(50.51)  prec@5:85.16(81.50)
+Epoch[20]:[300/391] Time:0.1882 Data:0.1648  loss:1.8454(1.8043)  prec@1:47.66(50.40)  prec@5:82.81(81.48)
+Epoch[20]:[350/391] Time:0.1679 Data:0.1450  loss:1.9036(1.8118)  prec@1:50.00(50.21)  prec@5:78.12(81.29)
+Testing the models......
+Loss: 1.8821, Prec@1: 48.60, Prec@5: 79.53
+Epoch time: 71s
+Saving models......
+Epoch: 21  lr: 0.100
+Epoch[21]:[050/391] Time:0.1565 Data:0.1386  loss:1.8364(1.7870)  prec@1:48.44(50.25)  prec@5:77.34(81.09)
+Epoch[21]:[100/391] Time:0.1607 Data:0.1391  loss:1.9052(1.7830)  prec@1:48.44(50.22)  prec@5:79.69(81.74)
+Epoch[21]:[150/391] Time:0.1849 Data:0.1620  loss:1.7254(1.7817)  prec@1:56.25(50.47)  prec@5:82.81(81.76)
+Epoch[21]:[200/391] Time:0.1518 Data:0.1318  loss:1.8537(1.7942)  prec@1:45.31(50.22)  prec@5:81.25(81.68)
+Epoch[21]:[250/391] Time:0.1563 Data:0.1348  loss:1.9998(1.7930)  prec@1:47.66(50.45)  prec@5:82.03(81.66)
+Epoch[21]:[300/391] Time:0.1718 Data:0.1509  loss:1.7722(1.7964)  prec@1:48.44(50.37)  prec@5:83.59(81.56)
+Epoch[21]:[350/391] Time:0.2447 Data:0.2198  loss:1.6968(1.8013)  prec@1:60.94(50.23)  prec@5:82.81(81.46)
+Testing the models......
+Loss: 2.0009, Prec@1: 45.64, Prec@5: 77.71
+Epoch time: 66s
+Saving models......
+Epoch: 22  lr: 0.100
+Epoch[22]:[050/391] Time:0.1580 Data:0.1361  loss:1.6751(1.7611)  prec@1:57.03(52.09)  prec@5:86.72(82.20)
+Epoch[22]:[100/391] Time:0.1512 Data:0.1306  loss:1.9728(1.7623)  prec@1:41.41(51.45)  prec@5:81.25(82.33)
+Epoch[22]:[150/391] Time:0.1578 Data:0.1387  loss:1.8512(1.7736)  prec@1:49.22(51.01)  prec@5:79.69(82.02)
+Epoch[22]:[200/391] Time:0.1541 Data:0.1335  loss:1.8920(1.7819)  prec@1:45.31(50.66)  prec@5:75.78(81.86)
+Epoch[22]:[250/391] Time:0.1500 Data:0.1298  loss:1.6090(1.7829)  prec@1:50.78(50.72)  prec@5:85.94(81.86)
+Epoch[22]:[300/391] Time:0.1547 Data:0.1338  loss:2.0255(1.7929)  prec@1:41.41(50.44)  prec@5:74.22(81.67)
+Epoch[22]:[350/391] Time:0.1484 Data:0.1285  loss:1.5681(1.7957)  prec@1:52.34(50.37)  prec@5:89.06(81.64)
+Testing the models......
+Loss: 1.8980, Prec@1: 48.09, Prec@5: 78.96
+Epoch time: 62s
+Saving models......
+Epoch: 23  lr: 0.100
+Epoch[23]:[050/391] Time:0.2059 Data:0.1687  loss:1.7239(1.7192)  prec@1:49.22(51.89)  prec@5:82.03(82.56)
+Epoch[23]:[100/391] Time:0.1487 Data:0.1288  loss:1.5833(1.7367)  prec@1:55.47(51.91)  prec@5:84.38(82.48)
+Epoch[23]:[150/391] Time:0.1509 Data:0.1300  loss:1.7990(1.7584)  prec@1:53.91(51.27)  prec@5:80.47(82.10)
+Epoch[23]:[200/391] Time:0.1527 Data:0.1308  loss:1.3158(1.7638)  prec@1:64.06(51.13)  prec@5:89.84(82.13)
+Epoch[23]:[250/391] Time:0.1558 Data:0.1368  loss:1.7507(1.7723)  prec@1:50.00(50.93)  prec@5:82.81(82.00)
+Epoch[23]:[300/391] Time:0.1577 Data:0.1357  loss:1.8707(1.7798)  prec@1:53.91(50.80)  prec@5:75.00(81.82)
+Epoch[23]:[350/391] Time:0.1691 Data:0.1446  loss:1.7350(1.7816)  prec@1:50.00(50.72)  prec@5:82.81(81.75)
+Testing the models......
+Loss: 2.5753, Prec@1: 38.77, Prec@5: 69.35
+Epoch time: 65s
+Saving models......
+Epoch: 24  lr: 0.100
+Epoch[24]:[050/391] Time:0.1496 Data:0.1297  loss:1.9427(1.6914)  prec@1:47.66(52.84)  prec@5:79.69(83.12)
+Epoch[24]:[100/391] Time:0.1587 Data:0.1377  loss:1.6583(1.7144)  prec@1:54.69(52.45)  prec@5:84.38(82.85)
+Epoch[24]:[150/391] Time:0.1579 Data:0.1360  loss:1.7149(1.7471)  prec@1:54.69(51.77)  prec@5:80.47(82.39)
+Epoch[24]:[200/391] Time:0.1782 Data:0.1572  loss:1.5458(1.7602)  prec@1:57.81(51.45)  prec@5:86.72(82.15)
+Epoch[24]:[250/391] Time:0.1519 Data:0.1290  loss:2.1878(1.7631)  prec@1:42.97(51.27)  prec@5:73.44(82.11)
+Epoch[24]:[300/391] Time:0.1562 Data:0.1352  loss:1.8190(1.7724)  prec@1:52.34(51.04)  prec@5:76.56(81.93)
+Epoch[24]:[350/391] Time:0.1555 Data:0.1345  loss:1.7295(1.7797)  prec@1:52.34(50.94)  prec@5:85.94(81.77)
+Testing the models......
+Loss: 1.9793, Prec@1: 46.38, Prec@5: 78.22
+Epoch time: 62s
+Saving models......
+Epoch: 25  lr: 0.100
+Epoch[25]:[050/391] Time:0.1652 Data:0.1433  loss:1.8384(1.6962)  prec@1:46.88(51.77)  prec@5:83.59(83.80)
+Epoch[25]:[100/391] Time:0.1558 Data:0.1368  loss:1.8956(1.7275)  prec@1:50.78(51.85)  prec@5:82.03(82.82)
+Epoch[25]:[150/391] Time:0.1513 Data:0.1305  loss:1.9735(1.7418)  prec@1:50.00(51.38)  prec@5:74.22(82.67)
+Epoch[25]:[200/391] Time:0.1484 Data:0.1292  loss:1.9551(1.7521)  prec@1:48.44(50.98)  prec@5:78.12(82.54)
+Epoch[25]:[250/391] Time:0.1538 Data:0.1329  loss:1.8342(1.7573)  prec@1:50.00(50.97)  prec@5:80.47(82.42)
+Epoch[25]:[300/391] Time:0.1511 Data:0.1312  loss:1.7923(1.7566)  prec@1:50.00(50.98)  prec@5:81.25(82.35)
+Epoch[25]:[350/391] Time:0.1512 Data:0.1313  loss:1.6320(1.7613)  prec@1:42.97(50.83)  prec@5:85.94(82.23)
+Testing the models......
+Loss: 2.0469, Prec@1: 45.47, Prec@5: 76.50
+Epoch time: 62s
+Saving models......
+Epoch: 26  lr: 0.100
+Epoch[26]:[050/391] Time:0.1511 Data:0.1315  loss:2.1498(1.7011)  prec@1:45.31(53.11)  prec@5:75.78(82.89)
+Epoch[26]:[100/391] Time:0.1502 Data:0.1292  loss:1.8088(1.7250)  prec@1:48.44(52.25)  prec@5:81.25(82.59)
+Epoch[26]:[150/391] Time:0.1680 Data:0.1431  loss:1.6594(1.7448)  prec@1:45.31(51.41)  prec@5:83.59(82.32)
+Epoch[26]:[200/391] Time:0.1744 Data:0.1485  loss:1.7015(1.7431)  prec@1:53.12(51.42)  prec@5:84.38(82.47)
+Epoch[26]:[250/391] Time:0.1610 Data:0.1391  loss:2.0662(1.7518)  prec@1:45.31(51.19)  prec@5:80.47(82.34)
+Epoch[26]:[300/391] Time:0.1533 Data:0.1334  loss:1.8460(1.7565)  prec@1:52.34(51.08)  prec@5:79.69(82.29)
+Epoch[26]:[350/391] Time:0.1631 Data:0.1421  loss:1.7437(1.7602)  prec@1:54.69(51.12)  prec@5:76.56(82.18)
+Testing the models......
+Loss: 2.1273, Prec@1: 45.57, Prec@5: 75.02
+Epoch time: 63s
+Saving models......
+Epoch: 27  lr: 0.100
+Epoch[27]:[050/391] Time:0.1613 Data:0.1393  loss:1.6258(1.6947)  prec@1:54.69(53.09)  prec@5:81.25(83.38)
+Epoch[27]:[100/391] Time:0.1700 Data:0.1480  loss:1.7429(1.7069)  prec@1:50.78(52.77)  prec@5:82.03(83.16)
+Epoch[27]:[150/391] Time:0.1714 Data:0.1514  loss:1.6316(1.7202)  prec@1:52.34(52.35)  prec@5:84.38(82.82)
+Epoch[27]:[200/391] Time:0.1544 Data:0.1329  loss:1.6958(1.7375)  prec@1:49.22(52.01)  prec@5:82.81(82.40)
+Epoch[27]:[250/391] Time:0.1579 Data:0.1365  loss:1.9408(1.7436)  prec@1:49.22(51.83)  prec@5:78.12(82.40)
+Epoch[27]:[300/391] Time:0.1556 Data:0.1357  loss:1.7148(1.7547)  prec@1:54.69(51.63)  prec@5:83.59(82.16)
+Epoch[27]:[350/391] Time:0.1534 Data:0.1314  loss:1.8726(1.7626)  prec@1:40.62(51.43)  prec@5:82.03(81.96)
+Testing the models......
+Loss: 2.0358, Prec@1: 46.28, Prec@5: 76.27
+Epoch time: 64s
+Saving models......
+Epoch: 28  lr: 0.100
+Epoch[28]:[050/391] Time:0.2005 Data:0.1744  loss:1.9972(1.7168)  prec@1:44.53(52.81)  prec@5:77.34(82.77)
+Epoch[28]:[100/391] Time:0.1571 Data:0.1352  loss:1.6271(1.7128)  prec@1:57.03(52.70)  prec@5:82.03(82.56)
+Epoch[28]:[150/391] Time:0.1554 Data:0.1335  loss:1.5581(1.7150)  prec@1:51.56(52.52)  prec@5:86.72(82.68)
+Epoch[28]:[200/391] Time:0.1633 Data:0.1424  loss:1.7420(1.7196)  prec@1:45.31(52.42)  prec@5:86.72(82.63)
+Epoch[28]:[250/391] Time:0.1464 Data:0.1265  loss:1.9349(1.7323)  prec@1:50.78(52.14)  prec@5:76.56(82.42)
+Epoch[28]:[300/391] Time:0.1508 Data:0.1301  loss:2.0602(1.7411)  prec@1:42.19(52.00)  prec@5:78.12(82.28)
+Epoch[28]:[350/391] Time:0.1624 Data:0.1383  loss:1.5114(1.7466)  prec@1:57.03(51.69)  prec@5:87.50(82.32)
+Testing the models......
+Loss: 1.9872, Prec@1: 46.98, Prec@5: 78.48
+Epoch time: 64s
+Saving models......
+Epoch: 29  lr: 0.100
+Epoch[29]:[050/391] Time:0.1493 Data:0.1295  loss:1.6093(1.6916)  prec@1:54.69(53.09)  prec@5:83.59(83.53)
+Epoch[29]:[100/391] Time:0.1542 Data:0.1330  loss:1.8758(1.6971)  prec@1:52.34(52.84)  prec@5:82.03(83.46)
+Epoch[29]:[150/391] Time:0.1475 Data:0.1281  loss:1.8221(1.7155)  prec@1:50.78(52.38)  prec@5:82.81(82.88)
+Epoch[29]:[200/391] Time:0.1500 Data:0.1301  loss:1.7990(1.7250)  prec@1:50.78(52.06)  prec@5:78.12(82.67)
+Epoch[29]:[250/391] Time:0.1527 Data:0.1338  loss:1.8079(1.7344)  prec@1:49.22(51.83)  prec@5:82.81(82.58)
+Epoch[29]:[300/391] Time:0.1522 Data:0.1322  loss:1.9964(1.7382)  prec@1:46.88(51.81)  prec@5:77.34(82.54)
+Epoch[29]:[350/391] Time:0.1503 Data:0.1314  loss:2.0619(1.7477)  prec@1:46.09(51.62)  prec@5:74.22(82.39)
+Testing the models......
+Loss: 1.8688, Prec@1: 49.50, Prec@5: 80.06
+Epoch time: 61s
+Saving models......
+Epoch: 30  lr: 0.100
+Epoch[30]:[050/391] Time:0.1520 Data:0.1322  loss:1.6389(1.6914)  prec@1:52.34(52.19)  prec@5:85.94(83.38)
+Epoch[30]:[100/391] Time:0.1500 Data:0.1310  loss:1.7798(1.7178)  prec@1:46.09(51.66)  prec@5:83.59(82.98)
+Epoch[30]:[150/391] Time:0.1516 Data:0.1320  loss:1.7421(1.7310)  prec@1:53.91(51.56)  prec@5:81.25(82.88)
+Epoch[30]:[200/391] Time:0.1485 Data:0.1279  loss:1.6247(1.7338)  prec@1:55.47(51.71)  prec@5:82.81(82.77)
+Epoch[30]:[250/391] Time:0.1568 Data:0.1358  loss:1.6895(1.7391)  prec@1:51.56(51.50)  prec@5:85.16(82.67)
+Epoch[30]:[300/391] Time:0.1510 Data:0.1320  loss:1.8025(1.7351)  prec@1:51.56(51.59)  prec@5:82.81(82.68)
+Epoch[30]:[350/391] Time:0.1482 Data:0.1263  loss:1.5654(1.7404)  prec@1:54.69(51.55)  prec@5:84.38(82.60)
+Testing the models......
+Loss: 2.2229, Prec@1: 42.05, Prec@5: 74.43
+Epoch time: 61s
+Saving models......
+Epoch: 31  lr: 0.100
+Epoch[31]:[050/391] Time:0.1667 Data:0.1458  loss:1.6123(1.7227)  prec@1:57.03(52.23)  prec@5:84.38(82.72)
+Epoch[31]:[100/391] Time:0.1584 Data:0.1394  loss:1.7636(1.7354)  prec@1:51.56(52.36)  prec@5:82.81(82.28)
+Epoch[31]:[150/391] Time:0.1590 Data:0.1354  loss:1.7687(1.7241)  prec@1:46.88(52.24)  prec@5:82.03(82.75)
+Epoch[31]:[200/391] Time:0.1535 Data:0.1316  loss:1.7781(1.7192)  prec@1:53.12(52.49)  prec@5:78.12(82.83)
+Epoch[31]:[250/391] Time:0.1537 Data:0.1325  loss:1.5657(1.7226)  prec@1:59.38(52.48)  prec@5:88.28(82.64)
+Epoch[31]:[300/391] Time:0.1564 Data:0.1351  loss:1.7043(1.7231)  prec@1:51.56(52.50)  prec@5:84.38(82.58)
+Epoch[31]:[350/391] Time:0.1546 Data:0.1335  loss:1.9197(1.7266)  prec@1:42.97(52.32)  prec@5:79.69(82.58)
+Testing the models......
+Loss: 2.1965, Prec@1: 44.37, Prec@5: 76.34
+Epoch time: 63s
+Saving models......
+Epoch: 32  lr: 0.100
+Epoch[32]:[050/391] Time:0.1684 Data:0.1454  loss:1.8353(1.6838)  prec@1:46.09(52.50)  prec@5:83.59(83.64)
+Epoch[32]:[100/391] Time:0.1485 Data:0.1284  loss:1.7048(1.6930)  prec@1:52.34(52.70)  prec@5:87.50(83.34)
+Epoch[32]:[150/391] Time:0.1490 Data:0.1287  loss:1.6620(1.6945)  prec@1:60.16(53.17)  prec@5:82.03(83.23)
+Epoch[32]:[200/391] Time:0.1523 Data:0.1323  loss:1.7904(1.7084)  prec@1:50.78(52.69)  prec@5:82.81(83.14)
+Epoch[32]:[250/391] Time:0.1552 Data:0.1325  loss:1.6558(1.7153)  prec@1:48.44(52.51)  prec@5:87.50(82.99)
+Epoch[32]:[300/391] Time:0.1518 Data:0.1304  loss:1.7533(1.7242)  prec@1:54.69(52.24)  prec@5:82.03(82.82)
+Epoch[32]:[350/391] Time:0.2074 Data:0.1815  loss:1.5458(1.7224)  prec@1:58.59(52.27)  prec@5:83.59(82.83)
+Testing the models......
+Loss: 1.7972, Prec@1: 50.66, Prec@5: 81.10
+Epoch time: 66s
+Saving models......
+Epoch: 33  lr: 0.100
+Epoch[33]:[050/391] Time:0.1548 Data:0.1329  loss:1.5884(1.7312)  prec@1:53.91(51.94)  prec@5:83.59(82.70)
+Epoch[33]:[100/391] Time:0.1528 Data:0.1318  loss:1.5179(1.7007)  prec@1:60.94(52.80)  prec@5:82.03(83.09)
+Epoch[33]:[150/391] Time:0.1540 Data:0.1326  loss:1.5356(1.6955)  prec@1:58.59(52.94)  prec@5:82.81(83.13)
+Epoch[33]:[200/391] Time:0.1519 Data:0.1297  loss:1.9470(1.7003)  prec@1:55.47(52.80)  prec@5:74.22(83.12)
+Epoch[33]:[250/391] Time:0.1491 Data:0.1291  loss:1.7713(1.7079)  prec@1:51.56(52.59)  prec@5:83.59(83.04)
+Epoch[33]:[300/391] Time:0.1574 Data:0.1356  loss:1.4747(1.7176)  prec@1:57.03(52.45)  prec@5:89.06(82.82)
+Epoch[33]:[350/391] Time:0.1566 Data:0.1375  loss:1.8082(1.7207)  prec@1:46.88(52.38)  prec@5:82.81(82.76)
+Testing the models......
+Loss: 1.9485, Prec@1: 47.75, Prec@5: 78.76
+Epoch time: 62s
+Saving models......
+Epoch: 34  lr: 0.100
+Epoch[34]:[050/391] Time:0.1507 Data:0.1312  loss:1.8804(1.6688)  prec@1:47.66(52.66)  prec@5:82.03(83.69)
+Epoch[34]:[100/391] Time:0.1538 Data:0.1329  loss:1.5955(1.6779)  prec@1:53.12(53.02)  prec@5:88.28(83.53)
+Epoch[34]:[150/391] Time:0.1510 Data:0.1290  loss:1.8107(1.6899)  prec@1:52.34(52.99)  prec@5:78.91(83.23)
+Epoch[34]:[200/391] Time:0.1555 Data:0.1339  loss:1.7817(1.6970)  prec@1:52.34(52.82)  prec@5:81.25(83.20)
+Epoch[34]:[250/391] Time:0.1806 Data:0.1526  loss:1.7417(1.7053)  prec@1:52.34(52.76)  prec@5:81.25(82.97)
+Epoch[34]:[300/391] Time:0.1544 Data:0.1338  loss:1.5934(1.7104)  prec@1:53.91(52.54)  prec@5:83.59(82.96)
+Epoch[34]:[350/391] Time:0.2103 Data:0.1884  loss:1.8477(1.7161)  prec@1:47.66(52.35)  prec@5:78.12(82.83)
+Testing the models......
+Loss: 2.0729, Prec@1: 45.02, Prec@5: 77.75
+Epoch time: 68s
+Saving models......
+Epoch: 35  lr: 0.100
+Epoch[35]:[050/391] Time:0.1732 Data:0.1486  loss:1.5813(1.6627)  prec@1:56.25(54.64)  prec@5:82.81(83.92)
+Epoch[35]:[100/391] Time:0.1610 Data:0.1380  loss:1.6429(1.6671)  prec@1:55.47(53.84)  prec@5:82.81(83.80)
+Epoch[35]:[150/391] Time:0.1746 Data:0.1495  loss:1.8297(1.6841)  prec@1:50.00(53.08)  prec@5:78.91(83.40)
+Epoch[35]:[200/391] Time:0.1781 Data:0.1547  loss:1.4967(1.7045)  prec@1:55.47(52.73)  prec@5:87.50(82.95)
+Epoch[35]:[250/391] Time:0.1752 Data:0.1523  loss:1.8235(1.7034)  prec@1:49.22(52.75)  prec@5:85.16(83.05)
+Epoch[35]:[300/391] Time:0.1781 Data:0.1562  loss:1.9919(1.7159)  prec@1:46.09(52.36)  prec@5:76.56(82.85)
+Epoch[35]:[350/391] Time:0.1581 Data:0.1368  loss:1.6226(1.7209)  prec@1:50.00(52.27)  prec@5:81.25(82.73)
+Testing the models......
+Loss: 1.9822, Prec@1: 47.28, Prec@5: 77.87
+Epoch time: 68s
+Saving models......
+Epoch: 36  lr: 0.100
+Epoch[36]:[050/391] Time:0.1622 Data:0.1414  loss:1.5001(1.6824)  prec@1:60.16(53.22)  prec@5:84.38(83.20)
+Epoch[36]:[100/391] Time:0.1551 Data:0.1334  loss:1.5154(1.6651)  prec@1:59.38(53.64)  prec@5:85.94(83.90)
+Epoch[36]:[150/391] Time:0.3247 Data:0.2890  loss:1.8153(1.6885)  prec@1:49.22(53.16)  prec@5:83.59(83.42)
+Epoch[36]:[200/391] Time:0.1535 Data:0.1314  loss:1.7265(1.6916)  prec@1:55.47(53.07)  prec@5:83.59(83.42)
+Epoch[36]:[250/391] Time:0.2001 Data:0.1666  loss:1.6098(1.7007)  prec@1:63.28(52.92)  prec@5:85.16(83.19)
+Epoch[36]:[300/391] Time:0.1477 Data:0.1262  loss:1.6234(1.7019)  prec@1:57.03(52.90)  prec@5:84.38(83.15)
+Epoch[36]:[350/391] Time:0.1502 Data:0.1311  loss:1.7383(1.7064)  prec@1:54.69(52.77)  prec@5:84.38(83.04)
+Testing the models......
+Loss: 1.9810, Prec@1: 46.91, Prec@5: 78.33
+Epoch time: 68s
+Saving models......
+Epoch: 37  lr: 0.100
+Epoch[37]:[050/391] Time:0.1508 Data:0.1278  loss:1.8005(1.6628)  prec@1:48.44(52.67)  prec@5:78.12(83.94)
+Epoch[37]:[100/391] Time:0.1927 Data:0.1714  loss:1.6504(1.6822)  prec@1:55.47(52.55)  prec@5:82.81(83.27)
+Epoch[37]:[150/391] Time:0.1799 Data:0.1539  loss:1.5283(1.6889)  prec@1:56.25(52.73)  prec@5:85.94(83.02)
+Epoch[37]:[200/391] Time:0.2119 Data:0.1979  loss:1.7427(1.6970)  prec@1:58.59(52.82)  prec@5:81.25(82.88)
+Epoch[37]:[250/391] Time:0.2098 Data:0.1825  loss:1.6596(1.7049)  prec@1:53.12(52.65)  prec@5:82.03(82.72)
+Epoch[37]:[300/391] Time:0.2218 Data:0.1910  loss:2.0721(1.7096)  prec@1:39.84(52.50)  prec@5:80.47(82.70)
+Epoch[37]:[350/391] Time:0.1882 Data:0.1742  loss:1.7528(1.7081)  prec@1:50.78(52.53)  prec@5:83.59(82.81)
+Testing the models......
+Loss: 1.8202, Prec@1: 50.60, Prec@5: 81.04
+Epoch time: 86s
+Saving models......
+Epoch: 38  lr: 0.100
+Epoch[38]:[050/391] Time:0.3358 Data:0.2958  loss:1.6963(1.6493)  prec@1:55.47(54.06)  prec@5:82.81(82.92)
+Epoch[38]:[100/391] Time:0.3332 Data:0.2943  loss:1.4648(1.6594)  prec@1:59.38(53.70)  prec@5:89.06(83.41)
+Epoch[38]:[150/391] Time:0.3401 Data:0.3051  loss:1.4844(1.6788)  prec@1:56.25(53.32)  prec@5:88.28(83.22)
+Epoch[38]:[200/391] Time:0.3188 Data:0.2889  loss:1.8266(1.6926)  prec@1:50.00(53.02)  prec@5:82.03(82.95)
+Epoch[38]:[250/391] Time:0.2866 Data:0.2610  loss:1.6452(1.6966)  prec@1:59.38(52.94)  prec@5:85.94(82.83)
+Epoch[38]:[300/391] Time:0.1795 Data:0.1590  loss:1.6148(1.6954)  prec@1:54.69(52.93)  prec@5:85.16(82.90)
+Epoch[38]:[350/391] Time:0.1726 Data:0.1510  loss:1.8324(1.7008)  prec@1:53.91(52.85)  prec@5:81.25(82.92)
+Testing the models......
+Loss: 1.9580, Prec@1: 47.33, Prec@5: 79.09
+Epoch time: 111s
+Saving models......
+Epoch: 39  lr: 0.100
+Epoch[39]:[050/391] Time:0.1638 Data:0.1466  loss:1.6501(1.6090)  prec@1:55.47(55.22)  prec@5:82.81(84.44)
+Epoch[39]:[100/391] Time:0.1598 Data:0.1378  loss:1.6514(1.6434)  prec@1:51.56(54.31)  prec@5:82.81(83.96)
+Epoch[39]:[150/391] Time:0.1516 Data:0.1307  loss:1.3860(1.6586)  prec@1:56.25(53.76)  prec@5:88.28(83.69)
+Epoch[39]:[200/391] Time:0.1655 Data:0.1440  loss:1.7080(1.6710)  prec@1:50.78(53.49)  prec@5:83.59(83.49)
+Epoch[39]:[250/391] Time:0.1586 Data:0.1404  loss:1.9251(1.6761)  prec@1:46.88(53.35)  prec@5:81.25(83.36)
+Epoch[39]:[300/391] Time:0.1706 Data:0.1483  loss:1.5991(1.6841)  prec@1:50.78(53.23)  prec@5:89.06(83.21)
+Epoch[39]:[350/391] Time:0.1592 Data:0.1362  loss:1.6814(1.6935)  prec@1:53.91(52.97)  prec@5:85.16(83.10)
+Testing the models......
+Loss: 2.1154, Prec@1: 43.85, Prec@5: 76.33
+Epoch time: 65s
+Saving models......
+Epoch: 40  lr: 0.100
+Epoch[40]:[050/391] Time:0.4301 Data:0.3915  loss:1.7292(1.6378)  prec@1:53.91(54.41)  prec@5:78.91(84.12)
+Epoch[40]:[100/391] Time:0.3203 Data:0.2886  loss:1.5379(1.6522)  prec@1:56.25(54.08)  prec@5:85.94(84.08)
+Epoch[40]:[150/391] Time:0.3067 Data:0.2839  loss:1.5647(1.6683)  prec@1:57.03(53.47)  prec@5:82.03(83.80)
+Epoch[40]:[200/391] Time:0.3362 Data:0.2964  loss:1.9967(1.6756)  prec@1:42.97(53.47)  prec@5:79.69(83.54)
+Epoch[40]:[250/391] Time:0.3165 Data:0.2834  loss:1.7776(1.6872)  prec@1:54.69(53.20)  prec@5:83.59(83.39)
+Epoch[40]:[300/391] Time:0.3276 Data:0.3047  loss:1.8382(1.6877)  prec@1:52.34(53.15)  prec@5:74.22(83.32)
+Epoch[40]:[350/391] Time:0.3479 Data:0.3230  loss:1.8536(1.6952)  prec@1:53.91(53.00)  prec@5:82.03(83.15)
+Testing the models......
+Loss: 2.1242, Prec@1: 44.72, Prec@5: 76.48
+Epoch time: 135s
+Saving models......
+Epoch: 41  lr: 0.100
+Epoch[41]:[050/391] Time:0.3248 Data:0.2872  loss:1.5615(1.6697)  prec@1:53.91(53.20)  prec@5:88.28(84.14)
+Epoch[41]:[100/391] Time:0.3183 Data:0.2884  loss:1.9562(1.6692)  prec@1:45.31(53.48)  prec@5:78.12(83.61)
+Epoch[41]:[150/391] Time:0.3199 Data:0.2923  loss:1.6667(1.6722)  prec@1:53.12(53.47)  prec@5:86.72(83.66)
+Epoch[41]:[200/391] Time:0.3280 Data:0.2910  loss:1.9540(1.6857)  prec@1:42.97(53.06)  prec@5:81.25(83.38)
+Epoch[41]:[250/391] Time:0.2990 Data:0.2660  loss:1.6152(1.6890)  prec@1:57.81(52.92)  prec@5:86.72(83.47)
+Epoch[41]:[300/391] Time:0.3206 Data:0.2900  loss:1.6053(1.6908)  prec@1:53.91(52.77)  prec@5:80.47(83.40)
+Epoch[41]:[350/391] Time:0.2826 Data:0.2510  loss:1.4117(1.7000)  prec@1:57.03(52.57)  prec@5:86.72(83.19)
+Testing the models......
+Loss: 1.8948, Prec@1: 48.43, Prec@5: 79.72
+Epoch time: 130s
+Saving models......
+Epoch: 42  lr: 0.100
+Epoch[42]:[050/391] Time:0.3036 Data:0.2797  loss:1.3150(1.6367)  prec@1:64.06(54.22)  prec@5:87.50(84.12)
+Epoch[42]:[100/391] Time:0.3311 Data:0.2923  loss:1.8590(1.6610)  prec@1:47.66(53.27)  prec@5:77.34(84.09)
+Epoch[42]:[150/391] Time:0.3224 Data:0.2856  loss:1.6309(1.6764)  prec@1:50.00(53.10)  prec@5:86.72(83.79)
+Epoch[42]:[200/391] Time:0.3342 Data:0.3033  loss:1.6950(1.6839)  prec@1:53.12(53.05)  prec@5:85.16(83.70)
+Epoch[42]:[250/391] Time:0.3271 Data:0.2936  loss:1.7174(1.6827)  prec@1:50.78(53.10)  prec@5:85.16(83.65)
+Epoch[42]:[300/391] Time:0.3539 Data:0.2938  loss:1.8542(1.6848)  prec@1:51.56(52.97)  prec@5:81.25(83.58)
+Epoch[42]:[350/391] Time:0.3125 Data:0.2809  loss:1.7883(1.6947)  prec@1:46.88(52.81)  prec@5:80.47(83.36)
+Testing the models......
+Loss: 2.0106, Prec@1: 45.69, Prec@5: 77.33
+Epoch time: 133s
+Saving models......
+Epoch: 43  lr: 0.100
+Epoch[43]:[050/391] Time:0.3209 Data:0.2861  loss:1.5501(1.6734)  prec@1:57.03(53.56)  prec@5:86.72(83.62)
+Epoch[43]:[100/391] Time:0.3298 Data:0.2914  loss:1.4115(1.6578)  prec@1:60.16(53.84)  prec@5:90.62(83.62)
+Epoch[43]:[150/391] Time:0.3484 Data:0.3149  loss:1.5340(1.6598)  prec@1:57.81(53.61)  prec@5:89.06(83.70)
+Epoch[43]:[200/391] Time:0.3436 Data:0.2785  loss:1.9108(1.6697)  prec@1:47.66(53.65)  prec@5:81.25(83.49)
+Epoch[43]:[250/391] Time:0.3261 Data:0.2863  loss:1.8826(1.6662)  prec@1:43.75(53.66)  prec@5:83.59(83.54)
+Epoch[43]:[300/391] Time:0.3096 Data:0.2846  loss:2.0166(1.6774)  prec@1:42.97(53.25)  prec@5:81.25(83.39)
+Epoch[43]:[350/391] Time:0.3182 Data:0.2876  loss:1.4753(1.6882)  prec@1:61.72(53.10)  prec@5:88.28(83.22)
+Testing the models......
+Loss: 2.2132, Prec@1: 43.59, Prec@5: 74.12
+Epoch time: 132s
+Saving models......
+Epoch: 44  lr: 0.100
+Epoch[44]:[050/391] Time:0.3246 Data:0.2970  loss:1.5511(1.6177)  prec@1:56.25(54.38)  prec@5:82.81(84.70)
+Epoch[44]:[100/391] Time:0.3214 Data:0.2962  loss:1.4610(1.6337)  prec@1:58.59(54.27)  prec@5:87.50(84.49)
+Epoch[44]:[150/391] Time:0.3127 Data:0.2901  loss:1.8061(1.6542)  prec@1:47.66(53.90)  prec@5:80.47(84.15)
+Epoch[44]:[200/391] Time:0.3372 Data:0.2983  loss:1.7292(1.6659)  prec@1:56.25(53.55)  prec@5:82.81(83.91)
+Epoch[44]:[250/391] Time:0.3576 Data:0.3187  loss:1.7794(1.6757)  prec@1:54.69(53.35)  prec@5:78.91(83.83)
+Epoch[44]:[300/391] Time:0.3159 Data:0.2832  loss:1.7280(1.6819)  prec@1:51.56(53.23)  prec@5:85.94(83.71)
+Epoch[44]:[350/391] Time:0.3154 Data:0.2835  loss:1.5193(1.6827)  prec@1:54.69(53.21)  prec@5:87.50(83.65)
+Testing the models......
+Loss: 1.9684, Prec@1: 47.40, Prec@5: 78.63
+Epoch time: 133s
+Saving models......
+Epoch: 45  lr: 0.100
+Epoch[45]:[050/391] Time:0.3230 Data:0.2849  loss:1.8232(1.6295)  prec@1:47.66(54.75)  prec@5:82.03(84.52)
+Epoch[45]:[100/391] Time:0.3183 Data:0.2940  loss:1.9736(1.6438)  prec@1:46.88(54.23)  prec@5:80.47(84.27)
+Epoch[45]:[150/391] Time:0.3255 Data:0.2887  loss:1.5039(1.6593)  prec@1:53.12(53.55)  prec@5:90.62(84.00)
+Epoch[45]:[200/391] Time:0.3241 Data:0.2882  loss:1.5493(1.6666)  prec@1:57.03(53.40)  prec@5:86.72(83.91)
+Epoch[45]:[250/391] Time:0.3093 Data:0.2844  loss:1.8677(1.6736)  prec@1:47.66(53.12)  prec@5:84.38(83.63)
+Epoch[45]:[300/391] Time:0.3206 Data:0.2875  loss:1.6608(1.6837)  prec@1:50.00(52.89)  prec@5:85.16(83.48)
+Epoch[45]:[350/391] Time:0.3236 Data:0.2921  loss:1.3706(1.6871)  prec@1:61.72(52.86)  prec@5:89.06(83.39)
+Testing the models......
+Loss: 1.9168, Prec@1: 48.75, Prec@5: 80.66
+Epoch time: 131s
+Saving models......
+Epoch: 46  lr: 0.100
+Epoch[46]:[050/391] Time:0.3412 Data:0.3008  loss:1.4723(1.6287)  prec@1:59.38(54.64)  prec@5:85.16(84.23)
+Epoch[46]:[100/391] Time:0.3173 Data:0.2933  loss:1.8842(1.6464)  prec@1:49.22(54.08)  prec@5:79.69(83.77)
+Epoch[46]:[150/391] Time:0.3266 Data:0.2947  loss:1.6629(1.6628)  prec@1:52.34(53.66)  prec@5:83.59(83.61)
+Epoch[46]:[200/391] Time:0.3215 Data:0.2818  loss:1.8849(1.6628)  prec@1:53.12(53.74)  prec@5:79.69(83.66)
+Epoch[46]:[250/391] Time:0.3181 Data:0.2882  loss:1.5304(1.6710)  prec@1:57.03(53.53)  prec@5:86.72(83.63)
+Epoch[46]:[300/391] Time:0.3168 Data:0.2889  loss:1.7214(1.6745)  prec@1:57.03(53.47)  prec@5:85.16(83.53)
+Epoch[46]:[350/391] Time:0.3272 Data:0.2894  loss:1.7635(1.6766)  prec@1:53.91(53.51)  prec@5:81.25(83.56)
+Testing the models......
+Loss: 1.9012, Prec@1: 49.27, Prec@5: 79.69
+Epoch time: 132s
+Saving models......
+Epoch: 47  lr: 0.100
+Epoch[47]:[050/391] Time:0.3114 Data:0.2865  loss:1.6408(1.6441)  prec@1:53.12(54.06)  prec@5:85.16(84.39)
+Epoch[47]:[100/391] Time:0.3307 Data:0.2918  loss:1.5667(1.6531)  prec@1:53.91(53.86)  prec@5:86.72(84.05)
+Epoch[47]:[150/391] Time:0.3227 Data:0.2919  loss:1.6060(1.6620)  prec@1:50.00(53.45)  prec@5:87.50(83.99)
+Epoch[47]:[200/391] Time:0.3116 Data:0.2872  loss:1.6227(1.6608)  prec@1:52.34(53.60)  prec@5:87.50(84.00)
+Epoch[47]:[250/391] Time:0.3084 Data:0.2755  loss:1.8309(1.6664)  prec@1:51.56(53.44)  prec@5:78.91(83.85)
+Epoch[47]:[300/391] Time:0.3659 Data:0.2926  loss:1.9358(1.6672)  prec@1:46.88(53.47)  prec@5:78.12(83.77)
+Epoch[47]:[350/391] Time:0.3307 Data:0.2903  loss:1.6579(1.6707)  prec@1:53.91(53.45)  prec@5:79.69(83.75)
+Testing the models......
+Loss: 1.9705, Prec@1: 47.38, Prec@5: 78.09
+Epoch time: 132s
+Saving models......
+Epoch: 48  lr: 0.100
+Epoch[48]:[050/391] Time:0.3394 Data:0.3016  loss:1.6875(1.6529)  prec@1:47.66(53.39)  prec@5:84.38(84.30)
+Epoch[48]:[100/391] Time:0.3045 Data:0.2810  loss:1.7243(1.6521)  prec@1:51.56(53.65)  prec@5:82.81(84.09)
+Epoch[48]:[150/391] Time:0.3239 Data:0.2871  loss:1.4882(1.6545)  prec@1:58.59(53.79)  prec@5:88.28(84.07)
+Epoch[48]:[200/391] Time:0.3172 Data:0.2828  loss:1.5645(1.6523)  prec@1:55.47(53.85)  prec@5:84.38(84.01)
+Epoch[48]:[250/391] Time:0.3141 Data:0.2842  loss:1.7179(1.6615)  prec@1:50.78(53.70)  prec@5:81.25(83.81)
+Epoch[48]:[300/391] Time:0.2768 Data:0.2408  loss:1.6647(1.6681)  prec@1:53.91(53.67)  prec@5:81.25(83.65)
+Epoch[48]:[350/391] Time:0.3271 Data:0.2900  loss:1.6456(1.6800)  prec@1:53.91(53.38)  prec@5:85.16(83.47)
+Testing the models......
+Loss: 2.0131, Prec@1: 47.58, Prec@5: 78.21
+Epoch time: 130s
+Saving models......
+Epoch: 49  lr: 0.100
+Epoch[49]:[050/391] Time:0.3073 Data:0.2854  loss:1.3018(1.6496)  prec@1:62.50(54.41)  prec@5:88.28(83.75)
+Epoch[49]:[100/391] Time:0.3317 Data:0.2941  loss:1.7666(1.6556)  prec@1:54.69(54.12)  prec@5:82.81(83.94)
+Epoch[49]:[150/391] Time:0.2685 Data:0.2326  loss:1.6870(1.6702)  prec@1:50.78(53.73)  prec@5:80.47(83.48)
+Epoch[49]:[200/391] Time:0.3369 Data:0.2974  loss:1.6747(1.6711)  prec@1:53.91(53.61)  prec@5:85.16(83.54)
+Epoch[49]:[250/391] Time:0.3376 Data:0.3067  loss:1.6158(1.6798)  prec@1:53.12(53.38)  prec@5:85.94(83.46)
+Epoch[49]:[300/391] Time:0.3678 Data:0.3059  loss:1.8376(1.6830)  prec@1:48.44(53.33)  prec@5:78.12(83.45)
+Epoch[49]:[350/391] Time:0.3617 Data:0.3212  loss:1.6142(1.6747)  prec@1:57.81(53.50)  prec@5:82.81(83.60)
+Testing the models......
+Loss: 1.8548, Prec@1: 50.09, Prec@5: 81.16
+Epoch time: 131s
+Saving models......
+Epoch: 50  lr: 0.100
+Epoch[50]:[050/391] Time:0.3466 Data:0.2850  loss:1.7137(1.6209)  prec@1:56.25(54.83)  prec@5:80.47(85.02)
+Epoch[50]:[100/391] Time:0.3100 Data:0.2862  loss:1.7007(1.6302)  prec@1:53.12(54.36)  prec@5:79.69(84.58)
+Epoch[50]:[150/391] Time:0.1409 Data:0.1229  loss:1.8293(1.6453)  prec@1:49.22(54.02)  prec@5:82.81(84.10)
+Epoch[50]:[200/391] Time:0.1595 Data:0.1401  loss:1.6259(1.6536)  prec@1:54.69(53.79)  prec@5:88.28(83.97)
+Epoch[50]:[250/391] Time:0.2124 Data:0.1825  loss:1.9636(1.6604)  prec@1:47.66(53.76)  prec@5:80.47(83.89)
+Epoch[50]:[300/391] Time:0.1700 Data:0.1461  loss:1.8901(1.6652)  prec@1:48.44(53.77)  prec@5:78.12(83.83)
+Epoch[50]:[350/391] Time:0.1987 Data:0.1678  loss:1.7129(1.6668)  prec@1:55.47(53.66)  prec@5:84.38(83.74)
+Testing the models......
+Loss: 1.9192, Prec@1: 49.69, Prec@5: 78.51
+Epoch time: 88s
+Saving models......
+Epoch: 51  lr: 0.100
+Epoch[51]:[050/391] Time:0.1492 Data:0.1277  loss:1.3478(1.6304)  prec@1:60.16(54.33)  prec@5:87.50(84.98)
+Epoch[51]:[100/391] Time:0.1535 Data:0.1326  loss:1.7555(1.6413)  prec@1:46.88(54.04)  prec@5:83.59(84.52)
+Epoch[51]:[150/391] Time:0.1480 Data:0.1270  loss:1.8183(1.6461)  prec@1:49.22(53.99)  prec@5:82.03(84.29)
+Epoch[51]:[200/391] Time:0.1544 Data:0.1334  loss:1.7642(1.6622)  prec@1:49.22(53.78)  prec@5:80.47(83.90)
+Epoch[51]:[250/391] Time:0.1546 Data:0.1311  loss:1.7662(1.6670)  prec@1:52.34(53.81)  prec@5:82.81(83.73)
+Epoch[51]:[300/391] Time:0.1566 Data:0.1347  loss:1.8629(1.6668)  prec@1:51.56(53.64)  prec@5:78.91(83.79)
+Epoch[51]:[350/391] Time:0.1484 Data:0.1272  loss:1.4025(1.6743)  prec@1:61.72(53.50)  prec@5:85.94(83.68)
+Testing the models......
+Loss: 2.0264, Prec@1: 47.49, Prec@5: 77.55
+Epoch time: 61s
+Saving models......
+Epoch: 52  lr: 0.100
+Epoch[52]:[050/391] Time:0.1531 Data:0.1325  loss:1.5334(1.6078)  prec@1:59.38(55.27)  prec@5:88.28(85.09)
+Epoch[52]:[100/391] Time:0.1576 Data:0.1366  loss:1.6094(1.6231)  prec@1:57.81(54.98)  prec@5:82.81(84.60)
+Epoch[52]:[150/391] Time:0.1508 Data:0.1292  loss:1.8015(1.6345)  prec@1:46.88(54.54)  prec@5:81.25(84.43)
+Epoch[52]:[200/391] Time:0.1508 Data:0.1298  loss:1.7197(1.6499)  prec@1:52.34(54.06)  prec@5:82.81(84.14)
+Epoch[52]:[250/391] Time:0.1498 Data:0.1309  loss:1.7249(1.6573)  prec@1:52.34(53.94)  prec@5:88.28(84.08)
+Epoch[52]:[300/391] Time:0.1573 Data:0.1364  loss:1.6006(1.6686)  prec@1:56.25(53.60)  prec@5:84.38(83.88)
+Epoch[52]:[350/391] Time:0.1617 Data:0.1377  loss:1.4010(1.6711)  prec@1:57.03(53.54)  prec@5:88.28(83.79)
+Testing the models......
+Loss: 1.9198, Prec@1: 48.72, Prec@5: 78.93
+Epoch time: 62s
+Saving models......
+Epoch: 53  lr: 0.100
+Epoch[53]:[050/391] Time:0.1561 Data:0.1362  loss:1.9030(1.6245)  prec@1:48.44(55.16)  prec@5:81.25(84.66)
+Epoch[53]:[100/391] Time:0.1625 Data:0.1425  loss:1.6335(1.6360)  prec@1:55.47(54.51)  prec@5:81.25(84.13)
+Epoch[53]:[150/391] Time:0.1569 Data:0.1365  loss:1.7216(1.6456)  prec@1:49.22(54.20)  prec@5:83.59(83.83)
+Epoch[53]:[200/391] Time:0.1524 Data:0.1308  loss:1.9459(1.6478)  prec@1:46.88(54.25)  prec@5:79.69(83.79)
+Epoch[53]:[250/391] Time:0.1504 Data:0.1276  loss:1.5755(1.6525)  prec@1:55.47(54.04)  prec@5:83.59(83.74)
+Epoch[53]:[300/391] Time:0.1495 Data:0.1291  loss:1.5909(1.6567)  prec@1:52.34(53.93)  prec@5:86.72(83.71)
+Epoch[53]:[350/391] Time:0.1491 Data:0.1308  loss:1.5794(1.6629)  prec@1:53.91(53.77)  prec@5:87.50(83.75)
+Testing the models......
+Loss: 1.8655, Prec@1: 49.08, Prec@5: 79.98
+Epoch time: 62s
+Saving models......
+Epoch: 54  lr: 0.100
+Epoch[54]:[050/391] Time:0.1522 Data:0.1282  loss:1.7049(1.6392)  prec@1:52.34(53.78)  prec@5:86.72(84.47)
+Epoch[54]:[100/391] Time:0.1498 Data:0.1288  loss:1.3929(1.6241)  prec@1:57.03(54.49)  prec@5:87.50(84.62)
+Epoch[54]:[150/391] Time:0.1511 Data:0.1301  loss:1.9949(1.6475)  prec@1:43.75(54.07)  prec@5:76.56(84.09)
+Epoch[54]:[200/391] Time:0.1511 Data:0.1306  loss:1.5744(1.6517)  prec@1:59.38(53.95)  prec@5:84.38(84.05)
+Epoch[54]:[250/391] Time:0.1515 Data:0.1316  loss:1.7809(1.6623)  prec@1:50.00(53.75)  prec@5:80.47(83.78)
+Epoch[54]:[300/391] Time:0.1504 Data:0.1316  loss:1.5813(1.6618)  prec@1:50.00(53.70)  prec@5:91.41(83.76)
+Epoch[54]:[350/391] Time:0.1539 Data:0.1339  loss:1.5266(1.6633)  prec@1:55.47(53.73)  prec@5:89.06(83.67)
+Testing the models......
+Loss: 1.8327, Prec@1: 49.70, Prec@5: 80.72
+Epoch time: 61s
+Saving models......
+Epoch: 55  lr: 0.100
+Epoch[55]:[050/391] Time:0.1549 Data:0.1340  loss:1.6730(1.6031)  prec@1:51.56(55.41)  prec@5:82.81(84.61)
+Epoch[55]:[100/391] Time:0.1494 Data:0.1304  loss:1.5024(1.6146)  prec@1:53.12(55.20)  prec@5:88.28(84.54)
+Epoch[55]:[150/391] Time:0.1822 Data:0.1596  loss:1.7483(1.6344)  prec@1:53.91(54.52)  prec@5:79.69(84.24)
+Epoch[55]:[200/391] Time:0.2514 Data:0.2262  loss:1.6595(1.6364)  prec@1:57.03(54.43)  prec@5:86.72(84.22)
+Epoch[55]:[250/391] Time:0.1501 Data:0.1321  loss:1.4018(1.6516)  prec@1:61.72(54.13)  prec@5:89.06(83.91)
+Epoch[55]:[300/391] Time:0.1526 Data:0.1302  loss:1.6286(1.6631)  prec@1:55.47(53.90)  prec@5:79.69(83.64)
+Epoch[55]:[350/391] Time:0.1693 Data:0.1421  loss:1.6769(1.6624)  prec@1:47.66(53.89)  prec@5:80.47(83.65)
+Testing the models......
+Loss: 1.8137, Prec@1: 50.46, Prec@5: 81.79
+Epoch time: 66s
+Saving models......
+Epoch: 56  lr: 0.100
+Epoch[56]:[050/391] Time:0.1491 Data:0.1302  loss:1.5180(1.6080)  prec@1:55.47(54.98)  prec@5:84.38(84.69)
+Epoch[56]:[100/391] Time:0.1549 Data:0.1370  loss:1.5535(1.6256)  prec@1:56.25(54.49)  prec@5:83.59(84.52)
+Epoch[56]:[150/391] Time:0.1509 Data:0.1310  loss:1.9369(1.6400)  prec@1:41.41(54.21)  prec@5:76.56(84.30)
+Epoch[56]:[200/391] Time:0.1549 Data:0.1344  loss:1.7307(1.6477)  prec@1:52.34(54.00)  prec@5:85.94(84.28)
+Epoch[56]:[250/391] Time:0.1525 Data:0.1326  loss:1.4865(1.6576)  prec@1:55.47(53.64)  prec@5:89.84(84.09)
+Epoch[56]:[300/391] Time:0.1550 Data:0.1341  loss:1.2432(1.6570)  prec@1:65.62(53.62)  prec@5:89.84(84.06)
+Epoch[56]:[350/391] Time:0.1521 Data:0.1325  loss:1.6122(1.6573)  prec@1:53.12(53.81)  prec@5:86.72(83.99)
+Testing the models......
+Loss: 1.8546, Prec@1: 49.87, Prec@5: 80.49
+Epoch time: 62s
+Saving models......
+Epoch: 57  lr: 0.100
+Epoch[57]:[050/391] Time:0.1741 Data:0.1510  loss:1.6046(1.6435)  prec@1:51.56(53.73)  prec@5:82.81(83.98)
+Epoch[57]:[100/391] Time:0.1530 Data:0.1320  loss:1.8418(1.6391)  prec@1:52.34(54.31)  prec@5:76.56(83.87)
+Epoch[57]:[150/391] Time:0.1561 Data:0.1359  loss:1.5480(1.6539)  prec@1:59.38(53.91)  prec@5:82.03(83.55)
+Epoch[57]:[200/391] Time:0.1552 Data:0.1328  loss:1.5155(1.6483)  prec@1:60.94(53.93)  prec@5:82.81(83.80)
+Epoch[57]:[250/391] Time:0.3234 Data:0.2852  loss:1.5836(1.6563)  prec@1:54.69(53.68)  prec@5:85.16(83.75)
+Epoch[57]:[300/391] Time:0.1212 Data:0.1033  loss:1.6805(1.6497)  prec@1:57.03(53.89)  prec@5:83.59(83.84)
+Epoch[57]:[350/391] Time:0.1335 Data:0.1148  loss:1.6238(1.6594)  prec@1:50.00(53.65)  prec@5:85.16(83.73)
+Testing the models......
+Loss: 1.9420, Prec@1: 48.06, Prec@5: 79.74
+Epoch time: 70s
+Saving models......
+Epoch: 58  lr: 0.100
+Epoch[58]:[050/391] Time:0.1502 Data:0.1302  loss:1.4995(1.5856)  prec@1:55.47(55.62)  prec@5:89.84(85.08)
+Epoch[58]:[100/391] Time:0.1498 Data:0.1282  loss:1.7283(1.5971)  prec@1:53.12(55.20)  prec@5:81.25(84.59)
+Epoch[58]:[150/391] Time:0.1505 Data:0.1315  loss:1.6071(1.6274)  prec@1:53.91(54.42)  prec@5:84.38(84.10)
+Epoch[58]:[200/391] Time:0.1555 Data:0.1345  loss:1.6840(1.6359)  prec@1:53.91(54.26)  prec@5:82.81(84.18)
+Epoch[58]:[250/391] Time:0.1564 Data:0.1362  loss:1.5269(1.6292)  prec@1:57.81(54.43)  prec@5:87.50(84.33)
+Epoch[58]:[300/391] Time:0.1551 Data:0.1315  loss:1.7109(1.6381)  prec@1:49.22(54.25)  prec@5:83.59(84.15)
+Epoch[58]:[350/391] Time:0.1539 Data:0.1340  loss:1.6443(1.6441)  prec@1:52.34(54.18)  prec@5:82.81(84.05)
+Testing the models......
+Loss: 1.8853, Prec@1: 48.88, Prec@5: 80.47
+Epoch time: 61s
+Saving models......
+Epoch: 59  lr: 0.100
+Epoch[59]:[050/391] Time:0.1746 Data:0.1498  loss:1.5793(1.5971)  prec@1:55.47(55.75)  prec@5:84.38(84.50)
+Epoch[59]:[100/391] Time:0.1559 Data:0.1343  loss:1.6473(1.6097)  prec@1:56.25(55.38)  prec@5:82.03(84.57)
+Epoch[59]:[150/391] Time:0.1641 Data:0.1400  loss:1.6930(1.6163)  prec@1:53.12(54.95)  prec@5:82.03(84.49)
+Epoch[59]:[200/391] Time:0.1511 Data:0.1311  loss:1.7408(1.6232)  prec@1:48.44(54.73)  prec@5:82.81(84.34)
+Epoch[59]:[250/391] Time:0.1251 Data:0.1072  loss:1.7241(1.6307)  prec@1:57.03(54.62)  prec@5:78.91(84.18)
+Epoch[59]:[300/391] Time:0.1596 Data:0.1379  loss:1.6867(1.6352)  prec@1:53.12(54.39)  prec@5:82.81(84.08)
+Epoch[59]:[350/391] Time:0.1749 Data:0.1468  loss:1.4952(1.6441)  prec@1:58.59(54.13)  prec@5:84.38(83.96)
+Testing the models......
+Loss: 2.3302, Prec@1: 43.36, Prec@5: 74.32
+Epoch time: 72s
+Saving models......
+Epoch: 60  lr: 0.100
+Epoch[60]:[050/391] Time:0.1651 Data:0.1432  loss:1.5849(1.5975)  prec@1:51.56(55.58)  prec@5:89.06(84.75)
+Epoch[60]:[100/391] Time:0.1546 Data:0.1331  loss:1.8117(1.6094)  prec@1:57.03(54.78)  prec@5:81.25(85.02)
+Epoch[60]:[150/391] Time:0.1619 Data:0.1399  loss:1.7338(1.6313)  prec@1:51.56(54.36)  prec@5:85.16(84.43)
+Epoch[60]:[200/391] Time:0.1547 Data:0.1338  loss:1.6771(1.6451)  prec@1:56.25(54.14)  prec@5:80.47(84.07)
+Epoch[60]:[250/391] Time:0.1606 Data:0.1377  loss:1.7352(1.6492)  prec@1:56.25(54.01)  prec@5:85.94(84.03)
+Epoch[60]:[300/391] Time:0.1530 Data:0.1327  loss:1.8260(1.6547)  prec@1:50.00(53.89)  prec@5:82.03(83.92)
+Epoch[60]:[350/391] Time:0.1601 Data:0.1382  loss:1.8328(1.6576)  prec@1:46.88(53.69)  prec@5:78.91(83.87)
+Testing the models......
+Loss: 1.8056, Prec@1: 50.39, Prec@5: 81.92
+Epoch time: 67s
+Saving models......
+Epoch: 61  lr: 0.100
+Epoch[61]:[050/391] Time:0.1469 Data:0.1269  loss:1.7200(1.6308)  prec@1:56.25(54.00)  prec@5:84.38(84.33)
+Epoch[61]:[100/391] Time:0.1509 Data:0.1310  loss:1.6316(1.6251)  prec@1:53.12(54.20)  prec@5:82.81(84.37)
+Epoch[61]:[150/391] Time:0.1493 Data:0.1290  loss:2.1132(1.6531)  prec@1:42.97(53.60)  prec@5:78.91(83.98)
+Epoch[61]:[200/391] Time:0.1594 Data:0.1400  loss:1.8624(1.6502)  prec@1:50.78(53.82)  prec@5:79.69(84.25)
+Epoch[61]:[250/391] Time:0.1544 Data:0.1332  loss:1.4887(1.6514)  prec@1:59.38(53.83)  prec@5:85.16(84.16)
+Epoch[61]:[300/391] Time:0.1535 Data:0.1321  loss:1.6690(1.6543)  prec@1:52.34(53.72)  prec@5:82.81(84.10)
+Epoch[61]:[350/391] Time:0.1532 Data:0.1308  loss:1.5676(1.6542)  prec@1:60.16(53.81)  prec@5:86.72(84.00)
+Testing the models......
+Loss: 1.8316, Prec@1: 49.71, Prec@5: 80.73
+Epoch time: 65s
+Saving models......
+Epoch: 62  lr: 0.100
+Epoch[62]:[050/391] Time:0.1665 Data:0.1447  loss:1.4518(1.5951)  prec@1:60.94(55.80)  prec@5:89.06(85.03)
+Epoch[62]:[100/391] Time:0.1581 Data:0.1351  loss:1.4481(1.6205)  prec@1:59.38(55.20)  prec@5:86.72(84.60)
+Epoch[62]:[150/391] Time:0.1541 Data:0.1322  loss:1.5983(1.6261)  prec@1:55.47(54.77)  prec@5:87.50(84.58)
+Epoch[62]:[200/391] Time:0.2079 Data:0.1826  loss:1.7389(1.6421)  prec@1:47.66(54.26)  prec@5:83.59(84.21)
+Epoch[62]:[250/391] Time:0.3561 Data:0.2936  loss:1.6925(1.6493)  prec@1:53.91(54.06)  prec@5:84.38(84.05)
+Epoch[62]:[300/391] Time:0.3176 Data:0.2896  loss:1.5148(1.6461)  prec@1:59.38(54.21)  prec@5:86.72(84.13)
+Epoch[62]:[350/391] Time:0.3373 Data:0.2979  loss:1.4897(1.6467)  prec@1:51.56(54.20)  prec@5:86.72(84.12)
+Testing the models......
+Loss: 2.0380, Prec@1: 46.48, Prec@5: 78.70
+Epoch time: 98s
+Saving models......
+Epoch: 63  lr: 0.100
+Epoch[63]:[050/391] Time:0.3197 Data:0.2912  loss:1.5522(1.5998)  prec@1:57.81(55.89)  prec@5:85.16(84.75)
+Epoch[63]:[100/391] Time:0.3956 Data:0.3657  loss:1.5351(1.6295)  prec@1:57.81(55.07)  prec@5:85.94(84.28)
+Epoch[63]:[150/391] Time:0.1317 Data:0.1122  loss:1.6319(1.6355)  prec@1:56.25(54.81)  prec@5:80.47(84.30)
+Epoch[63]:[200/391] Time:0.3053 Data:0.2784  loss:1.6797(1.6406)  prec@1:50.00(54.58)  prec@5:81.25(84.20)
+Epoch[63]:[250/391] Time:0.1307 Data:0.1128  loss:1.5200(1.6455)  prec@1:49.22(54.43)  prec@5:85.94(84.11)
+Epoch[63]:[300/391] Time:0.1640 Data:0.1416  loss:1.8971(1.6479)  prec@1:50.78(54.39)  prec@5:78.91(84.08)
+Epoch[63]:[350/391] Time:0.1586 Data:0.1367  loss:1.6549(1.6472)  prec@1:55.47(54.36)  prec@5:85.16(84.09)
+Testing the models......
+Loss: 1.9060, Prec@1: 47.58, Prec@5: 79.92
+Epoch time: 91s
+Saving models......
+Epoch: 64  lr: 0.100
+Epoch[64]:[050/391] Time:0.1581 Data:0.1362  loss:1.7568(1.6150)  prec@1:46.88(53.92)  prec@5:82.03(84.45)
+Epoch[64]:[100/391] Time:0.3289 Data:0.2939  loss:1.6409(1.6203)  prec@1:56.25(54.38)  prec@5:82.81(84.41)
+Epoch[64]:[150/391] Time:0.1332 Data:0.1113  loss:1.4609(1.6396)  prec@1:59.38(54.07)  prec@5:86.72(84.18)
+Epoch[64]:[200/391] Time:0.1640 Data:0.1431  loss:1.8399(1.6463)  prec@1:51.56(54.00)  prec@5:78.12(83.98)
+Epoch[64]:[250/391] Time:0.2976 Data:0.2745  loss:1.6006(1.6472)  prec@1:54.69(54.00)  prec@5:81.25(84.08)
+Epoch[64]:[300/391] Time:0.1691 Data:0.1451  loss:1.6764(1.6515)  prec@1:53.12(53.89)  prec@5:85.16(84.01)
+Epoch[64]:[350/391] Time:0.1594 Data:0.1401  loss:1.9444(1.6531)  prec@1:44.53(53.85)  prec@5:78.91(83.97)
+Testing the models......
+Loss: 2.2831, Prec@1: 43.80, Prec@5: 74.47
+Epoch time: 77s
+Saving models......
+Epoch: 65  lr: 0.100
+Epoch[65]:[050/391] Time:0.1544 Data:0.1335  loss:1.6933(1.6191)  prec@1:54.69(54.98)  prec@5:85.16(83.92)
+Epoch[65]:[100/391] Time:0.1926 Data:0.1612  loss:1.6031(1.6288)  prec@1:50.78(54.31)  prec@5:85.94(83.85)
+Epoch[65]:[150/391] Time:0.2000 Data:0.1720  loss:1.4721(1.6271)  prec@1:57.03(54.48)  prec@5:88.28(83.97)
+Epoch[65]:[200/391] Time:0.1618 Data:0.1398  loss:1.9075(1.6315)  prec@1:50.00(54.47)  prec@5:78.91(84.14)
+Epoch[65]:[250/391] Time:0.1801 Data:0.1559  loss:1.6010(1.6386)  prec@1:59.38(54.28)  prec@5:83.59(84.00)
+Epoch[65]:[300/391] Time:0.1841 Data:0.1520  loss:1.5650(1.6420)  prec@1:50.78(54.07)  prec@5:84.38(83.98)
+Epoch[65]:[350/391] Time:0.1815 Data:0.1592  loss:1.6798(1.6432)  prec@1:55.47(54.12)  prec@5:84.38(84.00)
+Testing the models......
+Loss: 2.1543, Prec@1: 43.92, Prec@5: 75.03
+Epoch time: 78s
+Saving models......
+Epoch: 66  lr: 0.100
+Epoch[66]:[050/391] Time:0.1610 Data:0.1406  loss:1.5150(1.5986)  prec@1:56.25(55.53)  prec@5:85.94(84.97)
+Epoch[66]:[100/391] Time:0.1653 Data:0.1423  loss:1.6238(1.6219)  prec@1:57.81(54.91)  prec@5:83.59(84.50)
+Epoch[66]:[150/391] Time:0.1567 Data:0.1367  loss:1.6223(1.6300)  prec@1:57.03(54.66)  prec@5:84.38(84.27)
+Epoch[66]:[200/391] Time:0.1668 Data:0.1442  loss:1.7508(1.6393)  prec@1:50.00(54.29)  prec@5:82.81(84.33)
+Epoch[66]:[250/391] Time:0.1654 Data:0.1449  loss:1.8303(1.6460)  prec@1:50.78(54.19)  prec@5:78.91(84.29)
+Epoch[66]:[300/391] Time:0.1596 Data:0.1397  loss:1.5282(1.6468)  prec@1:56.25(54.26)  prec@5:87.50(84.27)
+Epoch[66]:[350/391] Time:0.1681 Data:0.1469  loss:1.4822(1.6457)  prec@1:59.38(54.21)  prec@5:89.06(84.23)
+Testing the models......
+Loss: 1.8626, Prec@1: 49.69, Prec@5: 80.90
+Epoch time: 67s
+Saving models......
+Epoch: 67  lr: 0.100
+Epoch[67]:[050/391] Time:0.1584 Data:0.1367  loss:1.3600(1.5558)  prec@1:59.38(55.89)  prec@5:88.28(85.52)
+Epoch[67]:[100/391] Time:0.1617 Data:0.1415  loss:1.6938(1.5815)  prec@1:53.12(55.32)  prec@5:85.16(85.09)
+Epoch[67]:[150/391] Time:0.1565 Data:0.1342  loss:1.7584(1.6066)  prec@1:49.22(55.10)  prec@5:84.38(84.76)
+Epoch[67]:[200/391] Time:0.1787 Data:0.1541  loss:1.4892(1.6240)  prec@1:56.25(54.73)  prec@5:88.28(84.47)
+Epoch[67]:[250/391] Time:0.1501 Data:0.1292  loss:1.7245(1.6301)  prec@1:46.88(54.67)  prec@5:82.03(84.35)
+Epoch[67]:[300/391] Time:0.1517 Data:0.1328  loss:1.4993(1.6310)  prec@1:57.03(54.43)  prec@5:89.06(84.36)
+Epoch[67]:[350/391] Time:0.1586 Data:0.1386  loss:1.7591(1.6351)  prec@1:50.78(54.22)  prec@5:81.25(84.42)
+Testing the models......
+Loss: 2.0099, Prec@1: 46.54, Prec@5: 78.25
+Epoch time: 65s
+Saving models......
+Epoch: 68  lr: 0.100
+Epoch[68]:[050/391] Time:0.1595 Data:0.1365  loss:1.6472(1.5970)  prec@1:55.47(55.39)  prec@5:84.38(85.66)
+Epoch[68]:[100/391] Time:0.1886 Data:0.1669  loss:1.5203(1.5957)  prec@1:60.94(55.43)  prec@5:83.59(85.23)
+Epoch[68]:[150/391] Time:0.1894 Data:0.1645  loss:1.5487(1.5981)  prec@1:54.69(55.39)  prec@5:86.72(85.17)
+Epoch[68]:[200/391] Time:0.3167 Data:0.2753  loss:1.8846(1.6086)  prec@1:50.78(55.07)  prec@5:74.22(84.91)
+Epoch[68]:[250/391] Time:0.1607 Data:0.1368  loss:1.2935(1.6204)  prec@1:60.16(54.88)  prec@5:89.84(84.59)
+Epoch[68]:[300/391] Time:0.1607 Data:0.1392  loss:1.8203(1.6261)  prec@1:53.91(54.77)  prec@5:83.59(84.42)
+Epoch[68]:[350/391] Time:0.1577 Data:0.1368  loss:1.7038(1.6343)  prec@1:49.22(54.48)  prec@5:82.81(84.27)
+Testing the models......
+Loss: 2.0186, Prec@1: 47.15, Prec@5: 77.38
+Epoch time: 85s
+Saving models......
+Epoch: 69  lr: 0.100
+Epoch[69]:[050/391] Time:0.3438 Data:0.3139  loss:1.5763(1.5849)  prec@1:60.16(55.53)  prec@5:87.50(85.88)
+Epoch[69]:[100/391] Time:0.3226 Data:0.2947  loss:1.7298(1.5846)  prec@1:51.56(55.59)  prec@5:78.12(85.50)
+Epoch[69]:[150/391] Time:0.3202 Data:0.2952  loss:1.3936(1.6046)  prec@1:62.50(55.07)  prec@5:90.62(85.16)
+Epoch[69]:[200/391] Time:0.3262 Data:0.2982  loss:1.6869(1.6184)  prec@1:50.78(54.84)  prec@5:83.59(84.86)
+Epoch[69]:[250/391] Time:0.3140 Data:0.2851  loss:1.7450(1.6259)  prec@1:52.34(54.71)  prec@5:79.69(84.66)
+Epoch[69]:[300/391] Time:0.3149 Data:0.2910  loss:1.5455(1.6351)  prec@1:54.69(54.53)  prec@5:85.94(84.38)
+Epoch[69]:[350/391] Time:0.3127 Data:0.2888  loss:1.7115(1.6410)  prec@1:53.12(54.32)  prec@5:84.38(84.30)
+Testing the models......
+Loss: 1.8640, Prec@1: 49.18, Prec@5: 80.69
+Epoch time: 135s
+Saving models......
+Epoch: 70  lr: 0.100
+Epoch[70]:[050/391] Time:0.3288 Data:0.2895  loss:1.5692(1.5984)  prec@1:54.69(55.12)  prec@5:87.50(85.17)
+Epoch[70]:[100/391] Time:0.3168 Data:0.2909  loss:1.5836(1.6177)  prec@1:55.47(54.64)  prec@5:88.28(84.80)
+Epoch[70]:[150/391] Time:0.3305 Data:0.2910  loss:1.4271(1.6099)  prec@1:56.25(54.67)  prec@5:89.06(84.72)
+Epoch[70]:[200/391] Time:0.3176 Data:0.2947  loss:1.8789(1.6258)  prec@1:47.66(54.36)  prec@5:80.47(84.45)
+Epoch[70]:[250/391] Time:0.3298 Data:0.2912  loss:1.7884(1.6276)  prec@1:46.88(54.38)  prec@5:80.47(84.38)
+Epoch[70]:[300/391] Time:0.3358 Data:0.2973  loss:1.6623(1.6335)  prec@1:52.34(54.24)  prec@5:82.81(84.28)
+Epoch[70]:[350/391] Time:0.3393 Data:0.3047  loss:1.6431(1.6362)  prec@1:57.81(54.20)  prec@5:80.47(84.19)
+Testing the models......
+Loss: 1.8231, Prec@1: 50.46, Prec@5: 81.10
+Epoch time: 129s
+Saving models......
+Epoch: 71  lr: 0.100
+Epoch[71]:[050/391] Time:0.3251 Data:0.2862  loss:1.7626(1.5697)  prec@1:51.56(55.53)  prec@5:82.03(85.33)
+Epoch[71]:[100/391] Time:0.3375 Data:0.2970  loss:1.5098(1.6040)  prec@1:57.03(54.77)  prec@5:83.59(84.95)
+Epoch[71]:[150/391] Time:0.3354 Data:0.3004  loss:1.5423(1.6067)  prec@1:53.12(54.95)  prec@5:85.94(84.82)
+Epoch[71]:[200/391] Time:0.3531 Data:0.3133  loss:1.6949(1.6168)  prec@1:46.09(54.59)  prec@5:85.16(84.51)
+Epoch[71]:[250/391] Time:0.1266 Data:0.1077  loss:1.5205(1.6179)  prec@1:57.81(54.62)  prec@5:83.59(84.53)
+Epoch[71]:[300/391] Time:0.1316 Data:0.1131  loss:1.5102(1.6281)  prec@1:58.59(54.34)  prec@5:85.16(84.45)
+Epoch[71]:[350/391] Time:0.1309 Data:0.1120  loss:1.5032(1.6338)  prec@1:60.16(54.22)  prec@5:85.94(84.28)
+Testing the models......
+Loss: 2.1287, Prec@1: 45.82, Prec@5: 75.92
+Epoch time: 90s
+Saving models......
+Epoch: 72  lr: 0.100
+Epoch[72]:[050/391] Time:0.1638 Data:0.1373  loss:1.8013(1.6042)  prec@1:50.00(54.92)  prec@5:79.69(84.47)
+Epoch[72]:[100/391] Time:0.1533 Data:0.1313  loss:1.6183(1.6107)  prec@1:58.59(54.69)  prec@5:84.38(84.63)
+Epoch[72]:[150/391] Time:0.2570 Data:0.2304  loss:1.3378(1.6262)  prec@1:60.94(54.46)  prec@5:90.62(84.17)
+Epoch[72]:[200/391] Time:0.1522 Data:0.1313  loss:1.4918(1.6269)  prec@1:62.50(54.43)  prec@5:85.16(84.23)
+Epoch[72]:[250/391] Time:0.1467 Data:0.1278  loss:1.8462(1.6308)  prec@1:53.12(54.43)  prec@5:79.69(84.23)
+Epoch[72]:[300/391] Time:0.3149 Data:0.2763  loss:1.6680(1.6321)  prec@1:52.34(54.43)  prec@5:87.50(84.24)
+Epoch[72]:[350/391] Time:0.1488 Data:0.1303  loss:1.6914(1.6314)  prec@1:53.12(54.46)  prec@5:81.25(84.19)
+Testing the models......
+Loss: 1.9880, Prec@1: 47.44, Prec@5: 78.10
+Epoch time: 74s
+Saving models......
+Epoch: 73  lr: 0.100
+Epoch[73]:[050/391] Time:0.1494 Data:0.1294  loss:1.7071(1.5770)  prec@1:51.56(55.91)  prec@5:85.94(85.75)
+Epoch[73]:[100/391] Time:0.1531 Data:0.1317  loss:1.6842(1.5914)  prec@1:51.56(55.57)  prec@5:82.03(85.06)
+Epoch[73]:[150/391] Time:0.1675 Data:0.1468  loss:1.7026(1.5978)  prec@1:54.69(55.47)  prec@5:81.25(84.93)
+Epoch[73]:[200/391] Time:0.1993 Data:0.1689  loss:1.6951(1.6182)  prec@1:55.47(55.06)  prec@5:82.03(84.48)
+Epoch[73]:[250/391] Time:0.1574 Data:0.1368  loss:1.6627(1.6280)  prec@1:53.12(54.70)  prec@5:82.03(84.34)
+Epoch[73]:[300/391] Time:0.1563 Data:0.1351  loss:1.7074(1.6333)  prec@1:51.56(54.55)  prec@5:82.81(84.32)
+Epoch[73]:[350/391] Time:0.1598 Data:0.1383  loss:1.5320(1.6346)  prec@1:53.91(54.47)  prec@5:89.06(84.27)
+Testing the models......
+Loss: 1.8668, Prec@1: 49.70, Prec@5: 80.83
+Epoch time: 64s
+Saving models......
+Epoch: 74  lr: 0.100
+Epoch[74]:[050/391] Time:0.1519 Data:0.1319  loss:1.6179(1.6004)  prec@1:54.69(55.34)  prec@5:82.81(84.70)
+Epoch[74]:[100/391] Time:0.1788 Data:0.1589  loss:1.4809(1.6208)  prec@1:56.25(54.96)  prec@5:87.50(84.23)
+Epoch[74]:[150/391] Time:0.1618 Data:0.1383  loss:1.6515(1.6190)  prec@1:54.69(55.07)  prec@5:82.81(84.31)
+Epoch[74]:[200/391] Time:0.1632 Data:0.1383  loss:1.5788(1.6157)  prec@1:53.12(55.09)  prec@5:86.72(84.30)
+Epoch[74]:[250/391] Time:0.2390 Data:0.2145  loss:1.6383(1.6322)  prec@1:51.56(54.70)  prec@5:82.81(84.07)
+Epoch[74]:[300/391] Time:0.1577 Data:0.1368  loss:1.2522(1.6304)  prec@1:61.72(54.64)  prec@5:89.06(84.26)
+Epoch[74]:[350/391] Time:0.1617 Data:0.1398  loss:1.7830(1.6368)  prec@1:56.25(54.54)  prec@5:82.81(84.11)
+Testing the models......
+Loss: 1.9308, Prec@1: 48.61, Prec@5: 79.15
+Epoch time: 66s
+Saving models......
+Epoch: 75  lr: 0.100
+Epoch[75]:[050/391] Time:0.1843 Data:0.1608  loss:1.6965(1.5948)  prec@1:52.34(55.34)  prec@5:81.25(84.58)
+Epoch[75]:[100/391] Time:0.1531 Data:0.1306  loss:1.4550(1.5980)  prec@1:60.16(55.26)  prec@5:86.72(84.75)
+Epoch[75]:[150/391] Time:0.1722 Data:0.1502  loss:1.6723(1.6199)  prec@1:52.34(54.65)  prec@5:87.50(84.40)
+Epoch[75]:[200/391] Time:0.1536 Data:0.1351  loss:1.5507(1.6259)  prec@1:60.16(54.49)  prec@5:83.59(84.29)
+Epoch[75]:[250/391] Time:0.1503 Data:0.1304  loss:1.6564(1.6239)  prec@1:52.34(54.59)  prec@5:84.38(84.23)
+Epoch[75]:[300/391] Time:0.2913 Data:0.2644  loss:1.6595(1.6288)  prec@1:59.38(54.59)  prec@5:82.81(84.14)
+Epoch[75]:[350/391] Time:0.1536 Data:0.1346  loss:1.6792(1.6310)  prec@1:52.34(54.54)  prec@5:85.16(84.17)
+Testing the models......
+Loss: 1.8416, Prec@1: 50.36, Prec@5: 80.04
+Epoch time: 65s
+Saving models......
+Epoch: 76  lr: 0.100
+Epoch[76]:[050/391] Time:0.1602 Data:0.1382  loss:1.6727(1.5798)  prec@1:54.69(54.95)  prec@5:81.25(85.75)
+Epoch[76]:[100/391] Time:0.1663 Data:0.1448  loss:1.4359(1.5964)  prec@1:64.84(55.04)  prec@5:87.50(85.06)
+Epoch[76]:[150/391] Time:0.2403 Data:0.2094  loss:1.5067(1.6063)  prec@1:60.16(54.97)  prec@5:88.28(84.74)
+Epoch[76]:[200/391] Time:0.1936 Data:0.1697  loss:1.7762(1.6186)  prec@1:52.34(54.82)  prec@5:82.81(84.43)
+Epoch[76]:[250/391] Time:0.1756 Data:0.1482  loss:1.6162(1.6215)  prec@1:57.03(54.73)  prec@5:84.38(84.34)
+Epoch[76]:[300/391] Time:0.1536 Data:0.1336  loss:1.5366(1.6345)  prec@1:59.38(54.40)  prec@5:86.72(84.20)
+Epoch[76]:[350/391] Time:0.1511 Data:0.1312  loss:1.6926(1.6344)  prec@1:57.81(54.36)  prec@5:82.03(84.21)
+Testing the models......
+Loss: 1.9026, Prec@1: 49.17, Prec@5: 79.26
+Epoch time: 69s
+Saving models......
+Epoch: 77  lr: 0.100
+Epoch[77]:[050/391] Time:0.2651 Data:0.2342  loss:1.6927(1.5935)  prec@1:53.12(55.44)  prec@5:82.81(85.17)
+Epoch[77]:[100/391] Time:0.2797 Data:0.2548  loss:1.4790(1.5871)  prec@1:58.59(55.58)  prec@5:87.50(85.02)
+Epoch[77]:[150/391] Time:0.3125 Data:0.2820  loss:1.3316(1.5874)  prec@1:60.94(55.47)  prec@5:87.50(85.05)
+Epoch[77]:[200/391] Time:0.1639 Data:0.1397  loss:1.6345(1.5966)  prec@1:51.56(55.07)  prec@5:82.81(84.79)
+Epoch[77]:[250/391] Time:0.1567 Data:0.1338  loss:1.7067(1.6167)  prec@1:53.12(54.64)  prec@5:82.03(84.48)
+Epoch[77]:[300/391] Time:0.1563 Data:0.1352  loss:1.6205(1.6273)  prec@1:57.81(54.49)  prec@5:85.94(84.36)
+Epoch[77]:[350/391] Time:0.1568 Data:0.1368  loss:1.7609(1.6286)  prec@1:53.91(54.44)  prec@5:82.03(84.42)
+Testing the models......
+Loss: 1.8282, Prec@1: 49.88, Prec@5: 81.05
+Epoch time: 73s
+Saving models......
+Epoch: 78  lr: 0.100
+Epoch[78]:[050/391] Time:0.1642 Data:0.1422  loss:1.9356(1.6176)  prec@1:45.31(54.84)  prec@5:75.00(84.33)
+Epoch[78]:[100/391] Time:0.1717 Data:0.1502  loss:1.4808(1.6116)  prec@1:57.81(55.20)  prec@5:82.03(84.34)
+Epoch[78]:[150/391] Time:0.1563 Data:0.1314  loss:1.7413(1.6023)  prec@1:55.47(55.21)  prec@5:78.91(84.71)
+Epoch[78]:[200/391] Time:0.1521 Data:0.1321  loss:1.7501(1.6189)  prec@1:46.88(54.93)  prec@5:85.94(84.49)
+Epoch[78]:[250/391] Time:0.1674 Data:0.1436  loss:1.8317(1.6220)  prec@1:45.31(54.88)  prec@5:81.25(84.45)
+Epoch[78]:[300/391] Time:0.3240 Data:0.2872  loss:1.6648(1.6265)  prec@1:50.00(54.79)  prec@5:84.38(84.46)
+Epoch[78]:[350/391] Time:0.3213 Data:0.2977  loss:1.5956(1.6317)  prec@1:52.34(54.72)  prec@5:85.16(84.33)
+Testing the models......
+Loss: 1.8973, Prec@1: 49.76, Prec@5: 80.44
+Epoch time: 91s
+Saving models......
+Epoch: 79  lr: 0.100
+Epoch[79]:[050/391] Time:0.3152 Data:0.2902  loss:1.8737(1.5930)  prec@1:45.31(54.98)  prec@5:83.59(84.89)
+Epoch[79]:[100/391] Time:0.1397 Data:0.1088  loss:1.6687(1.6089)  prec@1:51.56(54.84)  prec@5:87.50(84.75)
+Epoch[79]:[150/391] Time:0.1310 Data:0.1129  loss:1.6549(1.6077)  prec@1:50.00(55.01)  prec@5:83.59(84.65)
+Epoch[79]:[200/391] Time:0.1257 Data:0.1068  loss:1.5641(1.6251)  prec@1:55.47(54.62)  prec@5:84.38(84.47)
+Epoch[79]:[250/391] Time:0.1273 Data:0.1093  loss:1.5498(1.6336)  prec@1:57.03(54.35)  prec@5:86.72(84.35)
+Epoch[79]:[300/391] Time:0.1544 Data:0.1335  loss:1.5913(1.6276)  prec@1:53.91(54.56)  prec@5:85.94(84.42)
+Epoch[79]:[350/391] Time:0.2116 Data:0.1828  loss:1.4147(1.6280)  prec@1:61.72(54.60)  prec@5:90.62(84.37)
+Testing the models......
+Loss: 1.8406, Prec@1: 50.64, Prec@5: 79.97
+Epoch time: 79s
+Saving models......
+Epoch: 80  lr: 0.100
+Epoch[80]:[050/391] Time:0.1654 Data:0.1425  loss:1.4430(1.6015)  prec@1:57.03(54.70)  prec@5:89.06(85.38)
+Epoch[80]:[100/391] Time:0.2871 Data:0.2587  loss:1.5602(1.6195)  prec@1:57.81(54.74)  prec@5:89.84(84.88)
+Epoch[80]:[150/391] Time:0.2487 Data:0.2119  loss:1.4754(1.6117)  prec@1:60.94(54.91)  prec@5:90.62(84.84)
+Epoch[80]:[200/391] Time:0.1557 Data:0.1352  loss:1.7429(1.6197)  prec@1:50.78(54.69)  prec@5:83.59(84.68)
+Epoch[80]:[250/391] Time:0.1943 Data:0.1744  loss:1.6328(1.6219)  prec@1:63.28(54.88)  prec@5:85.16(84.62)
+Epoch[80]:[300/391] Time:0.1603 Data:0.1393  loss:1.6396(1.6279)  prec@1:53.12(54.69)  prec@5:85.16(84.57)
+Epoch[80]:[350/391] Time:0.1574 Data:0.1355  loss:1.8808(1.6289)  prec@1:47.66(54.69)  prec@5:81.25(84.49)
+Testing the models......
+Loss: 1.9611, Prec@1: 46.49, Prec@5: 79.36
+Epoch time: 73s
+Saving models......
+Epoch: 81  lr: 0.100
+Epoch[81]:[050/391] Time:0.1678 Data:0.1453  loss:1.7466(1.5714)  prec@1:55.47(55.73)  prec@5:82.81(85.31)
+Epoch[81]:[100/391] Time:0.1579 Data:0.1355  loss:1.9073(1.5839)  prec@1:45.31(55.45)  prec@5:78.91(85.05)
+Epoch[81]:[150/391] Time:0.1621 Data:0.1402  loss:1.6140(1.6014)  prec@1:52.34(54.92)  prec@5:89.06(84.93)
+Epoch[81]:[200/391] Time:0.1500 Data:0.1300  loss:1.7146(1.6159)  prec@1:54.69(54.83)  prec@5:82.81(84.56)
+Epoch[81]:[250/391] Time:0.1523 Data:0.1324  loss:1.5877(1.6166)  prec@1:57.81(54.88)  prec@5:84.38(84.58)
+Epoch[81]:[300/391] Time:0.1499 Data:0.1313  loss:1.5022(1.6204)  prec@1:57.03(54.76)  prec@5:86.72(84.49)
+Epoch[81]:[350/391] Time:0.1467 Data:0.1268  loss:1.7675(1.6254)  prec@1:53.12(54.52)  prec@5:82.03(84.46)
+Testing the models......
+Loss: 1.8508, Prec@1: 50.45, Prec@5: 80.60
+Epoch time: 63s
+Saving models......
+Epoch: 82  lr: 0.100
+Epoch[82]:[050/391] Time:0.1473 Data:0.1278  loss:1.4615(1.5971)  prec@1:61.72(55.09)  prec@5:88.28(85.47)
+Epoch[82]:[100/391] Time:0.1499 Data:0.1280  loss:1.7673(1.5860)  prec@1:51.56(55.60)  prec@5:82.81(85.20)
+Epoch[82]:[150/391] Time:0.1472 Data:0.1280  loss:1.5655(1.5978)  prec@1:57.03(55.19)  prec@5:87.50(84.94)
+Epoch[82]:[200/391] Time:0.1563 Data:0.1346  loss:1.7867(1.6008)  prec@1:53.12(55.15)  prec@5:81.25(85.00)
+Epoch[82]:[250/391] Time:0.1507 Data:0.1322  loss:1.7102(1.6080)  prec@1:50.78(54.86)  prec@5:82.03(84.79)
+Epoch[82]:[300/391] Time:0.2015 Data:0.1756  loss:1.7639(1.6164)  prec@1:46.09(54.61)  prec@5:80.47(84.69)
+Epoch[82]:[350/391] Time:0.1564 Data:0.1375  loss:1.5161(1.6222)  prec@1:59.38(54.39)  prec@5:87.50(84.63)
+Testing the models......
+Loss: 1.8735, Prec@1: 50.10, Prec@5: 80.28
+Epoch time: 63s
+Saving models......
+Epoch: 83  lr: 0.100
+Epoch[83]:[050/391] Time:0.1691 Data:0.1492  loss:1.7195(1.5742)  prec@1:51.56(55.73)  prec@5:85.94(85.16)
+Epoch[83]:[100/391] Time:0.1856 Data:0.1608  loss:1.4182(1.5926)  prec@1:62.50(55.46)  prec@5:88.28(84.74)
+Epoch[83]:[150/391] Time:0.1671 Data:0.1424  loss:1.5473(1.6002)  prec@1:60.16(55.30)  prec@5:82.03(84.81)
+Epoch[83]:[200/391] Time:0.1506 Data:0.1295  loss:1.7025(1.6080)  prec@1:54.69(55.15)  prec@5:82.03(84.72)
+Epoch[83]:[250/391] Time:0.1595 Data:0.1384  loss:1.6407(1.6198)  prec@1:52.34(54.84)  prec@5:82.03(84.53)
+Epoch[83]:[300/391] Time:0.1620 Data:0.1418  loss:1.6974(1.6281)  prec@1:50.00(54.61)  prec@5:82.03(84.47)
+Epoch[83]:[350/391] Time:0.1617 Data:0.1386  loss:1.7745(1.6281)  prec@1:51.56(54.50)  prec@5:86.72(84.47)
+Testing the models......
+Loss: 1.7614, Prec@1: 51.58, Prec@5: 81.61
+Epoch time: 68s
+Saving models......
+Epoch: 84  lr: 0.100
+Epoch[84]:[050/391] Time:0.1493 Data:0.1293  loss:1.5704(1.5709)  prec@1:55.47(56.00)  prec@5:82.81(84.70)
+Epoch[84]:[100/391] Time:0.1578 Data:0.1357  loss:1.6047(1.5724)  prec@1:49.22(56.12)  prec@5:85.16(85.21)
+Epoch[84]:[150/391] Time:0.1563 Data:0.1351  loss:1.4672(1.6026)  prec@1:57.81(55.26)  prec@5:81.25(84.68)
+Epoch[84]:[200/391] Time:0.1611 Data:0.1406  loss:1.4845(1.6081)  prec@1:60.94(55.01)  prec@5:88.28(84.66)
+Epoch[84]:[250/391] Time:0.1599 Data:0.1388  loss:1.7155(1.6149)  prec@1:50.00(54.77)  prec@5:83.59(84.57)
+Epoch[84]:[300/391] Time:0.1631 Data:0.1419  loss:1.5947(1.6229)  prec@1:50.78(54.64)  prec@5:86.72(84.44)
+Epoch[84]:[350/391] Time:0.1632 Data:0.1418  loss:1.5989(1.6281)  prec@1:53.12(54.57)  prec@5:85.94(84.37)
+Testing the models......
+Loss: 2.0904, Prec@1: 45.88, Prec@5: 79.10
+Epoch time: 63s
+Saving models......
+Epoch: 85  lr: 0.100
+Epoch[85]:[050/391] Time:0.1487 Data:0.1284  loss:1.5121(1.5627)  prec@1:59.38(56.42)  prec@5:86.72(85.05)
+Epoch[85]:[100/391] Time:0.1502 Data:0.1281  loss:1.7336(1.6024)  prec@1:53.12(55.40)  prec@5:80.47(84.61)
+Epoch[85]:[150/391] Time:0.1504 Data:0.1301  loss:1.5640(1.6070)  prec@1:52.34(55.05)  prec@5:83.59(84.76)
+Epoch[85]:[200/391] Time:0.1509 Data:0.1300  loss:1.8414(1.6093)  prec@1:47.66(55.03)  prec@5:83.59(84.68)
+Epoch[85]:[250/391] Time:0.1485 Data:0.1287  loss:1.9598(1.6157)  prec@1:47.66(54.95)  prec@5:79.69(84.59)
+Epoch[85]:[300/391] Time:0.1498 Data:0.1288  loss:1.7830(1.6239)  prec@1:45.31(54.72)  prec@5:82.03(84.45)
+Epoch[85]:[350/391] Time:0.1493 Data:0.1287  loss:1.4669(1.6246)  prec@1:55.47(54.71)  prec@5:85.94(84.45)
+Testing the models......
+Loss: 1.8538, Prec@1: 49.45, Prec@5: 80.97
+Epoch time: 61s
+Saving models......
+Epoch: 86  lr: 0.100
+Epoch[86]:[050/391] Time:0.1630 Data:0.1420  loss:1.4152(1.5734)  prec@1:57.03(55.97)  prec@5:85.94(85.14)
+Epoch[86]:[100/391] Time:0.1562 Data:0.1344  loss:1.6174(1.5763)  prec@1:52.34(55.84)  prec@5:87.50(85.24)
+Epoch[86]:[150/391] Time:0.1558 Data:0.1338  loss:1.7717(1.5941)  prec@1:46.88(55.46)  prec@5:82.81(84.96)
+Epoch[86]:[200/391] Time:0.1565 Data:0.1343  loss:1.6564(1.5982)  prec@1:53.12(55.43)  prec@5:86.72(84.86)
+Epoch[86]:[250/391] Time:0.2251 Data:0.1962  loss:1.7518(1.6016)  prec@1:54.69(55.42)  prec@5:80.47(84.68)
+Epoch[86]:[300/391] Time:0.1566 Data:0.1364  loss:1.8319(1.6118)  prec@1:45.31(55.07)  prec@5:85.16(84.48)
+Epoch[86]:[350/391] Time:0.1617 Data:0.1342  loss:1.5500(1.6181)  prec@1:56.25(54.79)  prec@5:78.91(84.45)
+Testing the models......
+Loss: 1.7279, Prec@1: 52.45, Prec@5: 82.35
+Epoch time: 68s
+Saving models......
+Epoch: 87  lr: 0.100
+Epoch[87]:[050/391] Time:0.1843 Data:0.1573  loss:1.6804(1.6338)  prec@1:53.91(54.52)  prec@5:85.16(84.39)
+Epoch[87]:[100/391] Time:0.5456 Data:0.5093  loss:1.6992(1.6398)  prec@1:50.00(54.12)  prec@5:87.50(84.41)
+Epoch[87]:[150/391] Time:0.3349 Data:0.3092  loss:1.4260(1.6329)  prec@1:62.50(54.34)  prec@5:89.06(84.50)
+Epoch[87]:[200/391] Time:0.3264 Data:0.3004  loss:1.5070(1.6261)  prec@1:56.25(54.34)  prec@5:87.50(84.60)
+Epoch[87]:[250/391] Time:0.1357 Data:0.1121  loss:1.6632(1.6252)  prec@1:52.34(54.38)  prec@5:87.50(84.60)
+Epoch[87]:[300/391] Time:0.1301 Data:0.1112  loss:1.5749(1.6232)  prec@1:56.25(54.38)  prec@5:83.59(84.66)
+Epoch[87]:[350/391] Time:0.1571 Data:0.1352  loss:1.6495(1.6303)  prec@1:56.25(54.31)  prec@5:83.59(84.44)
+Testing the models......
+Loss: 1.8104, Prec@1: 50.95, Prec@5: 81.75
+Epoch time: 92s
+Saving models......
+Epoch: 88  lr: 0.100
+Epoch[88]:[050/391] Time:0.1631 Data:0.1392  loss:1.4766(1.5885)  prec@1:51.56(55.28)  prec@5:87.50(85.48)
+Epoch[88]:[100/391] Time:0.1529 Data:0.1329  loss:1.5266(1.5903)  prec@1:57.81(55.64)  prec@5:90.62(85.37)
+Epoch[88]:[150/391] Time:0.1544 Data:0.1325  loss:1.5762(1.6005)  prec@1:51.56(55.23)  prec@5:91.41(85.17)
+Epoch[88]:[200/391] Time:0.1488 Data:0.1292  loss:1.6803(1.6054)  prec@1:51.56(55.26)  prec@5:81.25(84.77)
+Epoch[88]:[250/391] Time:0.1525 Data:0.1319  loss:1.8937(1.6152)  prec@1:46.09(55.07)  prec@5:79.69(84.65)
+Epoch[88]:[300/391] Time:0.1497 Data:0.1277  loss:1.7137(1.6165)  prec@1:53.12(54.99)  prec@5:84.38(84.62)
+Epoch[88]:[350/391] Time:0.1468 Data:0.1282  loss:1.7943(1.6226)  prec@1:50.78(54.77)  prec@5:78.91(84.42)
+Testing the models......
+Loss: 1.8640, Prec@1: 50.36, Prec@5: 80.91
+Epoch time: 62s
+Saving models......
+Epoch: 89  lr: 0.100
+Epoch[89]:[050/391] Time:0.1498 Data:0.1272  loss:1.4025(1.5675)  prec@1:59.38(56.05)  prec@5:87.50(85.47)
+Epoch[89]:[100/391] Time:0.1487 Data:0.1271  loss:1.5604(1.5789)  prec@1:53.12(56.29)  prec@5:85.94(85.12)
+Epoch[89]:[150/391] Time:0.1493 Data:0.1282  loss:1.6850(1.6037)  prec@1:53.91(55.76)  prec@5:85.16(84.91)
+Epoch[89]:[200/391] Time:0.1511 Data:0.1306  loss:1.8116(1.6094)  prec@1:45.31(55.28)  prec@5:79.69(84.78)
+Epoch[89]:[250/391] Time:0.1457 Data:0.1268  loss:1.5678(1.6079)  prec@1:56.25(55.15)  prec@5:87.50(84.85)
+Epoch[89]:[300/391] Time:0.1577 Data:0.1362  loss:1.9616(1.6190)  prec@1:45.31(54.81)  prec@5:75.78(84.57)
+Epoch[89]:[350/391] Time:0.1520 Data:0.1314  loss:1.4752(1.6196)  prec@1:57.03(54.81)  prec@5:89.06(84.58)
+Testing the models......
+Loss: 1.8430, Prec@1: 51.14, Prec@5: 80.60
+Epoch time: 60s
+Saving models......
+Epoch: 90  lr: 0.100
+Epoch[90]:[050/391] Time:0.1491 Data:0.1282  loss:1.6170(1.5882)  prec@1:53.12(55.56)  prec@5:83.59(85.31)
+Epoch[90]:[100/391] Time:0.1527 Data:0.1317  loss:1.5302(1.5882)  prec@1:57.81(55.76)  prec@5:82.81(85.26)
+Epoch[90]:[150/391] Time:0.1504 Data:0.1305  loss:1.7001(1.5885)  prec@1:51.56(55.63)  prec@5:82.81(85.13)
+Epoch[90]:[200/391] Time:0.1512 Data:0.1302  loss:1.9322(1.5983)  prec@1:43.75(55.33)  prec@5:77.34(84.88)
+Epoch[90]:[250/391] Time:0.1561 Data:0.1352  loss:1.5130(1.6109)  prec@1:57.81(54.89)  prec@5:85.16(84.69)
+Epoch[90]:[300/391] Time:0.1561 Data:0.1341  loss:1.4347(1.6144)  prec@1:58.59(54.82)  prec@5:83.59(84.61)
+Epoch[90]:[350/391] Time:0.1478 Data:0.1268  loss:1.8178(1.6175)  prec@1:50.78(54.70)  prec@5:78.12(84.54)
+Testing the models......
+Loss: 1.8280, Prec@1: 49.58, Prec@5: 81.12
+Epoch time: 61s
+Saving models......
+Epoch: 91  lr: 0.100
+Epoch[91]:[050/391] Time:0.1509 Data:0.1289  loss:1.7656(1.6192)  prec@1:54.69(54.61)  prec@5:82.03(84.22)
+Epoch[91]:[100/391] Time:0.1470 Data:0.1280  loss:1.7134(1.6072)  prec@1:50.00(55.01)  prec@5:82.81(84.34)
+Epoch[91]:[150/391] Time:0.1535 Data:0.1345  loss:1.8358(1.6078)  prec@1:49.22(55.08)  prec@5:82.03(84.61)
+Epoch[91]:[200/391] Time:0.1548 Data:0.1319  loss:1.6632(1.6062)  prec@1:54.69(55.25)  prec@5:83.59(84.55)
+Epoch[91]:[250/391] Time:0.1614 Data:0.1385  loss:1.6939(1.6089)  prec@1:49.22(55.08)  prec@5:86.72(84.67)
+Epoch[91]:[300/391] Time:0.1552 Data:0.1347  loss:1.5606(1.6073)  prec@1:58.59(55.22)  prec@5:85.94(84.64)
+Epoch[91]:[350/391] Time:0.1530 Data:0.1331  loss:1.5747(1.6152)  prec@1:53.91(54.96)  prec@5:85.94(84.57)
+Testing the models......
+Loss: 1.8456, Prec@1: 50.33, Prec@5: 81.04
+Epoch time: 62s
+Saving models......
+Epoch: 92  lr: 0.100
+Epoch[92]:[050/391] Time:0.1678 Data:0.1408  loss:1.5604(1.5661)  prec@1:60.94(56.52)  prec@5:84.38(85.81)
+Epoch[92]:[100/391] Time:0.3143 Data:0.2816  loss:1.8713(1.5847)  prec@1:46.88(55.73)  prec@5:83.59(85.47)
+Epoch[92]:[150/391] Time:0.3169 Data:0.2805  loss:1.5584(1.6010)  prec@1:53.12(55.22)  prec@5:85.94(84.91)
+Epoch[92]:[200/391] Time:0.3155 Data:0.2782  loss:1.7649(1.6053)  prec@1:52.34(54.91)  prec@5:80.47(84.78)
+Epoch[92]:[250/391] Time:0.3086 Data:0.2760  loss:1.8139(1.6127)  prec@1:49.22(54.73)  prec@5:85.16(84.66)
+Epoch[92]:[300/391] Time:0.3140 Data:0.2780  loss:1.6241(1.6174)  prec@1:58.59(54.72)  prec@5:83.59(84.61)
+Epoch[92]:[350/391] Time:0.3072 Data:0.2763  loss:1.3234(1.6185)  prec@1:63.28(54.72)  prec@5:88.28(84.54)
+Testing the models......
+Loss: 1.8614, Prec@1: 49.45, Prec@5: 79.71
+Epoch time: 116s
+Saving models......
+Epoch: 93  lr: 0.100
+Epoch[93]:[050/391] Time:0.2987 Data:0.2622  loss:1.5897(1.5943)  prec@1:53.12(55.31)  prec@5:82.81(85.19)
+Epoch[93]:[100/391] Time:0.3392 Data:0.2776  loss:1.3935(1.5993)  prec@1:57.03(54.98)  prec@5:89.06(84.88)
+Epoch[93]:[150/391] Time:0.3175 Data:0.2840  loss:1.8618(1.6176)  prec@1:49.22(54.89)  prec@5:80.47(84.58)
+Epoch[93]:[200/391] Time:0.3239 Data:0.3014  loss:1.6497(1.6144)  prec@1:57.03(54.98)  prec@5:84.38(84.58)
+Epoch[93]:[250/391] Time:0.3194 Data:0.2946  loss:1.5529(1.6086)  prec@1:54.69(55.12)  prec@5:87.50(84.69)
+Epoch[93]:[300/391] Time:0.3164 Data:0.2935  loss:1.5043(1.6166)  prec@1:57.81(54.84)  prec@5:86.72(84.47)
+Epoch[93]:[350/391] Time:0.3151 Data:0.2787  loss:1.6914(1.6192)  prec@1:53.91(54.79)  prec@5:81.25(84.40)
+Testing the models......
+Loss: 1.7775, Prec@1: 51.25, Prec@5: 81.43
+Epoch time: 134s
+Saving models......
+Epoch: 94  lr: 0.100
+Epoch[94]:[050/391] Time:0.1298 Data:0.1149  loss:1.4146(1.5899)  prec@1:64.84(54.91)  prec@5:85.94(85.05)
+Epoch[94]:[100/391] Time:0.1253 Data:0.1064  loss:1.6409(1.5796)  prec@1:54.69(55.71)  prec@5:85.16(85.01)
+Epoch[94]:[150/391] Time:0.1310 Data:0.1141  loss:1.3760(1.5821)  prec@1:59.38(55.71)  prec@5:88.28(85.01)
+Epoch[94]:[200/391] Time:0.1281 Data:0.1101  loss:1.7498(1.6008)  prec@1:53.12(55.39)  prec@5:81.25(84.70)
+Epoch[94]:[250/391] Time:0.1726 Data:0.1447  loss:1.7900(1.6090)  prec@1:55.47(55.20)  prec@5:83.59(84.54)
+Epoch[94]:[300/391] Time:0.1668 Data:0.1459  loss:1.7184(1.6139)  prec@1:53.12(55.12)  prec@5:83.59(84.49)
+Epoch[94]:[350/391] Time:0.1581 Data:0.1377  loss:1.4693(1.6221)  prec@1:53.12(54.89)  prec@5:90.62(84.40)
+Testing the models......
+Loss: 2.0861, Prec@1: 45.55, Prec@5: 77.28
+Epoch time: 59s
+Saving models......
+Epoch: 95  lr: 0.100
+Epoch[95]:[050/391] Time:0.3226 Data:0.2836  loss:1.6693(1.5613)  prec@1:47.66(56.47)  prec@5:86.72(85.33)
+Epoch[95]:[100/391] Time:0.1258 Data:0.1078  loss:1.7635(1.5762)  prec@1:51.56(56.13)  prec@5:81.25(85.24)
+Epoch[95]:[150/391] Time:0.1881 Data:0.1575  loss:1.7704(1.5837)  prec@1:53.12(55.91)  prec@5:79.69(85.01)
+Epoch[95]:[200/391] Time:0.1720 Data:0.1484  loss:1.7205(1.5968)  prec@1:53.12(55.37)  prec@5:82.03(84.90)
+Epoch[95]:[250/391] Time:0.1615 Data:0.1400  loss:1.3396(1.6026)  prec@1:64.06(55.26)  prec@5:91.41(84.80)
+Epoch[95]:[300/391] Time:0.1659 Data:0.1427  loss:1.5157(1.6099)  prec@1:53.91(55.03)  prec@5:86.72(84.71)
+Epoch[95]:[350/391] Time:0.1666 Data:0.1442  loss:1.8114(1.6138)  prec@1:51.56(54.96)  prec@5:82.03(84.66)
+Testing the models......
+Loss: 1.9178, Prec@1: 49.00, Prec@5: 79.65
+Epoch time: 76s
+Saving models......
+Epoch: 96  lr: 0.100
+Epoch[96]:[050/391] Time:0.1700 Data:0.1482  loss:1.5394(1.5797)  prec@1:57.03(55.80)  prec@5:84.38(85.31)
+Epoch[96]:[100/391] Time:0.1527 Data:0.1308  loss:1.7788(1.5852)  prec@1:50.00(55.59)  prec@5:79.69(85.57)
+Epoch[96]:[150/391] Time:0.1505 Data:0.1309  loss:1.6656(1.5909)  prec@1:51.56(55.62)  prec@5:84.38(85.32)
+Epoch[96]:[200/391] Time:0.1451 Data:0.1262  loss:1.6812(1.6049)  prec@1:54.69(55.22)  prec@5:82.81(85.09)
+Epoch[96]:[250/391] Time:0.1475 Data:0.1261  loss:1.6166(1.6079)  prec@1:61.72(55.13)  prec@5:82.03(84.91)
+Epoch[96]:[300/391] Time:0.1489 Data:0.1309  loss:1.6653(1.6134)  prec@1:51.56(55.04)  prec@5:82.81(84.79)
+Epoch[96]:[350/391] Time:0.1538 Data:0.1327  loss:1.8004(1.6206)  prec@1:51.56(54.91)  prec@5:81.25(84.66)
+Testing the models......
+Loss: 1.9511, Prec@1: 48.27, Prec@5: 78.88
+Epoch time: 62s
+Saving models......
+Epoch: 97  lr: 0.100
+Epoch[97]:[050/391] Time:0.1521 Data:0.1322  loss:1.8083(1.5940)  prec@1:53.12(55.47)  prec@5:79.69(85.11)
+Epoch[97]:[100/391] Time:0.1584 Data:0.1365  loss:1.6348(1.5894)  prec@1:56.25(55.82)  prec@5:83.59(84.97)
+Epoch[97]:[150/391] Time:0.1597 Data:0.1372  loss:1.5722(1.5967)  prec@1:51.56(55.34)  prec@5:83.59(84.84)
+Epoch[97]:[200/391] Time:0.1539 Data:0.1330  loss:1.6632(1.6014)  prec@1:52.34(55.16)  prec@5:82.81(84.86)
+Epoch[97]:[250/391] Time:0.1567 Data:0.1378  loss:1.5908(1.6037)  prec@1:53.12(55.01)  prec@5:88.28(84.82)
+Epoch[97]:[300/391] Time:0.1591 Data:0.1375  loss:1.6172(1.6062)  prec@1:54.69(54.90)  prec@5:81.25(84.79)
+Epoch[97]:[350/391] Time:0.1529 Data:0.1299  loss:1.4924(1.6106)  prec@1:55.47(54.84)  prec@5:88.28(84.72)
+Testing the models......
+Loss: 1.8903, Prec@1: 48.51, Prec@5: 79.39
+Epoch time: 63s
+Saving models......
+Epoch: 98  lr: 0.100
+Epoch[98]:[050/391] Time:0.1561 Data:0.1331  loss:1.3017(1.5252)  prec@1:67.19(57.80)  prec@5:91.41(86.16)
+Epoch[98]:[100/391] Time:0.1526 Data:0.1337  loss:1.9608(1.5692)  prec@1:47.66(56.27)  prec@5:77.34(85.31)
+Epoch[98]:[150/391] Time:0.1496 Data:0.1307  loss:1.5827(1.5887)  prec@1:59.38(55.67)  prec@5:83.59(85.10)
+Epoch[98]:[200/391] Time:0.1490 Data:0.1280  loss:1.6467(1.6041)  prec@1:58.59(55.24)  prec@5:81.25(84.88)
+Epoch[98]:[250/391] Time:0.1553 Data:0.1344  loss:1.7206(1.6124)  prec@1:51.56(55.02)  prec@5:81.25(84.77)
+Epoch[98]:[300/391] Time:0.1518 Data:0.1297  loss:1.7450(1.6184)  prec@1:57.03(54.85)  prec@5:78.12(84.64)
+Epoch[98]:[350/391] Time:0.1522 Data:0.1317  loss:1.5477(1.6185)  prec@1:56.25(54.81)  prec@5:82.03(84.62)
+Testing the models......
+Loss: 1.8613, Prec@1: 49.77, Prec@5: 80.41
+Epoch time: 61s
+Saving models......
+Epoch: 99  lr: 0.100
+Epoch[99]:[050/391] Time:0.1515 Data:0.1300  loss:1.6590(1.6015)  prec@1:55.47(55.47)  prec@5:85.16(84.73)
+Epoch[99]:[100/391] Time:0.1571 Data:0.1368  loss:1.5924(1.6091)  prec@1:53.91(54.95)  prec@5:80.47(84.49)
+Epoch[99]:[150/391] Time:0.1510 Data:0.1309  loss:1.8507(1.6190)  prec@1:50.00(54.72)  prec@5:81.25(84.54)
+Epoch[99]:[200/391] Time:0.1523 Data:0.1314  loss:1.5263(1.6196)  prec@1:54.69(54.81)  prec@5:86.72(84.46)
+Epoch[99]:[250/391] Time:0.1558 Data:0.1349  loss:1.6148(1.6238)  prec@1:54.69(54.72)  prec@5:85.94(84.47)
+Epoch[99]:[300/391] Time:0.1517 Data:0.1311  loss:1.5624(1.6222)  prec@1:55.47(54.86)  prec@5:85.94(84.44)
+Epoch[99]:[350/391] Time:0.1543 Data:0.1328  loss:1.6021(1.6231)  prec@1:56.25(54.75)  prec@5:85.94(84.43)
+Testing the models......
+Loss: 1.8213, Prec@1: 50.64, Prec@5: 81.15
+Epoch time: 61s
+Saving models......
+Epoch: 100  lr: 0.100
+Epoch[100]:[050/391] Time:0.1664 Data:0.1455  loss:1.7316(1.6011)  prec@1:52.34(55.41)  prec@5:83.59(84.39)
+Epoch[100]:[100/391] Time:0.1477 Data:0.1268  loss:1.7763(1.6037)  prec@1:53.91(54.92)  prec@5:78.12(84.44)
+Epoch[100]:[150/391] Time:0.1557 Data:0.1347  loss:1.8599(1.6086)  prec@1:46.09(54.93)  prec@5:83.59(84.44)
+Epoch[100]:[200/391] Time:0.1512 Data:0.1302  loss:1.6316(1.6181)  prec@1:53.91(54.69)  prec@5:86.72(84.39)
+Epoch[100]:[250/391] Time:0.1646 Data:0.1427  loss:1.5416(1.6153)  prec@1:55.47(54.73)  prec@5:83.59(84.50)
+Epoch[100]:[300/391] Time:0.1670 Data:0.1431  loss:1.9137(1.6205)  prec@1:45.31(54.56)  prec@5:82.03(84.35)
+Epoch[100]:[350/391] Time:0.1640 Data:0.1403  loss:1.7894(1.6197)  prec@1:53.12(54.68)  prec@5:81.25(84.37)
+Testing the models......
+Loss: 1.9195, Prec@1: 48.35, Prec@5: 78.90
+Epoch time: 72s
+Saving models......
+Epoch: 101  lr: 0.010
+Epoch[101]:[050/391] Time:0.3399 Data:0.3014  loss:1.3966(1.4019)  prec@1:58.59(60.41)  prec@5:85.16(87.72)
+Epoch[101]:[100/391] Time:0.3115 Data:0.2860  loss:1.1388(1.3449)  prec@1:64.84(62.11)  prec@5:92.19(88.64)
+Epoch[101]:[150/391] Time:0.3208 Data:0.2902  loss:1.3643(1.3261)  prec@1:62.50(62.58)  prec@5:85.94(88.84)
+Epoch[101]:[200/391] Time:0.2835 Data:0.2486  loss:1.2644(1.3076)  prec@1:61.72(62.97)  prec@5:87.50(89.14)
+Epoch[101]:[250/391] Time:0.3148 Data:0.2898  loss:1.4375(1.2905)  prec@1:60.94(63.33)  prec@5:82.81(89.37)
+Epoch[101]:[300/391] Time:0.3509 Data:0.2890  loss:1.3466(1.2773)  prec@1:61.72(63.68)  prec@5:89.84(89.53)
+Epoch[101]:[350/391] Time:0.1342 Data:0.1132  loss:1.2374(1.2628)  prec@1:60.94(64.06)  prec@5:92.97(89.75)
+Testing the models......
+Loss: 1.2606, Prec@1: 63.68, Prec@5: 89.07
+Epoch time: 115s
+Saving models......
+Epoch: 102  lr: 0.010
+Epoch[102]:[050/391] Time:0.3386 Data:0.3011  loss:1.3376(1.1878)  prec@1:60.16(65.72)  prec@5:91.41(91.27)
+Epoch[102]:[100/391] Time:0.3142 Data:0.2823  loss:1.1924(1.1675)  prec@1:68.75(66.73)  prec@5:91.41(91.31)
+Epoch[102]:[150/391] Time:0.3164 Data:0.2779  loss:1.3340(1.1680)  prec@1:59.38(66.69)  prec@5:87.50(91.28)
+Epoch[102]:[200/391] Time:0.3409 Data:0.3020  loss:0.9876(1.1629)  prec@1:70.31(66.66)  prec@5:95.31(91.30)
+Epoch[102]:[250/391] Time:0.3403 Data:0.3011  loss:1.0308(1.1597)  prec@1:73.44(66.74)  prec@5:94.53(91.22)
+Epoch[102]:[300/391] Time:0.3346 Data:0.3077  loss:1.1196(1.1528)  prec@1:69.53(66.91)  prec@5:92.19(91.36)
+Epoch[102]:[350/391] Time:0.3261 Data:0.3003  loss:1.2618(1.1479)  prec@1:64.84(67.00)  prec@5:87.50(91.41)
+Testing the models......
+Loss: 1.2251, Prec@1: 64.33, Prec@5: 89.88
+Epoch time: 138s
+Saving models......
+Epoch: 103  lr: 0.010
+Epoch[103]:[050/391] Time:0.3061 Data:0.2762  loss:1.0655(1.0965)  prec@1:67.97(69.14)  prec@5:91.41(92.00)
+Epoch[103]:[100/391] Time:0.5789 Data:0.5438  loss:1.2609(1.0989)  prec@1:63.28(68.59)  prec@5:90.62(92.06)
+Epoch[103]:[150/391] Time:0.3211 Data:0.2826  loss:1.1734(1.1016)  prec@1:64.06(68.54)  prec@5:92.97(91.91)
+Epoch[103]:[200/391] Time:0.3183 Data:0.2854  loss:1.2170(1.1071)  prec@1:64.06(68.39)  prec@5:87.50(91.89)
+Epoch[103]:[250/391] Time:0.3362 Data:0.3111  loss:0.8208(1.1024)  prec@1:73.44(68.52)  prec@5:96.09(91.91)
+Epoch[103]:[300/391] Time:0.3163 Data:0.2906  loss:1.2831(1.1064)  prec@1:64.06(68.39)  prec@5:89.84(91.85)
+Epoch[103]:[350/391] Time:0.3391 Data:0.2994  loss:1.2648(1.1108)  prec@1:64.84(68.28)  prec@5:88.28(91.74)
+Testing the models......
+Loss: 1.2282, Prec@1: 64.53, Prec@5: 89.88
+Epoch time: 137s
+Saving models......
+Epoch: 104  lr: 0.010
+Epoch[104]:[050/391] Time:0.3090 Data:0.2835  loss:1.0083(1.0873)  prec@1:66.41(68.28)  prec@5:95.31(92.27)
+Epoch[104]:[100/391] Time:0.3394 Data:0.2984  loss:1.2327(1.0852)  prec@1:65.62(68.55)  prec@5:87.50(92.27)
+Epoch[104]:[150/391] Time:0.3194 Data:0.2966  loss:1.0478(1.0836)  prec@1:69.53(68.70)  prec@5:93.75(92.22)
+Epoch[104]:[200/391] Time:0.3592 Data:0.3302  loss:1.1183(1.0788)  prec@1:66.41(68.83)  prec@5:91.41(92.27)
+Epoch[104]:[250/391] Time:0.3457 Data:0.3064  loss:1.1425(1.0812)  prec@1:64.84(68.65)  prec@5:90.62(92.21)
+Epoch[104]:[300/391] Time:0.3396 Data:0.3010  loss:0.7970(1.0814)  prec@1:79.69(68.73)  prec@5:92.97(92.14)
+Epoch[104]:[350/391] Time:0.3190 Data:0.2802  loss:1.1131(1.0805)  prec@1:68.75(68.77)  prec@5:89.06(92.12)
+Testing the models......
+Loss: 1.2184, Prec@1: 64.88, Prec@5: 90.11
+Epoch time: 136s
+Saving models......
+Epoch: 105  lr: 0.010
+Epoch[105]:[050/391] Time:0.3155 Data:0.2899  loss:1.0450(1.0356)  prec@1:74.22(69.72)  prec@5:94.53(93.06)
+Epoch[105]:[100/391] Time:0.3292 Data:0.2888  loss:1.1362(1.0524)  prec@1:68.75(69.38)  prec@5:93.75(92.68)
+Epoch[105]:[150/391] Time:0.3449 Data:0.2873  loss:1.2010(1.0547)  prec@1:65.62(69.34)  prec@5:89.06(92.67)
+Epoch[105]:[200/391] Time:0.3169 Data:0.2935  loss:1.0370(1.0495)  prec@1:70.31(69.45)  prec@5:93.75(92.64)
+Epoch[105]:[250/391] Time:0.3237 Data:0.2851  loss:0.7396(1.0538)  prec@1:78.91(69.32)  prec@5:98.44(92.60)
+Epoch[105]:[300/391] Time:0.3274 Data:0.3029  loss:1.0350(1.0574)  prec@1:67.19(69.16)  prec@5:92.97(92.53)
+Epoch[105]:[350/391] Time:0.3209 Data:0.2935  loss:1.0725(1.0585)  prec@1:64.84(69.19)  prec@5:93.75(92.48)
+Testing the models......
+Loss: 1.2027, Prec@1: 64.84, Prec@5: 90.25
+Epoch time: 132s
+Saving models......
+Epoch: 106  lr: 0.010
+Epoch[106]:[050/391] Time:0.3541 Data:0.3208  loss:1.0134(1.0088)  prec@1:67.19(70.59)  prec@5:95.31(93.28)
+Epoch[106]:[100/391] Time:0.3480 Data:0.3128  loss:0.9912(1.0335)  prec@1:73.44(69.88)  prec@5:92.19(92.88)
+Epoch[106]:[150/391] Time:0.3347 Data:0.2950  loss:0.9089(1.0387)  prec@1:71.88(69.81)  prec@5:96.09(92.83)
+Epoch[106]:[200/391] Time:0.3372 Data:0.3048  loss:1.1828(1.0438)  prec@1:64.06(69.65)  prec@5:91.41(92.75)
+Epoch[106]:[250/391] Time:0.3302 Data:0.2983  loss:0.9326(1.0437)  prec@1:73.44(69.62)  prec@5:94.53(92.66)
+Epoch[106]:[300/391] Time:0.3413 Data:0.2828  loss:1.0880(1.0483)  prec@1:71.88(69.57)  prec@5:92.19(92.60)
+Epoch[106]:[350/391] Time:0.3265 Data:0.2877  loss:1.1226(1.0492)  prec@1:65.62(69.55)  prec@5:90.62(92.52)
+Testing the models......
+Loss: 1.1939, Prec@1: 65.32, Prec@5: 90.28
+Epoch time: 135s
+Saving models......
+Epoch: 107  lr: 0.010
+Epoch[107]:[050/391] Time:0.3327 Data:0.3075  loss:1.0735(1.0173)  prec@1:67.97(70.73)  prec@5:91.41(92.72)
+Epoch[107]:[100/391] Time:0.3474 Data:0.2887  loss:0.8915(1.0154)  prec@1:75.78(70.62)  prec@5:95.31(92.70)
+Epoch[107]:[150/391] Time:0.3236 Data:0.2882  loss:1.1812(1.0229)  prec@1:67.97(70.49)  prec@5:88.28(92.73)
+Epoch[107]:[200/391] Time:0.3070 Data:0.2856  loss:1.0471(1.0328)  prec@1:73.44(70.08)  prec@5:91.41(92.64)
+Epoch[107]:[250/391] Time:0.3121 Data:0.2874  loss:1.0502(1.0297)  prec@1:63.28(70.20)  prec@5:91.41(92.69)
+Epoch[107]:[300/391] Time:0.3236 Data:0.2860  loss:0.9255(1.0297)  prec@1:70.31(70.20)  prec@5:94.53(92.72)
+Epoch[107]:[350/391] Time:0.3335 Data:0.2942  loss:1.3045(1.0336)  prec@1:66.41(70.06)  prec@5:87.50(92.67)
+Testing the models......
+Loss: 1.1990, Prec@1: 65.19, Prec@5: 90.30
+Epoch time: 133s
+Saving models......
+Epoch: 108  lr: 0.010
+Epoch[108]:[050/391] Time:0.3067 Data:0.2822  loss:1.2791(1.0007)  prec@1:60.94(70.25)  prec@5:89.06(93.25)
+Epoch[108]:[100/391] Time:0.3410 Data:0.3030  loss:0.9575(1.0030)  prec@1:69.53(70.63)  prec@5:96.09(93.18)
+Epoch[108]:[150/391] Time:0.3209 Data:0.2930  loss:1.1038(1.0093)  prec@1:68.75(70.55)  prec@5:89.84(93.14)
+Epoch[108]:[200/391] Time:0.3088 Data:0.2834  loss:0.8300(1.0093)  prec@1:78.12(70.73)  prec@5:96.88(93.13)
+Epoch[108]:[250/391] Time:0.3255 Data:0.2980  loss:0.8501(1.0125)  prec@1:72.66(70.62)  prec@5:96.88(93.14)
+Epoch[108]:[300/391] Time:0.3221 Data:0.2886  loss:0.9450(1.0103)  prec@1:71.09(70.65)  prec@5:92.97(93.12)
+Epoch[108]:[350/391] Time:0.3124 Data:0.2818  loss:0.9203(1.0131)  prec@1:73.44(70.58)  prec@5:93.75(93.07)
+Testing the models......
+Loss: 1.2029, Prec@1: 65.33, Prec@5: 90.29
+Epoch time: 132s
+Saving models......
+Epoch: 109  lr: 0.010
+Epoch[109]:[050/391] Time:0.3289 Data:0.2895  loss:0.8172(1.0114)  prec@1:72.66(69.84)  prec@5:99.22(93.08)
+Epoch[109]:[100/391] Time:0.3152 Data:0.2835  loss:0.9880(0.9960)  prec@1:69.53(70.53)  prec@5:92.19(93.20)
+Epoch[109]:[150/391] Time:0.3129 Data:0.2850  loss:1.0137(0.9951)  prec@1:75.00(70.79)  prec@5:90.62(93.10)
+Epoch[109]:[200/391] Time:0.3259 Data:0.2860  loss:0.9775(0.9961)  prec@1:67.97(70.77)  prec@5:92.97(93.07)
+Epoch[109]:[250/391] Time:0.3409 Data:0.3021  loss:0.9901(1.0017)  prec@1:75.00(70.65)  prec@5:92.97(93.00)
+Epoch[109]:[300/391] Time:0.3600 Data:0.2994  loss:0.8815(1.0053)  prec@1:71.88(70.62)  prec@5:94.53(93.00)
+Epoch[109]:[350/391] Time:0.3293 Data:0.2915  loss:1.0324(1.0087)  prec@1:70.31(70.58)  prec@5:91.41(92.97)
+Testing the models......
+Loss: 1.1822, Prec@1: 65.77, Prec@5: 90.43
+Epoch time: 133s
+Saving models......
+Epoch: 110  lr: 0.010
+Epoch[110]:[050/391] Time:0.3411 Data:0.3012  loss:1.0578(0.9885)  prec@1:69.53(71.78)  prec@5:93.75(93.39)
+Epoch[110]:[100/391] Time:0.3490 Data:0.2872  loss:1.0307(0.9897)  prec@1:64.84(71.64)  prec@5:96.88(93.38)
+Epoch[110]:[150/391] Time:0.3082 Data:0.2829  loss:1.1089(0.9807)  prec@1:65.62(71.67)  prec@5:90.62(93.36)
+Epoch[110]:[200/391] Time:0.3140 Data:0.2747  loss:0.9222(0.9929)  prec@1:74.22(71.29)  prec@5:96.09(93.30)
+Epoch[110]:[250/391] Time:0.3112 Data:0.2809  loss:1.0091(0.9966)  prec@1:69.53(71.16)  prec@5:92.19(93.33)
+Epoch[110]:[300/391] Time:0.3154 Data:0.2906  loss:0.9508(0.9963)  prec@1:71.09(71.11)  prec@5:92.97(93.30)
+Epoch[110]:[350/391] Time:0.3253 Data:0.2874  loss:1.2641(1.0002)  prec@1:64.84(70.94)  prec@5:89.06(93.22)
+Testing the models......
+Loss: 1.1963, Prec@1: 65.45, Prec@5: 90.58
+Epoch time: 132s
+Saving models......
+Epoch: 111  lr: 0.010
+Epoch[111]:[050/391] Time:0.3154 Data:0.2921  loss:1.0616(0.9670)  prec@1:66.41(71.53)  prec@5:92.19(93.42)
+Epoch[111]:[100/391] Time:0.3274 Data:0.2946  loss:1.1409(0.9666)  prec@1:66.41(71.21)  prec@5:92.19(93.62)
+Epoch[111]:[150/391] Time:0.3080 Data:0.2806  loss:1.0080(0.9824)  prec@1:70.31(71.16)  prec@5:95.31(93.42)
+Epoch[111]:[200/391] Time:0.3245 Data:0.2996  loss:0.6750(0.9842)  prec@1:79.69(71.02)  prec@5:94.53(93.36)
+Epoch[111]:[250/391] Time:0.3712 Data:0.3043  loss:1.0026(0.9851)  prec@1:70.31(70.95)  prec@5:93.75(93.36)
+Epoch[111]:[300/391] Time:0.3368 Data:0.3084  loss:1.0454(0.9857)  prec@1:73.44(70.99)  prec@5:90.62(93.37)
+Epoch[111]:[350/391] Time:0.3422 Data:0.3018  loss:0.9082(0.9878)  prec@1:75.00(70.89)  prec@5:93.75(93.38)
+Testing the models......
+Loss: 1.1956, Prec@1: 65.93, Prec@5: 90.54
+Epoch time: 133s
+Saving models......
+Epoch: 112  lr: 0.010
+Epoch[112]:[050/391] Time:0.3069 Data:0.2828  loss:0.8961(0.9816)  prec@1:72.66(71.23)  prec@5:96.09(93.53)
+Epoch[112]:[100/391] Time:0.3284 Data:0.2899  loss:1.0447(0.9917)  prec@1:67.97(71.02)  prec@5:94.53(93.40)
+Epoch[112]:[150/391] Time:0.1305 Data:0.1084  loss:0.9829(0.9952)  prec@1:68.75(70.88)  prec@5:91.41(93.30)
+Epoch[112]:[200/391] Time:0.1259 Data:0.1083  loss:1.2134(0.9888)  prec@1:64.06(71.14)  prec@5:88.28(93.36)
+Epoch[112]:[250/391] Time:0.1270 Data:0.1080  loss:0.9005(0.9860)  prec@1:69.53(71.26)  prec@5:92.97(93.35)
+Epoch[112]:[300/391] Time:0.1273 Data:0.1098  loss:0.8302(0.9864)  prec@1:76.56(71.23)  prec@5:96.09(93.37)
+Epoch[112]:[350/391] Time:0.2104 Data:0.1762  loss:1.1277(0.9898)  prec@1:64.06(71.04)  prec@5:91.41(93.32)
+Testing the models......
+Loss: 1.2335, Prec@1: 64.52, Prec@5: 89.71
+Epoch time: 83s
+Saving models......
+Epoch: 113  lr: 0.010
+Epoch[113]:[050/391] Time:0.1696 Data:0.1457  loss:0.8341(0.9474)  prec@1:72.66(71.95)  prec@5:96.88(94.23)
+Epoch[113]:[100/391] Time:0.1535 Data:0.1321  loss:1.0539(0.9577)  prec@1:70.31(71.96)  prec@5:92.97(93.92)
+Epoch[113]:[150/391] Time:0.1659 Data:0.1424  loss:0.8517(0.9633)  prec@1:75.00(71.78)  prec@5:94.53(93.74)
+Epoch[113]:[200/391] Time:0.1523 Data:0.1320  loss:0.9360(0.9626)  prec@1:69.53(71.87)  prec@5:94.53(93.66)
+Epoch[113]:[250/391] Time:0.1797 Data:0.1511  loss:1.0840(0.9707)  prec@1:67.97(71.61)  prec@5:89.84(93.59)
+Epoch[113]:[300/391] Time:0.2248 Data:0.1961  loss:1.1508(0.9808)  prec@1:68.75(71.19)  prec@5:92.19(93.48)
+Epoch[113]:[350/391] Time:0.1939 Data:0.1694  loss:1.0713(0.9844)  prec@1:70.31(71.10)  prec@5:92.97(93.43)
+Testing the models......
+Loss: 1.1927, Prec@1: 66.23, Prec@5: 90.11
+Epoch time: 70s
+Saving models......
+Epoch: 114  lr: 0.010
+Epoch[114]:[050/391] Time:0.1809 Data:0.1589  loss:1.2066(0.9204)  prec@1:67.97(72.47)  prec@5:87.50(93.92)
+Epoch[114]:[100/391] Time:0.1644 Data:0.1410  loss:0.9979(0.9477)  prec@1:69.53(71.91)  prec@5:89.06(93.68)
+Epoch[114]:[150/391] Time:0.1628 Data:0.1404  loss:0.9398(0.9572)  prec@1:73.44(71.83)  prec@5:95.31(93.57)
+Epoch[114]:[200/391] Time:0.1782 Data:0.1475  loss:1.0511(0.9594)  prec@1:68.75(71.97)  prec@5:92.19(93.55)
+Epoch[114]:[250/391] Time:0.1697 Data:0.1431  loss:1.2954(0.9691)  prec@1:62.50(71.64)  prec@5:89.84(93.47)
+Epoch[114]:[300/391] Time:0.1870 Data:0.1605  loss:0.8904(0.9742)  prec@1:75.78(71.44)  prec@5:93.75(93.51)
+Epoch[114]:[350/391] Time:0.1853 Data:0.1558  loss:1.0491(0.9782)  prec@1:70.31(71.44)  prec@5:92.97(93.45)
+Testing the models......
+Loss: 1.1998, Prec@1: 65.90, Prec@5: 90.49
+Epoch time: 70s
+Saving models......
+Epoch: 115  lr: 0.010
+Epoch[115]:[050/391] Time:0.1659 Data:0.1409  loss:1.0059(0.9485)  prec@1:70.31(72.48)  prec@5:92.19(94.06)
+Epoch[115]:[100/391] Time:0.1763 Data:0.1514  loss:1.0513(0.9567)  prec@1:69.53(71.98)  prec@5:92.19(93.80)
+Epoch[115]:[150/391] Time:0.1642 Data:0.1408  loss:0.9660(0.9594)  prec@1:69.53(71.70)  prec@5:94.53(93.73)
+Epoch[115]:[200/391] Time:0.1589 Data:0.1374  loss:0.9671(0.9681)  prec@1:71.09(71.48)  prec@5:92.19(93.56)
+Epoch[115]:[250/391] Time:0.1699 Data:0.1446  loss:0.8034(0.9678)  prec@1:77.34(71.54)  prec@5:92.97(93.53)
+Epoch[115]:[300/391] Time:0.1650 Data:0.1447  loss:0.8589(0.9671)  prec@1:74.22(71.45)  prec@5:95.31(93.58)
+Epoch[115]:[350/391] Time:0.3079 Data:0.2660  loss:0.9875(0.9725)  prec@1:72.66(71.24)  prec@5:90.62(93.54)
+Testing the models......
+Loss: 1.2591, Prec@1: 64.35, Prec@5: 89.47
+Epoch time: 69s
+Saving models......
+Epoch: 116  lr: 0.010
+Epoch[116]:[050/391] Time:0.1770 Data:0.1548  loss:1.0039(0.9557)  prec@1:68.75(71.55)  prec@5:96.09(93.91)
+Epoch[116]:[100/391] Time:0.1625 Data:0.1396  loss:1.0982(0.9448)  prec@1:65.62(72.27)  prec@5:94.53(94.09)
+Epoch[116]:[150/391] Time:0.1562 Data:0.1331  loss:1.1204(0.9518)  prec@1:65.62(71.94)  prec@5:92.19(94.12)
+Epoch[116]:[200/391] Time:0.1848 Data:0.1636  loss:0.9818(0.9532)  prec@1:71.09(71.84)  prec@5:93.75(94.05)
+Epoch[116]:[250/391] Time:0.1737 Data:0.1493  loss:1.1504(0.9580)  prec@1:65.62(71.70)  prec@5:92.97(93.90)
+Epoch[116]:[300/391] Time:0.1631 Data:0.1391  loss:0.8766(0.9625)  prec@1:71.88(71.52)  prec@5:96.09(93.83)
+Epoch[116]:[350/391] Time:0.1664 Data:0.1445  loss:0.8678(0.9643)  prec@1:72.66(71.51)  prec@5:95.31(93.75)
+Testing the models......
+Loss: 1.2256, Prec@1: 64.99, Prec@5: 89.92
+Epoch time: 68s
+Saving models......
+Epoch: 117  lr: 0.010
+Epoch[117]:[050/391] Time:0.1647 Data:0.1407  loss:0.8444(0.9692)  prec@1:73.44(71.55)  prec@5:92.97(93.38)
+Epoch[117]:[100/391] Time:0.1588 Data:0.1379  loss:0.9742(0.9478)  prec@1:70.31(72.24)  prec@5:96.88(93.74)
+Epoch[117]:[150/391] Time:0.1566 Data:0.1353  loss:1.0244(0.9477)  prec@1:68.75(72.23)  prec@5:92.97(93.81)
+Epoch[117]:[200/391] Time:0.1594 Data:0.1384  loss:1.0287(0.9557)  prec@1:71.88(71.94)  prec@5:91.41(93.70)
+Epoch[117]:[250/391] Time:0.1536 Data:0.1344  loss:0.8945(0.9632)  prec@1:69.53(71.72)  prec@5:95.31(93.72)
+Epoch[117]:[300/391] Time:0.1582 Data:0.1371  loss:1.0976(0.9684)  prec@1:69.53(71.55)  prec@5:90.62(93.68)
+Epoch[117]:[350/391] Time:0.1489 Data:0.1286  loss:1.0413(0.9723)  prec@1:70.31(71.41)  prec@5:89.06(93.64)
+Testing the models......
+Loss: 1.2292, Prec@1: 65.03, Prec@5: 90.40
+Epoch time: 63s
+Saving models......
+Epoch: 118  lr: 0.010
+Epoch[118]:[050/391] Time:0.1630 Data:0.1409  loss:1.0122(0.9424)  prec@1:68.75(72.70)  prec@5:94.53(93.84)
+Epoch[118]:[100/391] Time:0.1625 Data:0.1424  loss:1.0883(0.9506)  prec@1:71.09(72.20)  prec@5:92.19(93.79)
+Epoch[118]:[150/391] Time:0.1618 Data:0.1402  loss:1.1607(0.9561)  prec@1:72.66(72.06)  prec@5:89.84(93.75)
+Epoch[118]:[200/391] Time:0.1836 Data:0.1581  loss:0.9635(0.9587)  prec@1:67.97(71.86)  prec@5:96.09(93.67)
+Epoch[118]:[250/391] Time:0.1689 Data:0.1468  loss:0.8580(0.9609)  prec@1:76.56(71.65)  prec@5:94.53(93.62)
+Epoch[118]:[300/391] Time:0.1705 Data:0.1475  loss:1.0599(0.9622)  prec@1:67.97(71.59)  prec@5:89.84(93.59)
+Epoch[118]:[350/391] Time:0.1601 Data:0.1372  loss:1.0407(0.9648)  prec@1:72.66(71.56)  prec@5:95.31(93.60)
+Testing the models......
+Loss: 1.2588, Prec@1: 64.23, Prec@5: 89.41
+Epoch time: 66s
+Saving models......
+Epoch: 119  lr: 0.010
+Epoch[119]:[050/391] Time:0.1586 Data:0.1366  loss:1.1829(0.9523)  prec@1:67.97(72.25)  prec@5:90.62(93.58)
+Epoch[119]:[100/391] Time:0.1630 Data:0.1404  loss:0.9644(0.9557)  prec@1:72.66(71.84)  prec@5:90.62(93.79)
+Epoch[119]:[150/391] Time:0.1571 Data:0.1349  loss:1.1296(0.9578)  prec@1:66.41(71.59)  prec@5:89.06(93.79)
+Epoch[119]:[200/391] Time:0.1680 Data:0.1478  loss:0.9507(0.9568)  prec@1:71.09(71.62)  prec@5:94.53(93.82)
+Epoch[119]:[250/391] Time:0.1549 Data:0.1342  loss:1.0461(0.9563)  prec@1:67.19(71.73)  prec@5:92.19(93.81)
+Epoch[119]:[300/391] Time:0.1555 Data:0.1352  loss:0.9886(0.9603)  prec@1:70.31(71.60)  prec@5:91.41(93.73)
+Epoch[119]:[350/391] Time:0.1579 Data:0.1359  loss:1.0773(0.9603)  prec@1:65.62(71.66)  prec@5:91.41(93.74)
+Testing the models......
+Loss: 1.2346, Prec@1: 65.17, Prec@5: 89.80
+Epoch time: 63s
+Saving models......
+Epoch: 120  lr: 0.010
+Epoch[120]:[050/391] Time:0.1518 Data:0.1315  loss:0.8713(0.9429)  prec@1:72.66(71.91)  prec@5:95.31(94.14)
+Epoch[120]:[100/391] Time:0.1531 Data:0.1331  loss:0.7630(0.9315)  prec@1:81.25(72.35)  prec@5:96.09(94.27)
+Epoch[120]:[150/391] Time:0.1596 Data:0.1362  loss:0.7277(0.9314)  prec@1:81.25(72.29)  prec@5:96.88(94.17)
+Epoch[120]:[200/391] Time:0.1547 Data:0.1336  loss:0.8368(0.9349)  prec@1:75.00(72.24)  prec@5:94.53(94.13)
+Epoch[120]:[250/391] Time:0.1554 Data:0.1320  loss:0.8997(0.9443)  prec@1:78.91(72.03)  prec@5:92.97(94.03)
+Epoch[120]:[300/391] Time:0.1519 Data:0.1317  loss:1.2069(0.9487)  prec@1:63.28(71.93)  prec@5:91.41(93.86)
+Epoch[120]:[350/391] Time:0.1564 Data:0.1353  loss:0.9690(0.9535)  prec@1:69.53(71.81)  prec@5:96.09(93.82)
+Testing the models......
+Loss: 1.2311, Prec@1: 64.71, Prec@5: 90.09
+Epoch time: 63s
+Saving models......
+Epoch: 121  lr: 0.010
+Epoch[121]:[050/391] Time:0.1539 Data:0.1320  loss:0.9808(0.9229)  prec@1:63.28(72.42)  prec@5:96.09(93.95)
+Epoch[121]:[100/391] Time:0.1655 Data:0.1424  loss:0.9886(0.9398)  prec@1:73.44(72.30)  prec@5:90.62(93.74)
+Epoch[121]:[150/391] Time:0.1589 Data:0.1390  loss:0.8822(0.9496)  prec@1:73.44(71.99)  prec@5:92.97(93.68)
+Epoch[121]:[200/391] Time:0.1574 Data:0.1359  loss:1.0923(0.9550)  prec@1:70.31(71.96)  prec@5:91.41(93.58)
+Epoch[121]:[250/391] Time:0.1587 Data:0.1388  loss:0.8046(0.9528)  prec@1:72.66(71.96)  prec@5:96.88(93.68)
+Epoch[121]:[300/391] Time:0.1865 Data:0.1632  loss:0.9770(0.9547)  prec@1:75.00(71.88)  prec@5:93.75(93.72)
+Epoch[121]:[350/391] Time:0.3205 Data:0.2976  loss:1.0939(0.9618)  prec@1:67.19(71.70)  prec@5:91.41(93.63)
+Testing the models......
+Loss: 1.2463, Prec@1: 64.26, Prec@5: 90.07
+Epoch time: 85s
+Saving models......
+Epoch: 122  lr: 0.010
+Epoch[122]:[050/391] Time:0.3324 Data:0.3000  loss:1.0098(0.9140)  prec@1:70.31(72.88)  prec@5:92.19(94.52)
+Epoch[122]:[100/391] Time:0.3333 Data:0.2928  loss:1.0525(0.9285)  prec@1:67.97(72.69)  prec@5:92.97(94.23)
+Epoch[122]:[150/391] Time:0.3421 Data:0.2758  loss:0.8903(0.9335)  prec@1:69.53(72.56)  prec@5:93.75(94.14)
+Epoch[122]:[200/391] Time:0.3172 Data:0.2788  loss:1.0182(0.9487)  prec@1:70.31(71.93)  prec@5:92.97(94.07)
+Epoch[122]:[250/391] Time:0.3254 Data:0.2856  loss:1.0117(0.9504)  prec@1:74.22(72.01)  prec@5:91.41(94.06)
+Epoch[122]:[300/391] Time:0.3147 Data:0.2907  loss:0.9489(0.9545)  prec@1:71.09(71.88)  prec@5:96.09(93.98)
+Epoch[122]:[350/391] Time:0.3128 Data:0.2774  loss:0.9033(0.9572)  prec@1:72.66(71.86)  prec@5:93.75(93.89)
+Testing the models......
+Loss: 1.2628, Prec@1: 64.43, Prec@5: 89.59
+Epoch time: 131s
+Saving models......
+Epoch: 123  lr: 0.010
+Epoch[123]:[050/391] Time:0.3610 Data:0.3010  loss:1.0094(0.9699)  prec@1:67.97(71.58)  prec@5:92.97(93.44)
+Epoch[123]:[100/391] Time:0.3220 Data:0.2840  loss:0.9422(0.9548)  prec@1:72.66(72.16)  prec@5:96.09(93.72)
+Epoch[123]:[150/391] Time:0.3284 Data:0.2949  loss:0.8012(0.9552)  prec@1:75.78(71.97)  prec@5:94.53(93.85)
+Epoch[123]:[200/391] Time:0.1326 Data:0.1107  loss:1.0855(0.9489)  prec@1:68.75(72.15)  prec@5:93.75(93.92)
+Epoch[123]:[250/391] Time:0.1531 Data:0.1350  loss:0.8978(0.9533)  prec@1:74.22(71.98)  prec@5:92.19(93.81)
+Epoch[123]:[300/391] Time:0.1366 Data:0.1160  loss:1.0159(0.9546)  prec@1:71.88(71.95)  prec@5:92.19(93.77)
+Epoch[123]:[350/391] Time:0.1953 Data:0.1669  loss:0.8514(0.9578)  prec@1:77.34(71.90)  prec@5:92.19(93.72)
+Testing the models......
+Loss: 1.2499, Prec@1: 64.49, Prec@5: 89.77
+Epoch time: 94s
+Saving models......
+Epoch: 124  lr: 0.010
+Epoch[124]:[050/391] Time:0.1702 Data:0.1443  loss:0.9840(0.9068)  prec@1:70.31(73.09)  prec@5:91.41(94.31)
+Epoch[124]:[100/391] Time:0.1697 Data:0.1459  loss:1.0246(0.9217)  prec@1:71.09(72.95)  prec@5:92.19(94.20)
+Epoch[124]:[150/391] Time:0.1736 Data:0.1509  loss:0.9062(0.9327)  prec@1:72.66(72.54)  prec@5:94.53(94.02)
+Epoch[124]:[200/391] Time:0.3444 Data:0.3060  loss:1.0598(0.9454)  prec@1:66.41(72.28)  prec@5:94.53(93.90)
+Epoch[124]:[250/391] Time:0.3201 Data:0.2849  loss:0.7599(0.9438)  prec@1:76.56(72.40)  prec@5:96.09(93.86)
+Epoch[124]:[300/391] Time:0.3158 Data:0.2881  loss:0.8187(0.9462)  prec@1:75.00(72.40)  prec@5:96.88(93.88)
+Epoch[124]:[350/391] Time:0.3176 Data:0.2924  loss:0.7590(0.9515)  prec@1:82.81(72.21)  prec@5:97.66(93.84)
+Testing the models......
+Loss: 1.2619, Prec@1: 64.64, Prec@5: 89.46
+Epoch time: 104s
+Saving models......
+Epoch: 125  lr: 0.010
+Epoch[125]:[050/391] Time:0.3296 Data:0.2896  loss:1.1682(0.9440)  prec@1:65.62(72.77)  prec@5:91.41(93.86)
+Epoch[125]:[100/391] Time:0.3642 Data:0.3308  loss:0.9482(0.9341)  prec@1:72.66(72.51)  prec@5:92.97(94.07)
+Epoch[125]:[150/391] Time:0.1467 Data:0.1249  loss:0.9415(0.9375)  prec@1:72.66(72.46)  prec@5:93.75(93.99)
+Epoch[125]:[200/391] Time:0.1333 Data:0.1141  loss:0.9981(0.9406)  prec@1:74.22(72.46)  prec@5:89.06(93.77)
+Epoch[125]:[250/391] Time:0.3243 Data:0.2887  loss:1.2579(0.9470)  prec@1:64.84(72.18)  prec@5:91.41(93.72)
+Epoch[125]:[300/391] Time:0.3245 Data:0.2997  loss:0.7753(0.9489)  prec@1:75.78(72.09)  prec@5:93.75(93.70)
+Epoch[125]:[350/391] Time:0.3612 Data:0.3012  loss:0.9464(0.9529)  prec@1:70.31(71.94)  prec@5:96.88(93.68)
+Testing the models......
+Loss: 1.2379, Prec@1: 64.23, Prec@5: 89.76
+Epoch time: 116s
+Saving models......
+Epoch: 126  lr: 0.010
+Epoch[126]:[050/391] Time:0.3343 Data:0.2992  loss:0.8621(0.9327)  prec@1:79.69(72.91)  prec@5:93.75(93.94)
+Epoch[126]:[100/391] Time:0.1381 Data:0.1176  loss:1.0193(0.9381)  prec@1:75.00(72.52)  prec@5:92.97(93.84)
+Epoch[126]:[150/391] Time:0.1375 Data:0.1184  loss:0.8763(0.9406)  prec@1:73.44(72.43)  prec@5:96.09(93.94)
+Epoch[126]:[200/391] Time:0.1324 Data:0.1124  loss:0.9291(0.9416)  prec@1:71.09(72.25)  prec@5:95.31(94.07)
+Epoch[126]:[250/391] Time:0.1751 Data:0.1505  loss:1.0501(0.9521)  prec@1:71.09(71.94)  prec@5:92.97(93.92)
+Epoch[126]:[300/391] Time:0.1668 Data:0.1451  loss:0.9006(0.9543)  prec@1:72.66(71.87)  prec@5:96.09(93.90)
+Epoch[126]:[350/391] Time:0.1682 Data:0.1450  loss:0.9239(0.9556)  prec@1:73.44(71.78)  prec@5:93.75(93.90)
+Testing the models......
+Loss: 1.2745, Prec@1: 64.06, Prec@5: 89.19
+Epoch time: 73s
+Saving models......
+Epoch: 127  lr: 0.010
+Epoch[127]:[050/391] Time:0.2215 Data:0.1981  loss:1.0935(0.9125)  prec@1:67.19(72.95)  prec@5:90.62(94.45)
+Epoch[127]:[100/391] Time:0.1743 Data:0.1504  loss:0.9966(0.9223)  prec@1:69.53(72.39)  prec@5:94.53(94.43)
+Epoch[127]:[150/391] Time:0.1611 Data:0.1397  loss:0.8244(0.9295)  prec@1:77.34(72.49)  prec@5:94.53(94.27)
+Epoch[127]:[200/391] Time:0.1787 Data:0.1570  loss:0.7230(0.9343)  prec@1:74.22(72.45)  prec@5:100.00(94.19)
+Epoch[127]:[250/391] Time:0.1641 Data:0.1428  loss:0.9590(0.9431)  prec@1:71.88(72.26)  prec@5:96.09(94.05)
+Epoch[127]:[300/391] Time:0.1701 Data:0.1462  loss:0.8860(0.9490)  prec@1:70.31(72.05)  prec@5:95.31(93.92)
+Epoch[127]:[350/391] Time:0.1695 Data:0.1463  loss:0.8566(0.9504)  prec@1:75.00(72.07)  prec@5:95.31(93.85)
+Testing the models......
+Loss: 1.2863, Prec@1: 63.53, Prec@5: 89.58
+Epoch time: 70s
+Saving models......
+Epoch: 128  lr: 0.010
+Epoch[128]:[050/391] Time:0.1621 Data:0.1405  loss:0.8320(0.8911)  prec@1:77.34(73.56)  prec@5:96.09(94.73)
+Epoch[128]:[100/391] Time:0.1570 Data:0.1344  loss:0.9484(0.9217)  prec@1:75.00(72.82)  prec@5:93.75(94.42)
+Epoch[128]:[150/391] Time:0.1802 Data:0.1560  loss:0.9276(0.9276)  prec@1:76.56(72.59)  prec@5:92.19(94.32)
+Epoch[128]:[200/391] Time:0.1753 Data:0.1515  loss:1.0341(0.9340)  prec@1:71.09(72.31)  prec@5:91.41(94.22)
+Epoch[128]:[250/391] Time:0.1880 Data:0.1638  loss:1.0991(0.9407)  prec@1:61.72(72.09)  prec@5:94.53(94.13)
+Epoch[128]:[300/391] Time:0.1602 Data:0.1383  loss:0.9484(0.9469)  prec@1:70.31(71.92)  prec@5:92.97(94.08)
+Epoch[128]:[350/391] Time:0.1562 Data:0.1341  loss:0.8601(0.9498)  prec@1:74.22(71.96)  prec@5:96.88(93.99)
+Testing the models......
+Loss: 1.2751, Prec@1: 63.55, Prec@5: 89.32
+Epoch time: 69s
+Saving models......
+Epoch: 129  lr: 0.010
+Epoch[129]:[050/391] Time:0.1584 Data:0.1372  loss:0.7563(0.9145)  prec@1:78.12(72.70)  prec@5:96.88(94.75)
+Epoch[129]:[100/391] Time:0.1542 Data:0.1329  loss:0.8500(0.9198)  prec@1:71.88(72.70)  prec@5:96.09(94.51)
+Epoch[129]:[150/391] Time:0.1608 Data:0.1407  loss:0.9819(0.9349)  prec@1:72.66(72.30)  prec@5:93.75(94.18)
+Epoch[129]:[200/391] Time:0.1636 Data:0.1406  loss:0.9828(0.9438)  prec@1:71.09(71.94)  prec@5:92.97(94.11)
+Epoch[129]:[250/391] Time:0.1665 Data:0.1434  loss:0.8071(0.9494)  prec@1:70.31(71.70)  prec@5:95.31(94.04)
+Epoch[129]:[300/391] Time:0.1649 Data:0.1427  loss:0.8927(0.9510)  prec@1:73.44(71.61)  prec@5:91.41(93.95)
+Epoch[129]:[350/391] Time:0.1611 Data:0.1378  loss:1.1219(0.9584)  prec@1:61.72(71.47)  prec@5:93.75(93.85)
+Testing the models......
+Loss: 1.2709, Prec@1: 63.94, Prec@5: 89.23
+Epoch time: 67s
+Saving models......
+Epoch: 130  lr: 0.010
+Epoch[130]:[050/391] Time:0.1677 Data:0.1435  loss:0.7630(0.9186)  prec@1:76.56(73.03)  prec@5:96.09(94.41)
+Epoch[130]:[100/391] Time:0.1634 Data:0.1416  loss:0.9186(0.9344)  prec@1:77.34(72.62)  prec@5:94.53(94.27)
+Epoch[130]:[150/391] Time:0.1616 Data:0.1388  loss:1.1424(0.9439)  prec@1:65.62(72.43)  prec@5:91.41(93.92)
+Epoch[130]:[200/391] Time:0.1649 Data:0.1429  loss:1.0392(0.9480)  prec@1:70.31(72.25)  prec@5:95.31(93.90)
+Epoch[130]:[250/391] Time:0.1630 Data:0.1409  loss:0.9786(0.9448)  prec@1:67.97(72.25)  prec@5:95.31(93.96)
+Epoch[130]:[300/391] Time:0.1592 Data:0.1377  loss:0.9631(0.9473)  prec@1:73.44(72.17)  prec@5:94.53(93.90)
+Epoch[130]:[350/391] Time:0.1646 Data:0.1422  loss:0.8922(0.9526)  prec@1:71.88(72.01)  prec@5:96.88(93.87)
+Testing the models......
+Loss: 1.3260, Prec@1: 62.90, Prec@5: 88.83
+Epoch time: 67s
+Saving models......
+Epoch: 131  lr: 0.010
+Epoch[131]:[050/391] Time:0.2273 Data:0.2025  loss:0.7734(0.9261)  prec@1:73.44(72.31)  prec@5:96.09(94.06)
+Epoch[131]:[100/391] Time:0.1816 Data:0.1536  loss:0.8287(0.9239)  prec@1:75.78(72.38)  prec@5:95.31(94.27)
+Epoch[131]:[150/391] Time:0.1557 Data:0.1347  loss:0.9387(0.9346)  prec@1:71.88(72.24)  prec@5:92.97(94.13)
+Epoch[131]:[200/391] Time:0.1685 Data:0.1453  loss:0.9644(0.9380)  prec@1:71.88(72.22)  prec@5:90.62(94.11)
+Epoch[131]:[250/391] Time:0.1644 Data:0.1423  loss:0.9075(0.9430)  prec@1:69.53(72.09)  prec@5:96.09(93.98)
+Epoch[131]:[300/391] Time:0.1618 Data:0.1389  loss:1.0052(0.9450)  prec@1:73.44(72.05)  prec@5:92.19(93.90)
+Epoch[131]:[350/391] Time:0.1564 Data:0.1361  loss:0.9262(0.9532)  prec@1:76.56(71.79)  prec@5:92.97(93.86)
+Testing the models......
+Loss: 1.3018, Prec@1: 63.35, Prec@5: 89.08
+Epoch time: 66s
+Saving models......
+Epoch: 132  lr: 0.010
+Epoch[132]:[050/391] Time:0.1838 Data:0.1560  loss:0.9867(0.9369)  prec@1:74.22(72.41)  prec@5:92.19(94.44)
+Epoch[132]:[100/391] Time:0.1626 Data:0.1412  loss:1.0279(0.9299)  prec@1:71.88(72.80)  prec@5:89.84(94.48)
+Epoch[132]:[150/391] Time:0.1668 Data:0.1423  loss:0.8360(0.9262)  prec@1:74.22(72.67)  prec@5:96.09(94.50)
+Epoch[132]:[200/391] Time:0.1615 Data:0.1377  loss:1.0405(0.9318)  prec@1:69.53(72.44)  prec@5:90.62(94.31)
+Epoch[132]:[250/391] Time:0.1569 Data:0.1371  loss:0.8854(0.9354)  prec@1:71.09(72.30)  prec@5:96.09(94.29)
+Epoch[132]:[300/391] Time:0.1567 Data:0.1368  loss:0.9468(0.9393)  prec@1:73.44(72.29)  prec@5:95.31(94.19)
+Epoch[132]:[350/391] Time:0.1585 Data:0.1391  loss:0.7969(0.9435)  prec@1:73.44(72.14)  prec@5:96.88(94.11)
+Testing the models......
+Loss: 1.2341, Prec@1: 65.29, Prec@5: 89.65
+Epoch time: 65s
+Saving models......
+Epoch: 133  lr: 0.010
+Epoch[133]:[050/391] Time:0.1597 Data:0.1373  loss:0.9164(0.8951)  prec@1:75.78(73.17)  prec@5:92.97(94.67)
+Epoch[133]:[100/391] Time:0.1598 Data:0.1377  loss:0.9942(0.9095)  prec@1:68.75(72.96)  prec@5:96.09(94.62)
+Epoch[133]:[150/391] Time:0.1673 Data:0.1440  loss:0.7694(0.9260)  prec@1:75.00(72.67)  prec@5:96.09(94.45)
+Epoch[133]:[200/391] Time:0.1640 Data:0.1431  loss:1.0179(0.9322)  prec@1:66.41(72.54)  prec@5:94.53(94.28)
+Epoch[133]:[250/391] Time:0.1595 Data:0.1362  loss:0.8737(0.9416)  prec@1:71.09(72.33)  prec@5:96.09(94.13)
+Epoch[133]:[300/391] Time:0.1618 Data:0.1395  loss:0.9663(0.9440)  prec@1:71.88(72.32)  prec@5:94.53(94.05)
+Epoch[133]:[350/391] Time:0.1670 Data:0.1434  loss:1.0065(0.9494)  prec@1:71.09(72.09)  prec@5:92.19(93.95)
+Testing the models......
+Loss: 1.2721, Prec@1: 64.47, Prec@5: 89.51
+Epoch time: 65s
+Saving models......
+Epoch: 134  lr: 0.010
+Epoch[134]:[050/391] Time:0.1542 Data:0.1344  loss:1.0325(0.9119)  prec@1:74.22(73.25)  prec@5:93.75(94.36)
+Epoch[134]:[100/391] Time:0.1722 Data:0.1450  loss:0.9608(0.9344)  prec@1:71.88(72.53)  prec@5:93.75(94.05)
+Epoch[134]:[150/391] Time:0.1623 Data:0.1399  loss:0.9823(0.9360)  prec@1:70.31(72.39)  prec@5:92.19(94.12)
+Epoch[134]:[200/391] Time:0.1657 Data:0.1436  loss:0.9674(0.9368)  prec@1:71.88(72.24)  prec@5:93.75(94.16)
+Epoch[134]:[250/391] Time:0.1813 Data:0.1567  loss:1.0163(0.9399)  prec@1:64.84(72.06)  prec@5:92.97(94.12)
+Epoch[134]:[300/391] Time:0.1928 Data:0.1659  loss:0.8293(0.9405)  prec@1:77.34(72.10)  prec@5:95.31(94.07)
+Epoch[134]:[350/391] Time:0.1628 Data:0.1393  loss:0.8683(0.9444)  prec@1:70.31(72.03)  prec@5:97.66(94.05)
+Testing the models......
+Loss: 1.2758, Prec@1: 64.14, Prec@5: 89.28
+Epoch time: 68s
+Saving models......
+Epoch: 135  lr: 0.010
+Epoch[135]:[050/391] Time:0.1742 Data:0.1517  loss:0.9437(0.9005)  prec@1:77.34(73.39)  prec@5:91.41(95.00)
+Epoch[135]:[100/391] Time:0.1965 Data:0.1716  loss:0.8537(0.9098)  prec@1:74.22(73.11)  prec@5:93.75(94.59)
+Epoch[135]:[150/391] Time:0.2100 Data:0.1833  loss:0.9482(0.9279)  prec@1:68.75(72.41)  prec@5:96.88(94.39)
+Epoch[135]:[200/391] Time:0.1621 Data:0.1399  loss:1.0295(0.9342)  prec@1:71.88(72.36)  prec@5:91.41(94.29)
+Epoch[135]:[250/391] Time:0.1614 Data:0.1372  loss:1.2157(0.9369)  prec@1:63.28(72.37)  prec@5:90.62(94.21)
+Epoch[135]:[300/391] Time:0.1654 Data:0.1424  loss:1.0606(0.9442)  prec@1:70.31(72.21)  prec@5:91.41(94.07)
+Epoch[135]:[350/391] Time:0.1665 Data:0.1444  loss:0.9971(0.9506)  prec@1:71.09(72.04)  prec@5:90.62(93.95)
+Testing the models......
+Loss: 1.3138, Prec@1: 63.50, Prec@5: 88.80
+Epoch time: 69s
+Saving models......
+Epoch: 136  lr: 0.010
+Epoch[136]:[050/391] Time:0.1593 Data:0.1371  loss:0.9254(0.9016)  prec@1:72.66(73.08)  prec@5:91.41(94.69)
+Epoch[136]:[100/391] Time:0.1537 Data:0.1338  loss:0.9602(0.9145)  prec@1:72.66(72.63)  prec@5:91.41(94.43)
+Epoch[136]:[150/391] Time:0.1605 Data:0.1385  loss:0.9923(0.9216)  prec@1:67.97(72.60)  prec@5:92.97(94.20)
+Epoch[136]:[200/391] Time:0.1612 Data:0.1385  loss:0.8884(0.9231)  prec@1:75.78(72.63)  prec@5:94.53(94.21)
+Epoch[136]:[250/391] Time:0.1850 Data:0.1569  loss:1.0030(0.9303)  prec@1:68.75(72.45)  prec@5:90.62(94.16)
+Epoch[136]:[300/391] Time:0.1711 Data:0.1473  loss:0.9399(0.9329)  prec@1:76.56(72.27)  prec@5:92.97(94.16)
+Epoch[136]:[350/391] Time:0.1840 Data:0.1588  loss:1.0815(0.9405)  prec@1:71.09(72.17)  prec@5:92.97(94.05)
+Testing the models......
+Loss: 1.2925, Prec@1: 63.47, Prec@5: 89.15
+Epoch time: 67s
+Saving models......
+Epoch: 137  lr: 0.010
+Epoch[137]:[050/391] Time:0.1696 Data:0.1460  loss:1.0331(0.9485)  prec@1:68.75(72.38)  prec@5:92.97(93.80)
+Epoch[137]:[100/391] Time:0.1667 Data:0.1432  loss:1.3408(0.9624)  prec@1:60.94(71.67)  prec@5:86.72(93.58)
+Epoch[137]:[150/391] Time:0.1618 Data:0.1380  loss:0.9174(0.9489)  prec@1:74.22(71.96)  prec@5:93.75(93.81)
+Epoch[137]:[200/391] Time:0.1666 Data:0.1423  loss:0.9725(0.9428)  prec@1:73.44(72.16)  prec@5:94.53(94.01)
+Epoch[137]:[250/391] Time:0.1559 Data:0.1363  loss:1.1971(0.9501)  prec@1:63.28(71.97)  prec@5:91.41(93.92)
+Epoch[137]:[300/391] Time:0.1620 Data:0.1395  loss:0.8632(0.9494)  prec@1:71.88(72.02)  prec@5:94.53(93.90)
+Epoch[137]:[350/391] Time:0.1556 Data:0.1356  loss:0.8916(0.9499)  prec@1:71.88(71.96)  prec@5:92.97(93.90)
+Testing the models......
+Loss: 1.2585, Prec@1: 64.32, Prec@5: 89.59
+Epoch time: 66s
+Saving models......
+Epoch: 138  lr: 0.010
+Epoch[138]:[050/391] Time:0.1595 Data:0.1399  loss:1.0272(0.9029)  prec@1:73.44(73.05)  prec@5:92.19(94.52)
+Epoch[138]:[100/391] Time:0.1632 Data:0.1401  loss:0.7927(0.9280)  prec@1:75.00(72.47)  prec@5:97.66(94.21)
+Epoch[138]:[150/391] Time:0.1567 Data:0.1367  loss:0.7727(0.9295)  prec@1:74.22(72.47)  prec@5:97.66(94.34)
+Epoch[138]:[200/391] Time:0.1587 Data:0.1372  loss:0.8625(0.9330)  prec@1:78.12(72.40)  prec@5:96.09(94.15)
+Epoch[138]:[250/391] Time:0.1632 Data:0.1401  loss:0.8446(0.9413)  prec@1:77.34(72.18)  prec@5:96.09(94.04)
+Epoch[138]:[300/391] Time:0.1600 Data:0.1380  loss:1.0423(0.9410)  prec@1:62.50(72.17)  prec@5:92.19(94.04)
+Epoch[138]:[350/391] Time:0.1628 Data:0.1404  loss:1.0179(0.9473)  prec@1:70.31(72.06)  prec@5:91.41(93.95)
+Testing the models......
+Loss: 1.2475, Prec@1: 64.74, Prec@5: 89.42
+Epoch time: 64s
+Saving models......
+Epoch: 139  lr: 0.010
+Epoch[139]:[050/391] Time:0.1575 Data:0.1359  loss:0.7620(0.9035)  prec@1:75.00(72.97)  prec@5:96.09(94.44)
+Epoch[139]:[100/391] Time:0.1581 Data:0.1373  loss:0.9158(0.9076)  prec@1:71.09(72.88)  prec@5:94.53(94.49)
+Epoch[139]:[150/391] Time:0.1586 Data:0.1376  loss:1.0629(0.9235)  prec@1:69.53(72.45)  prec@5:92.97(94.30)
+Epoch[139]:[200/391] Time:0.1599 Data:0.1386  loss:0.9137(0.9277)  prec@1:76.56(72.35)  prec@5:95.31(94.22)
+Epoch[139]:[250/391] Time:0.1570 Data:0.1350  loss:0.7656(0.9331)  prec@1:80.47(72.31)  prec@5:94.53(94.10)
+Epoch[139]:[300/391] Time:0.1603 Data:0.1402  loss:0.8402(0.9392)  prec@1:72.66(72.15)  prec@5:96.88(93.99)
+Epoch[139]:[350/391] Time:0.1570 Data:0.1369  loss:1.2227(0.9495)  prec@1:63.28(71.86)  prec@5:89.84(93.88)
+Testing the models......
+Loss: 1.2787, Prec@1: 64.20, Prec@5: 89.23
+Epoch time: 64s
+Saving models......
+Epoch: 140  lr: 0.010
+Epoch[140]:[050/391] Time:0.1632 Data:0.1405  loss:0.9329(0.9123)  prec@1:71.09(72.69)  prec@5:93.75(94.61)
+Epoch[140]:[100/391] Time:0.1603 Data:0.1380  loss:1.1054(0.9261)  prec@1:67.97(72.49)  prec@5:96.09(94.27)
+Epoch[140]:[150/391] Time:0.1747 Data:0.1488  loss:0.8242(0.9227)  prec@1:78.12(72.53)  prec@5:94.53(94.32)
+Epoch[140]:[200/391] Time:0.1747 Data:0.1506  loss:0.9200(0.9284)  prec@1:71.88(72.39)  prec@5:96.09(94.17)
+Epoch[140]:[250/391] Time:0.1894 Data:0.1604  loss:0.9480(0.9332)  prec@1:71.88(72.26)  prec@5:94.53(94.18)
+Epoch[140]:[300/391] Time:0.1631 Data:0.1415  loss:0.9111(0.9394)  prec@1:73.44(72.05)  prec@5:96.88(94.12)
+Epoch[140]:[350/391] Time:0.1680 Data:0.1437  loss:1.1488(0.9441)  prec@1:65.62(72.08)  prec@5:90.62(93.99)
+Testing the models......
+Loss: 1.2766, Prec@1: 64.26, Prec@5: 89.45
+Epoch time: 69s
+Saving models......
+Epoch: 141  lr: 0.010
+Epoch[141]:[050/391] Time:0.1780 Data:0.1512  loss:0.7068(0.8848)  prec@1:78.91(74.42)  prec@5:96.09(94.48)
+Epoch[141]:[100/391] Time:0.1669 Data:0.1427  loss:0.8032(0.9056)  prec@1:75.78(73.38)  prec@5:96.09(94.45)
+Epoch[141]:[150/391] Time:0.1680 Data:0.1453  loss:0.9631(0.9173)  prec@1:68.75(72.86)  prec@5:93.75(94.34)
+Epoch[141]:[200/391] Time:0.1557 Data:0.1353  loss:0.9499(0.9167)  prec@1:71.09(72.89)  prec@5:95.31(94.35)
+Epoch[141]:[250/391] Time:0.1683 Data:0.1452  loss:1.0142(0.9276)  prec@1:75.00(72.50)  prec@5:92.97(94.25)
+Epoch[141]:[300/391] Time:0.1613 Data:0.1385  loss:0.7312(0.9360)  prec@1:82.03(72.24)  prec@5:96.09(94.17)
+Epoch[141]:[350/391] Time:0.2301 Data:0.2035  loss:0.9840(0.9420)  prec@1:71.09(72.14)  prec@5:94.53(94.08)
+Testing the models......
+Loss: 1.2615, Prec@1: 64.73, Prec@5: 89.62
+Epoch time: 69s
+Saving models......
+Epoch: 142  lr: 0.010
+Epoch[142]:[050/391] Time:0.1680 Data:0.1445  loss:0.8299(0.9134)  prec@1:73.44(73.34)  prec@5:96.09(94.19)
+Epoch[142]:[100/391] Time:0.1582 Data:0.1350  loss:0.9174(0.9361)  prec@1:73.44(72.57)  prec@5:92.97(94.00)
+Epoch[142]:[150/391] Time:0.1579 Data:0.1361  loss:0.9756(0.9372)  prec@1:71.09(72.45)  prec@5:92.97(94.07)
+Epoch[142]:[200/391] Time:0.1543 Data:0.1339  loss:1.0650(0.9395)  prec@1:67.97(72.31)  prec@5:92.97(94.03)
+Epoch[142]:[250/391] Time:0.1599 Data:0.1381  loss:0.8546(0.9402)  prec@1:74.22(72.29)  prec@5:95.31(94.02)
+Epoch[142]:[300/391] Time:0.1603 Data:0.1393  loss:0.8942(0.9432)  prec@1:70.31(72.22)  prec@5:94.53(94.02)
+Epoch[142]:[350/391] Time:0.1563 Data:0.1338  loss:1.0710(0.9460)  prec@1:69.53(72.14)  prec@5:93.75(94.01)
+Testing the models......
+Loss: 1.3035, Prec@1: 63.74, Prec@5: 88.75
+Epoch time: 66s
+Saving models......
+Epoch: 143  lr: 0.010
+Epoch[143]:[050/391] Time:0.1511 Data:0.1306  loss:0.8391(0.8943)  prec@1:73.44(73.88)  prec@5:94.53(94.83)
+Epoch[143]:[100/391] Time:0.1589 Data:0.1389  loss:0.9705(0.9013)  prec@1:73.44(73.65)  prec@5:93.75(94.47)
+Epoch[143]:[150/391] Time:0.1517 Data:0.1307  loss:0.8741(0.9048)  prec@1:78.91(73.43)  prec@5:94.53(94.44)
+Epoch[143]:[200/391] Time:0.1528 Data:0.1338  loss:1.0242(0.9210)  prec@1:68.75(72.82)  prec@5:92.97(94.28)
+Epoch[143]:[250/391] Time:0.1536 Data:0.1347  loss:0.9702(0.9268)  prec@1:68.75(72.47)  prec@5:92.97(94.22)
+Epoch[143]:[300/391] Time:0.1552 Data:0.1352  loss:1.0203(0.9376)  prec@1:70.31(72.16)  prec@5:92.97(94.13)
+Epoch[143]:[350/391] Time:0.1606 Data:0.1367  loss:0.6784(0.9396)  prec@1:82.03(72.08)  prec@5:97.66(94.15)
+Testing the models......
+Loss: 1.2926, Prec@1: 63.56, Prec@5: 89.23
+Epoch time: 65s
+Saving models......
+Epoch: 144  lr: 0.010
+Epoch[144]:[050/391] Time:0.1578 Data:0.1368  loss:1.0385(0.9089)  prec@1:69.53(72.45)  prec@5:93.75(94.69)
+Epoch[144]:[100/391] Time:0.3442 Data:0.3088  loss:1.1170(0.9252)  prec@1:64.06(72.38)  prec@5:92.19(94.40)
+Epoch[144]:[150/391] Time:0.3196 Data:0.2933  loss:0.9421(0.9221)  prec@1:68.75(72.41)  prec@5:96.88(94.47)
+Epoch[144]:[200/391] Time:0.3121 Data:0.2895  loss:0.8447(0.9224)  prec@1:73.44(72.45)  prec@5:94.53(94.43)
+Epoch[144]:[250/391] Time:0.3299 Data:0.2919  loss:0.7272(0.9272)  prec@1:82.81(72.35)  prec@5:97.66(94.31)
+Epoch[144]:[300/391] Time:0.3120 Data:0.2821  loss:1.0892(0.9295)  prec@1:70.31(72.27)  prec@5:92.97(94.33)
+Epoch[144]:[350/391] Time:0.3567 Data:0.3003  loss:0.9135(0.9386)  prec@1:74.22(72.10)  prec@5:95.31(94.16)
+Testing the models......
+Loss: 1.3018, Prec@1: 62.92, Prec@5: 88.92
+Epoch time: 126s
+Saving models......
+Epoch: 145  lr: 0.010
+Epoch[145]:[050/391] Time:0.3519 Data:0.2933  loss:0.9956(0.8887)  prec@1:74.22(74.06)  prec@5:92.97(94.92)
+Epoch[145]:[100/391] Time:0.3341 Data:0.2947  loss:0.8942(0.9080)  prec@1:70.31(73.27)  prec@5:96.88(94.52)
+Epoch[145]:[150/391] Time:0.3286 Data:0.2872  loss:0.9243(0.9178)  prec@1:72.66(72.99)  prec@5:93.75(94.30)
+Epoch[145]:[200/391] Time:0.3386 Data:0.3057  loss:0.8230(0.9235)  prec@1:75.78(72.79)  prec@5:95.31(94.21)
+Epoch[145]:[250/391] Time:0.3381 Data:0.2996  loss:0.9481(0.9318)  prec@1:69.53(72.55)  prec@5:93.75(94.11)
+Epoch[145]:[300/391] Time:0.3270 Data:0.2964  loss:1.0344(0.9369)  prec@1:70.31(72.27)  prec@5:94.53(94.10)
+Epoch[145]:[350/391] Time:0.3359 Data:0.3098  loss:1.0092(0.9419)  prec@1:69.53(72.20)  prec@5:89.84(94.01)
+Testing the models......
+Loss: 1.3090, Prec@1: 63.13, Prec@5: 89.12
+Epoch time: 134s
+Saving models......
+Epoch: 146  lr: 0.010
+Epoch[146]:[050/391] Time:0.3247 Data:0.2871  loss:0.9789(0.9087)  prec@1:71.09(72.88)  prec@5:95.31(94.80)
+Epoch[146]:[100/391] Time:0.3680 Data:0.3074  loss:1.0118(0.9160)  prec@1:66.41(72.87)  prec@5:92.97(94.55)
+Epoch[146]:[150/391] Time:0.3183 Data:0.2812  loss:0.7805(0.9242)  prec@1:74.22(72.46)  prec@5:94.53(94.34)
+Epoch[146]:[200/391] Time:0.1450 Data:0.1261  loss:1.1286(0.9250)  prec@1:67.97(72.62)  prec@5:89.84(94.32)
+Epoch[146]:[250/391] Time:0.1246 Data:0.1077  loss:1.0907(0.9254)  prec@1:63.28(72.49)  prec@5:90.62(94.27)
+Epoch[146]:[300/391] Time:0.1261 Data:0.1077  loss:1.0049(0.9332)  prec@1:69.53(72.21)  prec@5:93.75(94.18)
+Epoch[146]:[350/391] Time:0.1281 Data:0.1082  loss:1.1070(0.9394)  prec@1:71.09(72.09)  prec@5:90.62(94.05)
+Testing the models......
+Loss: 1.2920, Prec@1: 64.04, Prec@5: 89.09
+Epoch time: 87s
+Saving models......
+Epoch: 147  lr: 0.010
+Epoch[147]:[050/391] Time:0.1580 Data:0.1356  loss:0.8664(0.8960)  prec@1:75.00(73.61)  prec@5:94.53(94.38)
+Epoch[147]:[100/391] Time:0.1545 Data:0.1335  loss:1.0386(0.9081)  prec@1:67.19(73.11)  prec@5:92.19(94.30)
+Epoch[147]:[150/391] Time:0.1607 Data:0.1388  loss:1.0569(0.9145)  prec@1:69.53(73.04)  prec@5:91.41(94.29)
+Epoch[147]:[200/391] Time:0.1529 Data:0.1309  loss:0.9490(0.9193)  prec@1:69.53(72.89)  prec@5:95.31(94.24)
+Epoch[147]:[250/391] Time:0.1608 Data:0.1378  loss:0.9775(0.9255)  prec@1:69.53(72.79)  prec@5:93.75(94.11)
+Epoch[147]:[300/391] Time:0.1556 Data:0.1347  loss:0.9054(0.9311)  prec@1:73.44(72.68)  prec@5:96.09(94.05)
+Epoch[147]:[350/391] Time:0.1578 Data:0.1347  loss:0.8651(0.9389)  prec@1:72.66(72.42)  prec@5:95.31(94.03)
+Testing the models......
+Loss: 1.2813, Prec@1: 63.90, Prec@5: 89.14
+Epoch time: 64s
+Saving models......
+Epoch: 148  lr: 0.010
+Epoch[148]:[050/391] Time:0.1576 Data:0.1367  loss:0.9171(0.9016)  prec@1:76.56(73.58)  prec@5:95.31(94.83)
+Epoch[148]:[100/391] Time:0.1559 Data:0.1340  loss:0.8284(0.9252)  prec@1:70.31(72.56)  prec@5:96.09(94.48)
+Epoch[148]:[150/391] Time:0.1641 Data:0.1411  loss:0.9505(0.9253)  prec@1:69.53(72.40)  prec@5:95.31(94.39)
+Epoch[148]:[200/391] Time:0.3392 Data:0.3047  loss:0.7880(0.9281)  prec@1:75.78(72.51)  prec@5:96.09(94.34)
+Epoch[148]:[250/391] Time:0.3353 Data:0.3119  loss:0.7758(0.9286)  prec@1:75.78(72.45)  prec@5:93.75(94.26)
+Epoch[148]:[300/391] Time:0.3265 Data:0.2990  loss:0.9390(0.9307)  prec@1:72.66(72.55)  prec@5:91.41(94.17)
+Epoch[148]:[350/391] Time:0.3773 Data:0.3154  loss:0.8746(0.9345)  prec@1:76.56(72.45)  prec@5:92.97(94.15)
+Testing the models......
+Loss: 1.3187, Prec@1: 63.41, Prec@5: 88.64
+Epoch time: 107s
+Saving models......
+Epoch: 149  lr: 0.010
+Epoch[149]:[050/391] Time:0.3111 Data:0.2852  loss:0.9504(0.8996)  prec@1:73.44(73.33)  prec@5:96.88(94.30)
+Epoch[149]:[100/391] Time:0.3283 Data:0.2898  loss:1.0626(0.9163)  prec@1:67.97(72.95)  prec@5:94.53(94.27)
+Epoch[149]:[150/391] Time:0.3282 Data:0.2956  loss:0.9188(0.9196)  prec@1:71.09(72.60)  prec@5:96.88(94.27)
+Epoch[149]:[200/391] Time:0.3124 Data:0.2903  loss:0.7515(0.9241)  prec@1:81.25(72.52)  prec@5:96.88(94.23)
+Epoch[149]:[250/391] Time:0.3171 Data:0.2905  loss:0.8455(0.9267)  prec@1:77.34(72.39)  prec@5:95.31(94.19)
+Epoch[149]:[300/391] Time:0.3169 Data:0.2890  loss:1.1896(0.9307)  prec@1:65.62(72.36)  prec@5:89.84(94.18)
+Epoch[149]:[350/391] Time:0.3154 Data:0.2922  loss:0.9080(0.9327)  prec@1:72.66(72.34)  prec@5:93.75(94.16)
+Testing the models......
+Loss: 1.3061, Prec@1: 63.27, Prec@5: 88.93
+Epoch time: 132s
+Saving models......
+Epoch: 150  lr: 0.010
+Epoch[150]:[050/391] Time:0.3315 Data:0.3087  loss:0.8075(0.9187)  prec@1:75.78(72.81)  prec@5:96.09(94.09)
+Epoch[150]:[100/391] Time:0.3282 Data:0.3034  loss:0.8222(0.9195)  prec@1:71.09(73.06)  prec@5:98.44(94.05)
+Epoch[150]:[150/391] Time:0.3270 Data:0.3010  loss:0.8401(0.9199)  prec@1:71.88(72.62)  prec@5:94.53(94.12)
+Epoch[150]:[200/391] Time:0.3215 Data:0.2959  loss:0.8150(0.9232)  prec@1:71.09(72.55)  prec@5:95.31(94.18)
+Epoch[150]:[250/391] Time:0.3359 Data:0.3053  loss:0.8679(0.9271)  prec@1:74.22(72.33)  prec@5:92.19(94.20)
+Epoch[150]:[300/391] Time:0.3390 Data:0.3071  loss:0.6804(0.9300)  prec@1:79.69(72.23)  prec@5:95.31(94.23)
+Epoch[150]:[350/391] Time:0.3521 Data:0.2892  loss:1.1178(0.9353)  prec@1:71.09(72.14)  prec@5:89.06(94.16)
+Testing the models......
+Loss: 1.3239, Prec@1: 63.02, Prec@5: 88.84
+Epoch time: 137s
+Saving models......
+Epoch: 151  lr: 0.001
+Epoch[151]:[050/391] Time:0.3548 Data:0.2936  loss:0.9913(0.8664)  prec@1:74.22(74.66)  prec@5:92.97(94.70)
+Epoch[151]:[100/391] Time:0.3314 Data:0.2923  loss:0.8810(0.8428)  prec@1:73.44(75.15)  prec@5:96.09(95.02)
+Epoch[151]:[150/391] Time:0.3302 Data:0.2923  loss:0.9148(0.8260)  prec@1:75.78(75.71)  prec@5:92.97(95.24)
+Epoch[151]:[200/391] Time:0.3526 Data:0.2930  loss:0.7966(0.8158)  prec@1:76.56(76.11)  prec@5:94.53(95.33)
+Epoch[151]:[250/391] Time:0.3322 Data:0.2924  loss:0.7617(0.8091)  prec@1:79.69(76.33)  prec@5:96.09(95.38)
+Epoch[151]:[300/391] Time:0.3277 Data:0.2921  loss:0.6376(0.8032)  prec@1:76.56(76.53)  prec@5:97.66(95.44)
+Epoch[151]:[350/391] Time:0.3510 Data:0.3122  loss:0.8153(0.7995)  prec@1:77.34(76.61)  prec@5:95.31(95.50)
+Testing the models......
+Loss: 1.1328, Prec@1: 67.24, Prec@5: 91.01
+Epoch time: 136s
+Saving models......
+Epoch: 152  lr: 0.001
+Epoch[152]:[050/391] Time:0.3661 Data:0.3045  loss:0.8223(0.7378)  prec@1:74.22(78.70)  prec@5:96.09(95.97)
+Epoch[152]:[100/391] Time:0.3428 Data:0.3032  loss:0.9323(0.7442)  prec@1:72.66(78.26)  prec@5:93.75(96.04)
+Epoch[152]:[150/391] Time:0.3427 Data:0.3181  loss:0.8666(0.7505)  prec@1:74.22(78.03)  prec@5:92.97(95.94)
+Epoch[152]:[200/391] Time:0.3139 Data:0.2776  loss:0.8443(0.7426)  prec@1:75.00(78.25)  prec@5:94.53(96.08)
+Epoch[152]:[250/391] Time:0.3273 Data:0.3034  loss:0.7718(0.7426)  prec@1:75.00(78.15)  prec@5:96.88(96.14)
+Epoch[152]:[300/391] Time:0.3245 Data:0.2855  loss:0.7883(0.7470)  prec@1:75.00(78.06)  prec@5:95.31(96.08)
+Epoch[152]:[350/391] Time:0.3285 Data:0.2681  loss:0.8572(0.7505)  prec@1:75.00(78.00)  prec@5:94.53(96.04)
+Testing the models......
+Loss: 1.1300, Prec@1: 67.35, Prec@5: 91.07
+Epoch time: 135s
+Saving models......
+Epoch: 153  lr: 0.001
+Epoch[153]:[050/391] Time:0.3291 Data:0.2905  loss:0.7024(0.7126)  prec@1:81.25(79.19)  prec@5:96.88(96.69)
+Epoch[153]:[100/391] Time:0.3270 Data:0.2951  loss:0.7998(0.7232)  prec@1:72.66(78.58)  prec@5:96.88(96.54)
+Epoch[153]:[150/391] Time:0.3310 Data:0.2961  loss:0.7236(0.7209)  prec@1:78.12(78.67)  prec@5:95.31(96.53)
+Epoch[153]:[200/391] Time:0.3131 Data:0.2901  loss:0.6544(0.7274)  prec@1:81.25(78.52)  prec@5:96.88(96.38)
+Epoch[153]:[250/391] Time:0.3286 Data:0.2907  loss:0.6366(0.7295)  prec@1:83.59(78.59)  prec@5:96.88(96.40)
+Epoch[153]:[300/391] Time:0.3659 Data:0.3000  loss:0.7384(0.7319)  prec@1:80.47(78.55)  prec@5:95.31(96.33)
+Epoch[153]:[350/391] Time:0.3589 Data:0.2986  loss:0.7121(0.7360)  prec@1:75.00(78.42)  prec@5:97.66(96.25)
+Testing the models......
+Loss: 1.1334, Prec@1: 67.43, Prec@5: 91.01
+Epoch time: 135s
+Saving models......
+Epoch: 154  lr: 0.001
+Epoch[154]:[050/391] Time:0.3586 Data:0.3200  loss:0.6173(0.7194)  prec@1:83.59(78.98)  prec@5:97.66(96.80)
+Epoch[154]:[100/391] Time:0.3649 Data:0.3053  loss:0.7745(0.7239)  prec@1:77.34(78.70)  prec@5:94.53(96.55)
+Epoch[154]:[150/391] Time:0.3286 Data:0.2902  loss:0.6744(0.7179)  prec@1:78.12(78.90)  prec@5:97.66(96.51)
+Epoch[154]:[200/391] Time:0.3319 Data:0.2932  loss:0.4724(0.7159)  prec@1:84.38(78.92)  prec@5:99.22(96.46)
+Epoch[154]:[250/391] Time:0.3288 Data:0.2890  loss:0.8060(0.7148)  prec@1:77.34(79.03)  prec@5:95.31(96.42)
+Epoch[154]:[300/391] Time:0.3160 Data:0.2920  loss:0.7590(0.7197)  prec@1:78.12(78.91)  prec@5:92.97(96.31)
+Epoch[154]:[350/391] Time:0.3271 Data:0.2883  loss:0.7749(0.7241)  prec@1:78.12(78.77)  prec@5:96.09(96.24)
+Testing the models......
+Loss: 1.1242, Prec@1: 67.71, Prec@5: 91.29
+Epoch time: 134s
+Saving models......
+Epoch: 155  lr: 0.001
+Epoch[155]:[050/391] Time:0.3518 Data:0.2883  loss:0.6887(0.7093)  prec@1:80.47(79.33)  prec@5:97.66(96.34)
+Epoch[155]:[100/391] Time:0.3373 Data:0.2946  loss:0.6320(0.7043)  prec@1:80.47(79.43)  prec@5:97.66(96.47)
+Epoch[155]:[150/391] Time:0.3122 Data:0.2882  loss:0.6785(0.7078)  prec@1:78.91(79.40)  prec@5:99.22(96.41)
+Epoch[155]:[200/391] Time:0.3290 Data:0.3031  loss:0.7306(0.7087)  prec@1:78.91(79.54)  prec@5:96.88(96.42)
+Epoch[155]:[250/391] Time:0.3232 Data:0.2963  loss:0.7004(0.7122)  prec@1:81.25(79.42)  prec@5:96.88(96.43)
+Epoch[155]:[300/391] Time:0.3252 Data:0.2963  loss:0.6198(0.7095)  prec@1:83.59(79.47)  prec@5:97.66(96.44)
+Epoch[155]:[350/391] Time:0.3445 Data:0.3048  loss:0.8522(0.7125)  prec@1:72.66(79.37)  prec@5:93.75(96.40)
+Testing the models......
+Loss: 1.1271, Prec@1: 67.53, Prec@5: 91.23
+Epoch time: 136s
+Saving models......
+Epoch: 156  lr: 0.001
+Epoch[156]:[050/391] Time:0.3182 Data:0.2873  loss:0.9576(0.7043)  prec@1:72.66(80.02)  prec@5:96.09(96.39)
+Epoch[156]:[100/391] Time:0.3153 Data:0.2893  loss:0.7144(0.6949)  prec@1:78.12(79.90)  prec@5:98.44(96.67)
+Epoch[156]:[150/391] Time:0.3464 Data:0.3079  loss:0.6660(0.7037)  prec@1:78.91(79.60)  prec@5:97.66(96.52)
+Epoch[156]:[200/391] Time:0.3208 Data:0.2929  loss:0.5835(0.7043)  prec@1:85.16(79.46)  prec@5:98.44(96.50)
+Epoch[156]:[250/391] Time:0.3136 Data:0.2889  loss:0.7875(0.7075)  prec@1:73.44(79.34)  prec@5:96.09(96.47)
+Epoch[156]:[300/391] Time:0.3335 Data:0.2946  loss:0.6822(0.7080)  prec@1:79.69(79.27)  prec@5:92.97(96.49)
+Epoch[156]:[350/391] Time:0.3270 Data:0.2908  loss:0.6555(0.7088)  prec@1:78.12(79.29)  prec@5:97.66(96.44)
+Testing the models......
+Loss: 1.1221, Prec@1: 67.58, Prec@5: 91.07
+Epoch time: 134s
+Saving models......
+Epoch: 157  lr: 0.001
+Epoch[157]:[050/391] Time:0.3227 Data:0.2978  loss:0.8948(0.7148)  prec@1:75.00(79.31)  prec@5:94.53(96.38)
+Epoch[157]:[100/391] Time:0.3704 Data:0.3118  loss:0.6503(0.7032)  prec@1:79.69(79.38)  prec@5:100.00(96.62)
+Epoch[157]:[150/391] Time:0.3281 Data:0.3042  loss:0.7482(0.7089)  prec@1:75.00(79.27)  prec@5:96.09(96.49)
+Epoch[157]:[200/391] Time:0.3627 Data:0.3003  loss:0.7248(0.7080)  prec@1:75.00(79.20)  prec@5:96.09(96.52)
+Epoch[157]:[250/391] Time:0.3470 Data:0.3042  loss:0.6424(0.7061)  prec@1:82.03(79.37)  prec@5:97.66(96.47)
+Epoch[157]:[300/391] Time:0.3239 Data:0.3000  loss:0.6690(0.7052)  prec@1:78.91(79.38)  prec@5:97.66(96.47)
+Epoch[157]:[350/391] Time:0.3529 Data:0.2931  loss:0.8587(0.7063)  prec@1:73.44(79.36)  prec@5:96.09(96.47)
+Testing the models......
+Loss: 1.1202, Prec@1: 67.52, Prec@5: 91.24
+Epoch time: 136s
+Saving models......
+Epoch: 158  lr: 0.001
+Epoch[158]:[050/391] Time:0.3025 Data:0.2672  loss:0.5921(0.7019)  prec@1:82.03(79.41)  prec@5:96.09(96.75)
+Epoch[158]:[100/391] Time:0.3143 Data:0.2834  loss:0.6113(0.6935)  prec@1:82.81(79.72)  prec@5:97.66(96.77)
+Epoch[158]:[150/391] Time:0.3339 Data:0.2950  loss:0.8465(0.6993)  prec@1:77.34(79.64)  prec@5:93.75(96.61)
+Epoch[158]:[200/391] Time:0.3220 Data:0.2831  loss:0.8516(0.6970)  prec@1:75.78(79.70)  prec@5:95.31(96.57)
+Epoch[158]:[250/391] Time:0.3189 Data:0.2922  loss:0.6775(0.6992)  prec@1:82.03(79.66)  prec@5:96.09(96.52)
+Epoch[158]:[300/391] Time:0.3275 Data:0.2896  loss:0.7492(0.7005)  prec@1:76.56(79.60)  prec@5:95.31(96.54)
+Epoch[158]:[350/391] Time:0.3185 Data:0.2867  loss:0.7892(0.6980)  prec@1:76.56(79.60)  prec@5:96.09(96.57)
+Testing the models......
+Loss: 1.1196, Prec@1: 67.67, Prec@5: 91.34
+Epoch time: 133s
+Saving models......
+Epoch: 159  lr: 0.001
+Epoch[159]:[050/391] Time:0.3287 Data:0.3031  loss:0.6256(0.6878)  prec@1:78.91(80.08)  prec@5:97.66(96.80)
+Epoch[159]:[100/391] Time:0.3417 Data:0.3127  loss:0.7224(0.7010)  prec@1:81.25(79.62)  prec@5:94.53(96.77)
+Epoch[159]:[150/391] Time:0.3271 Data:0.3002  loss:0.6916(0.6937)  prec@1:78.12(79.77)  prec@5:96.88(96.82)
+Epoch[159]:[200/391] Time:0.3371 Data:0.3028  loss:0.7793(0.6962)  prec@1:74.22(79.68)  prec@5:93.75(96.66)
+Epoch[159]:[250/391] Time:0.3227 Data:0.2888  loss:0.8577(0.6945)  prec@1:75.00(79.74)  prec@5:95.31(96.67)
+Epoch[159]:[300/391] Time:0.3096 Data:0.2708  loss:0.7159(0.6977)  prec@1:78.91(79.63)  prec@5:96.88(96.66)
+Epoch[159]:[350/391] Time:0.3513 Data:0.2892  loss:0.4196(0.6940)  prec@1:88.28(79.76)  prec@5:100.00(96.72)
+Testing the models......
+Loss: 1.1267, Prec@1: 67.65, Prec@5: 91.14
+Epoch time: 136s
+Saving models......
+Epoch: 160  lr: 0.001
+Epoch[160]:[050/391] Time:0.3263 Data:0.3044  loss:0.6565(0.6911)  prec@1:82.81(80.03)  prec@5:96.88(96.69)
+Epoch[160]:[100/391] Time:0.1286 Data:0.1107  loss:0.6025(0.6875)  prec@1:84.38(80.16)  prec@5:100.00(96.66)
+Epoch[160]:[150/391] Time:0.1265 Data:0.1088  loss:0.7230(0.6931)  prec@1:76.56(79.91)  prec@5:97.66(96.53)
+Epoch[160]:[200/391] Time:0.1313 Data:0.1132  loss:0.5952(0.6896)  prec@1:81.25(80.11)  prec@5:98.44(96.54)
+Epoch[160]:[250/391] Time:0.1322 Data:0.1133  loss:0.7725(0.6943)  prec@1:78.12(79.94)  prec@5:96.09(96.55)
+Epoch[160]:[300/391] Time:0.1264 Data:0.1088  loss:0.6268(0.6931)  prec@1:85.16(79.98)  prec@5:97.66(96.55)
+Epoch[160]:[350/391] Time:0.1792 Data:0.1562  loss:0.6844(0.6945)  prec@1:77.34(79.89)  prec@5:96.09(96.56)
+Testing the models......
+Loss: 1.1207, Prec@1: 67.68, Prec@5: 91.11
+Epoch time: 70s
+Saving models......
+Epoch: 161  lr: 0.001
+Epoch[161]:[050/391] Time:0.1574 Data:0.1355  loss:0.6003(0.6892)  prec@1:82.03(80.23)  prec@5:98.44(96.67)
+Epoch[161]:[100/391] Time:0.1591 Data:0.1376  loss:0.6648(0.6834)  prec@1:79.69(80.15)  prec@5:96.88(96.88)
+Epoch[161]:[150/391] Time:0.1684 Data:0.1444  loss:0.6572(0.6830)  prec@1:82.03(80.06)  prec@5:96.88(96.90)
+Epoch[161]:[200/391] Time:0.1509 Data:0.1320  loss:0.5307(0.6844)  prec@1:82.81(79.94)  prec@5:99.22(96.85)
+Epoch[161]:[250/391] Time:0.1610 Data:0.1391  loss:0.6078(0.6803)  prec@1:81.25(80.01)  prec@5:98.44(96.87)
+Epoch[161]:[300/391] Time:0.1520 Data:0.1320  loss:0.5796(0.6839)  prec@1:80.47(79.95)  prec@5:100.00(96.79)
+Epoch[161]:[350/391] Time:0.1582 Data:0.1372  loss:0.5338(0.6823)  prec@1:86.72(80.00)  prec@5:96.09(96.78)
+Testing the models......
+Loss: 1.1218, Prec@1: 67.81, Prec@5: 91.19
+Epoch time: 63s
+Saving models......
+Epoch: 162  lr: 0.001
+Epoch[162]:[050/391] Time:0.1610 Data:0.1390  loss:0.7059(0.6691)  prec@1:81.25(80.64)  prec@5:94.53(96.88)
+Epoch[162]:[100/391] Time:0.1581 Data:0.1367  loss:0.5676(0.6566)  prec@1:85.94(81.16)  prec@5:99.22(97.05)
+Epoch[162]:[150/391] Time:0.1650 Data:0.1431  loss:0.5532(0.6641)  prec@1:82.81(80.94)  prec@5:97.66(96.91)
+Epoch[162]:[200/391] Time:0.1640 Data:0.1410  loss:0.6521(0.6714)  prec@1:78.91(80.66)  prec@5:98.44(96.82)
+Epoch[162]:[250/391] Time:0.1717 Data:0.1466  loss:0.6547(0.6738)  prec@1:79.69(80.53)  prec@5:96.88(96.81)
+Epoch[162]:[300/391] Time:0.2184 Data:0.1914  loss:0.7635(0.6762)  prec@1:78.12(80.48)  prec@5:95.31(96.77)
+Epoch[162]:[350/391] Time:0.1599 Data:0.1370  loss:0.6914(0.6793)  prec@1:78.91(80.29)  prec@5:96.09(96.71)
+Testing the models......
+Loss: 1.1267, Prec@1: 68.08, Prec@5: 91.19
+Epoch time: 68s
+Saving models......
+Epoch: 163  lr: 0.001
+Epoch[163]:[050/391] Time:0.3566 Data:0.3267  loss:0.7295(0.6637)  prec@1:80.47(80.53)  prec@5:93.75(96.53)
+Epoch[163]:[100/391] Time:0.3422 Data:0.3023  loss:0.6642(0.6654)  prec@1:80.47(80.57)  prec@5:98.44(96.88)
+Epoch[163]:[150/391] Time:0.3171 Data:0.2932  loss:0.5923(0.6665)  prec@1:82.81(80.55)  prec@5:97.66(96.79)
+Epoch[163]:[200/391] Time:0.3239 Data:0.2860  loss:0.7188(0.6708)  prec@1:78.12(80.23)  prec@5:96.09(96.85)
+Epoch[163]:[250/391] Time:0.3185 Data:0.2916  loss:0.7712(0.6757)  prec@1:76.56(80.16)  prec@5:93.75(96.70)
+Epoch[163]:[300/391] Time:0.3173 Data:0.2915  loss:0.7074(0.6785)  prec@1:78.12(80.02)  prec@5:96.88(96.67)
+Epoch[163]:[350/391] Time:0.3736 Data:0.3041  loss:0.7631(0.6818)  prec@1:81.25(79.90)  prec@5:93.75(96.61)
+Testing the models......
+Loss: 1.1275, Prec@1: 67.96, Prec@5: 91.02
+Epoch time: 114s
+Saving models......
+Epoch: 164  lr: 0.001
+Epoch[164]:[050/391] Time:0.3240 Data:0.2983  loss:0.7920(0.6805)  prec@1:76.56(80.33)  prec@5:97.66(96.45)
+Epoch[164]:[100/391] Time:0.3511 Data:0.3132  loss:0.7412(0.6754)  prec@1:77.34(80.61)  prec@5:95.31(96.65)
+Epoch[164]:[150/391] Time:0.3638 Data:0.2973  loss:0.7103(0.6761)  prec@1:80.47(80.57)  prec@5:96.88(96.72)
+Epoch[164]:[200/391] Time:0.1317 Data:0.1122  loss:0.7085(0.6751)  prec@1:76.56(80.48)  prec@5:98.44(96.75)
+Epoch[164]:[250/391] Time:0.1339 Data:0.1149  loss:0.5710(0.6742)  prec@1:82.03(80.42)  prec@5:98.44(96.77)
+Epoch[164]:[300/391] Time:0.1311 Data:0.1122  loss:0.7847(0.6737)  prec@1:78.12(80.47)  prec@5:96.88(96.79)
+Epoch[164]:[350/391] Time:0.1366 Data:0.1178  loss:0.8113(0.6748)  prec@1:75.00(80.35)  prec@5:95.31(96.80)
+Testing the models......
+Loss: 1.1325, Prec@1: 67.71, Prec@5: 90.98
+Epoch time: 92s
+Saving models......
+Epoch: 165  lr: 0.001
+Epoch[165]:[050/391] Time:0.1611 Data:0.1402  loss:0.5914(0.6488)  prec@1:80.47(80.86)  prec@5:99.22(97.22)
+Epoch[165]:[100/391] Time:0.1621 Data:0.1401  loss:0.7597(0.6642)  prec@1:78.12(80.38)  prec@5:94.53(96.95)
+Epoch[165]:[150/391] Time:0.1535 Data:0.1325  loss:0.6824(0.6656)  prec@1:81.25(80.41)  prec@5:95.31(96.92)
+Epoch[165]:[200/391] Time:0.1694 Data:0.1480  loss:0.6123(0.6656)  prec@1:84.38(80.46)  prec@5:97.66(96.96)
+Epoch[165]:[250/391] Time:0.1540 Data:0.1339  loss:0.7033(0.6672)  prec@1:75.78(80.33)  prec@5:96.88(96.97)
+Epoch[165]:[300/391] Time:0.1460 Data:0.1270  loss:0.6038(0.6699)  prec@1:79.69(80.33)  prec@5:96.09(96.91)
+Epoch[165]:[350/391] Time:0.1430 Data:0.1241  loss:0.6990(0.6740)  prec@1:77.34(80.24)  prec@5:96.09(96.82)
+Testing the models......
+Loss: 1.1353, Prec@1: 67.68, Prec@5: 91.07
+Epoch time: 63s
+Saving models......
+Epoch: 166  lr: 0.001
+Epoch[166]:[050/391] Time:0.1524 Data:0.1325  loss:0.8364(0.6591)  prec@1:75.00(80.81)  prec@5:90.62(97.00)
+Epoch[166]:[100/391] Time:0.1483 Data:0.1283  loss:0.6962(0.6625)  prec@1:78.91(80.63)  prec@5:97.66(96.91)
+Epoch[166]:[150/391] Time:0.1471 Data:0.1282  loss:1.0309(0.6642)  prec@1:77.34(80.57)  prec@5:91.41(96.93)
+Epoch[166]:[200/391] Time:0.1596 Data:0.1377  loss:0.5876(0.6677)  prec@1:84.38(80.55)  prec@5:99.22(96.85)
+Epoch[166]:[250/391] Time:0.1621 Data:0.1402  loss:0.5328(0.6684)  prec@1:85.94(80.61)  prec@5:97.66(96.80)
+Epoch[166]:[300/391] Time:0.1653 Data:0.1443  loss:0.8087(0.6720)  prec@1:75.00(80.40)  prec@5:90.62(96.76)
+Epoch[166]:[350/391] Time:0.1650 Data:0.1430  loss:0.6449(0.6716)  prec@1:83.59(80.34)  prec@5:96.88(96.80)
+Testing the models......
+Loss: 1.1302, Prec@1: 68.09, Prec@5: 91.15
+Epoch time: 64s
+Saving models......
+Epoch: 167  lr: 0.001
+Epoch[167]:[050/391] Time:0.1627 Data:0.1403  loss:0.6191(0.6688)  prec@1:84.38(80.45)  prec@5:96.88(96.48)
+Epoch[167]:[100/391] Time:0.1654 Data:0.1425  loss:0.6356(0.6707)  prec@1:82.03(80.36)  prec@5:97.66(96.60)
+Epoch[167]:[150/391] Time:0.1699 Data:0.1469  loss:0.8307(0.6670)  prec@1:74.22(80.43)  prec@5:96.09(96.69)
+Epoch[167]:[200/391] Time:0.1680 Data:0.1442  loss:0.7632(0.6726)  prec@1:78.91(80.29)  prec@5:96.09(96.64)
+Epoch[167]:[250/391] Time:0.1546 Data:0.1336  loss:0.6780(0.6723)  prec@1:80.47(80.17)  prec@5:96.88(96.62)
+Epoch[167]:[300/391] Time:0.1589 Data:0.1389  loss:0.5512(0.6688)  prec@1:81.25(80.28)  prec@5:99.22(96.65)
+Epoch[167]:[350/391] Time:0.1722 Data:0.1488  loss:0.5996(0.6709)  prec@1:79.69(80.19)  prec@5:97.66(96.65)
+Testing the models......
+Loss: 1.1313, Prec@1: 67.84, Prec@5: 91.25
+Epoch time: 65s
+Saving models......
+Epoch: 168  lr: 0.001
+Epoch[168]:[050/391] Time:0.1699 Data:0.1449  loss:0.6201(0.6826)  prec@1:81.25(80.94)  prec@5:99.22(96.50)
+Epoch[168]:[100/391] Time:0.1538 Data:0.1328  loss:0.8837(0.6767)  prec@1:78.12(80.59)  prec@5:93.75(96.78)
+Epoch[168]:[150/391] Time:0.1717 Data:0.1478  loss:0.5574(0.6758)  prec@1:83.59(80.51)  prec@5:97.66(96.80)
+Epoch[168]:[200/391] Time:0.1621 Data:0.1391  loss:0.6370(0.6754)  prec@1:82.03(80.31)  prec@5:95.31(96.86)
+Epoch[168]:[250/391] Time:0.1652 Data:0.1423  loss:0.7384(0.6722)  prec@1:75.78(80.48)  prec@5:96.09(96.88)
+Epoch[168]:[300/391] Time:0.1666 Data:0.1456  loss:0.7691(0.6705)  prec@1:79.69(80.52)  prec@5:95.31(96.85)
+Epoch[168]:[350/391] Time:0.1661 Data:0.1398  loss:0.7348(0.6673)  prec@1:78.12(80.65)  prec@5:96.88(96.85)
+Testing the models......
+Loss: 1.1375, Prec@1: 67.67, Prec@5: 91.14
+Epoch time: 67s
+Saving models......
+Epoch: 169  lr: 0.001
+Epoch[169]:[050/391] Time:0.1705 Data:0.1465  loss:0.5226(0.6474)  prec@1:86.72(80.80)  prec@5:98.44(96.97)
+Epoch[169]:[100/391] Time:0.2021 Data:0.1737  loss:0.5810(0.6601)  prec@1:84.38(80.78)  prec@5:97.66(96.92)
+Epoch[169]:[150/391] Time:0.1779 Data:0.1529  loss:0.6180(0.6559)  prec@1:80.47(80.79)  prec@5:97.66(96.92)
+Epoch[169]:[200/391] Time:0.1562 Data:0.1362  loss:0.8570(0.6617)  prec@1:74.22(80.59)  prec@5:94.53(96.85)
+Epoch[169]:[250/391] Time:0.1530 Data:0.1317  loss:0.5892(0.6648)  prec@1:84.38(80.61)  prec@5:98.44(96.79)
+Epoch[169]:[300/391] Time:0.1675 Data:0.1466  loss:0.6636(0.6640)  prec@1:75.78(80.48)  prec@5:98.44(96.84)
+Epoch[169]:[350/391] Time:0.1565 Data:0.1335  loss:0.6785(0.6670)  prec@1:79.69(80.37)  prec@5:95.31(96.81)
+Testing the models......
+Loss: 1.1322, Prec@1: 67.76, Prec@5: 91.24
+Epoch time: 66s
+Saving models......
+Epoch: 170  lr: 0.001
+Epoch[170]:[050/391] Time:0.1582 Data:0.1356  loss:0.5839(0.6260)  prec@1:83.59(81.38)  prec@5:97.66(97.48)
+Epoch[170]:[100/391] Time:0.1555 Data:0.1346  loss:0.6387(0.6463)  prec@1:82.03(81.06)  prec@5:96.88(97.08)
+Epoch[170]:[150/391] Time:0.1731 Data:0.1501  loss:0.6561(0.6529)  prec@1:81.25(80.85)  prec@5:97.66(96.95)
+Epoch[170]:[200/391] Time:0.1612 Data:0.1383  loss:0.6362(0.6587)  prec@1:78.12(80.61)  prec@5:99.22(96.95)
+Epoch[170]:[250/391] Time:0.1543 Data:0.1347  loss:0.7988(0.6636)  prec@1:74.22(80.38)  prec@5:96.09(96.93)
+Epoch[170]:[300/391] Time:0.1554 Data:0.1345  loss:0.5993(0.6674)  prec@1:80.47(80.31)  prec@5:98.44(96.89)
+Epoch[170]:[350/391] Time:0.1653 Data:0.1404  loss:0.6647(0.6668)  prec@1:78.91(80.35)  prec@5:96.88(96.87)
+Testing the models......
+Loss: 1.1326, Prec@1: 67.69, Prec@5: 91.16
+Epoch time: 66s
+Saving models......
+Epoch: 171  lr: 0.001
+Epoch[171]:[050/391] Time:0.1526 Data:0.1332  loss:0.7167(0.6514)  prec@1:77.34(80.75)  prec@5:98.44(96.94)
+Epoch[171]:[100/391] Time:0.1573 Data:0.1349  loss:0.6108(0.6501)  prec@1:82.81(80.80)  prec@5:97.66(97.01)
+Epoch[171]:[150/391] Time:0.1582 Data:0.1388  loss:0.6197(0.6484)  prec@1:82.03(81.16)  prec@5:96.88(97.06)
+Epoch[171]:[200/391] Time:0.1594 Data:0.1390  loss:0.7233(0.6556)  prec@1:78.12(80.81)  prec@5:96.88(96.99)
+Epoch[171]:[250/391] Time:0.1529 Data:0.1330  loss:0.8079(0.6608)  prec@1:79.69(80.55)  prec@5:93.75(96.98)
+Epoch[171]:[300/391] Time:0.1531 Data:0.1322  loss:0.6593(0.6613)  prec@1:79.69(80.54)  prec@5:96.88(96.97)
+Epoch[171]:[350/391] Time:0.1560 Data:0.1341  loss:0.6874(0.6623)  prec@1:81.25(80.52)  prec@5:96.09(96.98)
+Testing the models......
+Loss: 1.1346, Prec@1: 67.71, Prec@5: 91.12
+Epoch time: 63s
+Saving models......
+Epoch: 172  lr: 0.001
+Epoch[172]:[050/391] Time:0.1651 Data:0.1432  loss:0.5459(0.6445)  prec@1:82.81(81.33)  prec@5:97.66(96.81)
+Epoch[172]:[100/391] Time:0.1560 Data:0.1360  loss:0.6030(0.6457)  prec@1:82.03(81.19)  prec@5:98.44(96.99)
+Epoch[172]:[150/391] Time:0.1618 Data:0.1389  loss:0.7585(0.6495)  prec@1:77.34(80.88)  prec@5:96.88(97.01)
+Epoch[172]:[200/391] Time:0.1590 Data:0.1363  loss:0.6253(0.6512)  prec@1:82.03(80.77)  prec@5:96.09(97.06)
+Epoch[172]:[250/391] Time:0.1588 Data:0.1359  loss:0.5837(0.6535)  prec@1:83.59(80.73)  prec@5:96.09(97.03)
+Epoch[172]:[300/391] Time:0.1529 Data:0.1329  loss:0.6285(0.6527)  prec@1:83.59(80.77)  prec@5:96.09(97.05)
+Epoch[172]:[350/391] Time:0.1701 Data:0.1456  loss:0.5967(0.6540)  prec@1:81.25(80.73)  prec@5:96.88(97.08)
+Testing the models......
+Loss: 1.1308, Prec@1: 67.91, Prec@5: 90.94
+Epoch time: 64s
+Saving models......
+Epoch: 173  lr: 0.001
+Epoch[173]:[050/391] Time:0.1543 Data:0.1344  loss:0.7252(0.6432)  prec@1:75.78(81.11)  prec@5:93.75(96.75)
+Epoch[173]:[100/391] Time:0.1577 Data:0.1357  loss:0.7598(0.6431)  prec@1:78.91(81.00)  prec@5:96.88(97.04)
+Epoch[173]:[150/391] Time:0.1885 Data:0.1628  loss:0.8039(0.6430)  prec@1:75.78(81.08)  prec@5:94.53(97.11)
+Epoch[173]:[200/391] Time:0.2401 Data:0.2098  loss:0.6883(0.6497)  prec@1:82.81(80.88)  prec@5:94.53(97.02)
+Epoch[173]:[250/391] Time:0.1805 Data:0.1540  loss:0.6638(0.6507)  prec@1:84.38(81.01)  prec@5:96.88(97.00)
+Epoch[173]:[300/391] Time:0.1896 Data:0.1588  loss:0.5163(0.6506)  prec@1:81.25(81.01)  prec@5:97.66(97.02)
+Epoch[173]:[350/391] Time:0.1616 Data:0.1397  loss:0.6727(0.6532)  prec@1:82.03(80.88)  prec@5:97.66(97.00)
+Testing the models......
+Loss: 1.1369, Prec@1: 67.75, Prec@5: 91.14
+Epoch time: 75s
+Saving models......
+Epoch: 174  lr: 0.001
+Epoch[174]:[050/391] Time:0.1589 Data:0.1370  loss:0.4518(0.6238)  prec@1:88.28(81.62)  prec@5:99.22(97.39)
+Epoch[174]:[100/391] Time:0.1547 Data:0.1347  loss:0.8188(0.6384)  prec@1:75.78(81.29)  prec@5:92.97(97.21)
+Epoch[174]:[150/391] Time:0.1568 Data:0.1359  loss:0.7321(0.6459)  prec@1:76.56(80.99)  prec@5:96.88(97.12)
+Epoch[174]:[200/391] Time:0.1718 Data:0.1496  loss:0.7099(0.6469)  prec@1:77.34(81.14)  prec@5:96.88(97.08)
+Epoch[174]:[250/391] Time:0.1862 Data:0.1603  loss:0.6514(0.6470)  prec@1:82.81(81.14)  prec@5:97.66(97.06)
+Epoch[174]:[300/391] Time:0.1635 Data:0.1437  loss:0.7431(0.6519)  prec@1:75.78(80.88)  prec@5:96.88(97.02)
+Epoch[174]:[350/391] Time:0.1496 Data:0.1291  loss:0.6056(0.6566)  prec@1:86.72(80.75)  prec@5:96.09(96.96)
+Testing the models......
+Loss: 1.1379, Prec@1: 67.78, Prec@5: 91.16
+Epoch time: 64s
+Saving models......
+Epoch: 175  lr: 0.001
+Epoch[175]:[050/391] Time:0.1787 Data:0.1542  loss:0.7267(0.6394)  prec@1:79.69(81.50)  prec@5:96.09(97.02)
+Epoch[175]:[100/391] Time:0.1589 Data:0.1379  loss:0.5122(0.6418)  prec@1:87.50(81.27)  prec@5:98.44(97.10)
+Epoch[175]:[150/391] Time:0.1966 Data:0.1717  loss:0.5719(0.6480)  prec@1:83.59(81.02)  prec@5:98.44(97.09)
+Epoch[175]:[200/391] Time:0.1557 Data:0.1328  loss:0.4665(0.6506)  prec@1:84.38(81.01)  prec@5:98.44(97.03)
+Epoch[175]:[250/391] Time:0.1710 Data:0.1491  loss:0.6525(0.6491)  prec@1:78.91(80.94)  prec@5:97.66(97.10)
+Epoch[175]:[300/391] Time:0.1643 Data:0.1414  loss:0.7172(0.6476)  prec@1:81.25(81.00)  prec@5:93.75(97.07)
+Epoch[175]:[350/391] Time:0.3441 Data:0.3065  loss:0.5758(0.6481)  prec@1:83.59(80.91)  prec@5:98.44(97.07)
+Testing the models......
+Loss: 1.1434, Prec@1: 67.88, Prec@5: 91.25
+Epoch time: 78s
+Saving models......
+Epoch: 176  lr: 0.001
+Epoch[176]:[050/391] Time:0.3143 Data:0.2893  loss:0.8769(0.6345)  prec@1:72.66(81.69)  prec@5:93.75(97.20)
+Epoch[176]:[100/391] Time:0.3236 Data:0.2872  loss:0.5316(0.6398)  prec@1:88.28(81.40)  prec@5:96.09(97.06)
+Epoch[176]:[150/391] Time:0.3328 Data:0.3040  loss:0.5803(0.6364)  prec@1:83.59(81.44)  prec@5:98.44(97.09)
+Epoch[176]:[200/391] Time:0.3334 Data:0.2945  loss:0.5547(0.6370)  prec@1:82.81(81.29)  prec@5:96.09(97.11)
+Epoch[176]:[250/391] Time:0.3050 Data:0.2811  loss:0.5895(0.6443)  prec@1:84.38(81.00)  prec@5:96.09(97.09)
+Epoch[176]:[300/391] Time:0.3271 Data:0.2881  loss:0.5109(0.6450)  prec@1:82.03(81.01)  prec@5:99.22(97.10)
+Epoch[176]:[350/391] Time:0.3352 Data:0.2983  loss:0.8307(0.6478)  prec@1:73.44(80.91)  prec@5:94.53(97.10)
+Testing the models......
+Loss: 1.1417, Prec@1: 67.61, Prec@5: 91.22
+Epoch time: 132s
+Saving models......
+Epoch: 177  lr: 0.001
+Epoch[177]:[050/391] Time:0.3252 Data:0.3003  loss:0.5915(0.6334)  prec@1:82.81(82.05)  prec@5:96.09(97.12)
+Epoch[177]:[100/391] Time:0.3360 Data:0.3010  loss:0.7958(0.6430)  prec@1:75.00(81.44)  prec@5:95.31(97.07)
+Epoch[177]:[150/391] Time:0.3343 Data:0.2974  loss:0.6186(0.6439)  prec@1:80.47(81.35)  prec@5:97.66(96.91)
+Epoch[177]:[200/391] Time:0.3534 Data:0.2946  loss:0.5770(0.6464)  prec@1:84.38(81.09)  prec@5:99.22(96.98)
+Epoch[177]:[250/391] Time:0.3228 Data:0.3013  loss:0.7691(0.6508)  prec@1:75.78(80.98)  prec@5:96.88(96.92)
+Epoch[177]:[300/391] Time:0.3465 Data:0.3077  loss:0.6047(0.6516)  prec@1:85.16(80.90)  prec@5:96.88(96.92)
+Epoch[177]:[350/391] Time:0.3309 Data:0.2931  loss:0.6603(0.6520)  prec@1:80.47(80.92)  prec@5:98.44(96.92)
+Testing the models......
+Loss: 1.1439, Prec@1: 67.71, Prec@5: 91.26
+Epoch time: 136s
+Saving models......
+Epoch: 178  lr: 0.001
+Epoch[178]:[050/391] Time:0.3423 Data:0.2775  loss:0.5760(0.6256)  prec@1:85.94(81.88)  prec@5:98.44(97.11)
+Epoch[178]:[100/391] Time:0.3305 Data:0.2916  loss:0.7072(0.6428)  prec@1:75.78(81.32)  prec@5:98.44(96.89)
+Epoch[178]:[150/391] Time:0.3359 Data:0.2943  loss:0.8632(0.6408)  prec@1:72.66(81.33)  prec@5:93.75(97.02)
+Epoch[178]:[200/391] Time:0.3329 Data:0.2932  loss:0.7367(0.6448)  prec@1:80.47(81.37)  prec@5:93.75(97.03)
+Epoch[178]:[250/391] Time:0.3257 Data:0.2962  loss:0.6077(0.6465)  prec@1:78.91(81.27)  prec@5:97.66(97.02)
+Epoch[178]:[300/391] Time:0.3153 Data:0.2904  loss:0.7138(0.6466)  prec@1:82.03(81.20)  prec@5:93.75(97.02)
+Epoch[178]:[350/391] Time:0.3360 Data:0.2931  loss:0.7084(0.6462)  prec@1:76.56(81.19)  prec@5:96.88(97.08)
+Testing the models......
+Loss: 1.1461, Prec@1: 67.64, Prec@5: 91.11
+Epoch time: 133s
+Saving models......
+Epoch: 179  lr: 0.001
+Epoch[179]:[050/391] Time:0.3213 Data:0.2970  loss:0.6680(0.6361)  prec@1:81.25(81.02)  prec@5:98.44(97.25)
+Epoch[179]:[100/391] Time:0.3644 Data:0.3038  loss:0.5522(0.6355)  prec@1:78.12(81.17)  prec@5:99.22(97.21)
+Epoch[179]:[150/391] Time:0.3659 Data:0.3041  loss:0.7689(0.6435)  prec@1:80.47(81.20)  prec@5:96.09(97.13)
+Epoch[179]:[200/391] Time:0.3255 Data:0.2869  loss:0.5891(0.6415)  prec@1:81.25(81.20)  prec@5:99.22(97.14)
+Epoch[179]:[250/391] Time:0.3217 Data:0.2861  loss:0.6191(0.6421)  prec@1:82.03(81.21)  prec@5:92.97(97.11)
+Epoch[179]:[300/391] Time:0.3153 Data:0.2789  loss:0.6132(0.6428)  prec@1:81.25(81.11)  prec@5:96.09(97.12)
+Epoch[179]:[350/391] Time:0.3242 Data:0.2933  loss:0.5776(0.6422)  prec@1:82.03(81.15)  prec@5:98.44(97.12)
+Testing the models......
+Loss: 1.1459, Prec@1: 67.73, Prec@5: 91.07
+Epoch time: 134s
+Saving models......
+Epoch: 180  lr: 0.001
+Epoch[180]:[050/391] Time:0.3299 Data:0.2920  loss:0.6199(0.6277)  prec@1:81.25(81.42)  prec@5:96.09(97.20)
+Epoch[180]:[100/391] Time:0.3217 Data:0.2883  loss:0.4808(0.6169)  prec@1:87.50(81.81)  prec@5:99.22(97.34)
+Epoch[180]:[150/391] Time:0.3330 Data:0.2975  loss:0.7539(0.6250)  prec@1:77.34(81.64)  prec@5:97.66(97.22)
+Epoch[180]:[200/391] Time:0.3222 Data:0.2833  loss:0.5147(0.6276)  prec@1:85.16(81.56)  prec@5:98.44(97.23)
+Epoch[180]:[250/391] Time:0.3132 Data:0.2824  loss:0.7761(0.6321)  prec@1:79.69(81.41)  prec@5:96.09(97.22)
+Epoch[180]:[300/391] Time:0.3253 Data:0.3004  loss:0.7016(0.6364)  prec@1:76.56(81.28)  prec@5:97.66(97.21)
+Epoch[180]:[350/391] Time:0.3244 Data:0.2985  loss:0.6194(0.6390)  prec@1:82.03(81.25)  prec@5:96.09(97.18)
+Testing the models......
+Loss: 1.1574, Prec@1: 67.73, Prec@5: 90.79
+Epoch time: 134s
+Saving models......
+Epoch: 181  lr: 0.001
+Epoch[181]:[050/391] Time:0.3207 Data:0.2958  loss:0.4219(0.6247)  prec@1:89.06(81.86)  prec@5:99.22(97.16)
+Epoch[181]:[100/391] Time:0.3302 Data:0.3038  loss:0.5697(0.6244)  prec@1:84.38(81.65)  prec@5:99.22(97.25)
+Epoch[181]:[150/391] Time:0.3533 Data:0.3131  loss:0.5262(0.6266)  prec@1:84.38(81.74)  prec@5:95.31(97.18)
+Epoch[181]:[200/391] Time:0.2924 Data:0.2675  loss:0.6792(0.6342)  prec@1:83.59(81.48)  prec@5:97.66(97.16)
+Epoch[181]:[250/391] Time:0.3550 Data:0.2918  loss:0.5917(0.6391)  prec@1:81.25(81.24)  prec@5:98.44(97.11)
+Epoch[181]:[300/391] Time:0.3191 Data:0.2943  loss:0.6123(0.6397)  prec@1:80.47(81.26)  prec@5:97.66(97.11)
+Epoch[181]:[350/391] Time:0.3288 Data:0.2891  loss:0.6014(0.6399)  prec@1:84.38(81.30)  prec@5:97.66(97.08)
+Testing the models......
+Loss: 1.1510, Prec@1: 67.50, Prec@5: 91.12
+Epoch time: 134s
+Saving models......
+Epoch: 182  lr: 0.001
+Epoch[182]:[050/391] Time:0.3130 Data:0.2890  loss:0.8003(0.6244)  prec@1:77.34(81.64)  prec@5:96.88(97.22)
+Epoch[182]:[100/391] Time:0.3260 Data:0.2871  loss:0.6174(0.6421)  prec@1:79.69(81.02)  prec@5:97.66(97.12)
+Epoch[182]:[150/391] Time:0.3179 Data:0.2938  loss:0.7130(0.6436)  prec@1:78.91(80.99)  prec@5:96.88(97.10)
+Epoch[182]:[200/391] Time:0.1251 Data:0.1072  loss:0.6961(0.6453)  prec@1:81.25(81.03)  prec@5:96.09(97.07)
+Epoch[182]:[250/391] Time:0.3392 Data:0.2993  loss:0.7046(0.6457)  prec@1:78.91(80.96)  prec@5:94.53(97.03)
+Epoch[182]:[300/391] Time:0.3419 Data:0.3020  loss:0.6168(0.6443)  prec@1:82.81(80.95)  prec@5:98.44(97.09)
+Epoch[182]:[350/391] Time:0.3284 Data:0.2899  loss:0.6495(0.6438)  prec@1:78.12(80.95)  prec@5:97.66(97.12)
+Testing the models......
+Loss: 1.1503, Prec@1: 67.69, Prec@5: 91.05
+Epoch time: 124s
+Saving models......
+Epoch: 183  lr: 0.001
